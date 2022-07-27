@@ -15,7 +15,7 @@
   -->
 
 <idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
-    <id>com.tang</id>
+    <id>io.tarantool</id>
     <name>EmmyLua</name>
     <version>1.3.6</version>
     <vendor email="love.tangzx@qq.com">tangzx</vendor>
