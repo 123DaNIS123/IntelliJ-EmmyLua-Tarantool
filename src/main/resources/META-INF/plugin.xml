@@ -15,8 +15,8 @@
   -->
 
 <idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
-    <id>io.tarantool</id>
-    <name>EmmyLua</name>
+    <id>com.tang</id>
+    <name>Tarantool with EmmyLua</name>
     <version>1.3.6</version>
     <vendor email="love.tangzx@qq.com">tangzx</vendor>
     <category>Custom Languages</category>
