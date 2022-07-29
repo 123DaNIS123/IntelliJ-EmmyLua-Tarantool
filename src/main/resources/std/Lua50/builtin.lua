@@ -103,3 +103,5 @@
 ---@class void
 
 ---@class self
+
+---@class pointer
