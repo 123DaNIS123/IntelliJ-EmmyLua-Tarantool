@@ -28,6 +28,8 @@ index = {}
 
 -- BACKUPS
 
+backup = {}
+
 --- Informs the server that activities related to the removal of outdated
 --- backups must be suspended.
 ---
@@ -70,6 +72,8 @@ function backup.start(n) end
 function backup.stop() end
 
 -- box.ctl
+
+ctl = {}
 
 --- Check whether the recovery process has finished.
 --- Until it has finished, space changes such as insert or update are not possible.
