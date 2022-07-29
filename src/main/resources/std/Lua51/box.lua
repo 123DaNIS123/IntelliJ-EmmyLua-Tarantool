@@ -26,7 +26,7 @@ session = {}
 --- @field BITS_ALL_NOT_SET string
 index = {}
 
--- BACKUPS
+-- box.backup
 
 backup = {}
 
@@ -97,22 +97,6 @@ function ctl.is_recovery_finished() end
 --- @param trigger_function function
 --- @param old_trigger_function function
 --- @return function
-function ctl.on_schema_init(trigger_function) end
---- The box.ctl submodule also contains two functions for the two server trigger definitions:
---- on_shutdown and on_schema_init. Please, familiarize yourself with the mechanism of trigger functions before using them.
---- Create a “schema_init trigger”. The trigger-function will be executed when box.cfg{} happens for the first time.
---- That is, the schema_init trigger is called before the server’s configuration and recovery begins,
---- and therefore box.ctl.on_schema_init must be called before box.cfg is called.
----
---- Parameters:
---- trigger-function (function) – function which will become the trigger function
----
---- old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
----
---- Return: nil or function pointer
---- @param trigger_function function
---- @param old_trigger_function function
---- @return function
 function ctl.on_schema_init(trigger_function, old_trigger_function) end
 
 --- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
@@ -127,22 +111,105 @@ function ctl.on_schema_init(trigger_function, old_trigger_function) end
 --- Return: nil or function pointer
 --- @param trigger_function function
 --- @param old_trigger_function function
---- @return nil
-function box.ctl.on_shutdown(trigger_function) end
---- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
---- or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal
---- (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination).
----
----Parameters:
----
---- trigger-function (function) – function which will become the trigger function
---- old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
----
---- Return: nil or function pointer
---- @param trigger_function function
---- @param old_trigger_function function
---- @return nil
+--- @return nil|function_pointer
 function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
+
+
+--- Wait, then choose new replication leader.
+---
+--- For synchronous transactions it is possible that a new leader will be chosen but the
+--- transactions of the old leader have not been completed. Therefore to finalize the transaction,
+--- the function box.ctl.promote() should be called, as mentioned in the notes for leader election.
+--- The old name for this function is box.ctl.clear_synchro_queue().
+---
+---The election state should change to leader.
+---
+---Parameters: none
+---
+---Return: nil or function pointer
+---@return nil|function_pointer
+function box.ctl.promote() end
+
+--- Wait until box.info.ro is true.
+---
+--- Parameters: timeout (number) – maximum number of seconds to wait
+---
+--- Return: nil, or error may be thrown due to timeout or fiber cancellation
+--- @param number number
+--- @return nil|error|fiber_collection
+function box.ctl.wait_ro(number) end
+
+--- Wait until box.info.ro is false.
+---
+--- Parameters: timeout (number) – maximum number of seconds to wait
+---
+--- Return: nil, or error may be thrown due to timeout or fiber cancellation
+--- @param number number
+--- @return nil|error|fiber_collection
+function box.ctl.wait_rw(number) end
+
+-- box.error
+
+error = {}
+
+---
+--- Clear the record of errors, so functions like box.error() or box.error.last()
+--- will have no effect.
+function box.error.clear() end
+
+-- function box.error() end
+
+--- @class Error
+--- @field prev
+local errorObject = {}
+
+--- Clear the record of errors, so functions like box.error() or box.error.last()
+--- will have no effect.
+function box.error.clear() end
+
+--- Return a description of the last error, as a Lua table with four members:
+---
+--- “code” (number) error’s number
+---
+--- “type” (string) error’s C++ class
+---
+--- “message” (string) error’s message
+---
+--- “trace” (table) with 2 members:
+---
+--- “line” (number) Tarantool source file line number
+---
+--- “file” (string) Tarantool source file
+---
+--- Additionally, if the error is a system error (for example due to a failure in socket or file io),
+--- there may be a fifth member: “errno” (number) C standard error number.
+--- @param error Error
+--- @return table
+function box.error.last() end
+
+--- Create an error object, but not throw it as box.error() does.
+--- This is useful when error information should be saved for later retrieval. Since version 2.4.1,
+--- to set an error as the last explicitly use box.error.set().
+---
+--- Parameters:
+---
+--- code (number) – number of a pre-defined error
+--- errtext(s) (string) – part of the message which will accompany the error
+--- @param code number
+--- @param errtext string
+function box.error.new(code, errtext) end
+
+--- Since version 2.4.1. Set an error as the last system error explicitly.
+--- Accepts an error object and makes it available via box.error.last().
+--- @param errorObject Error
+function box.error.set(errorObject) end
+
+--- @class Space
+--- @field enabled boolean
+--- @field field_count number
+--- @field id number
+--- @field index Index[] @table of indexes
+local spaceObject = {}
 
 -- SPACES
 
@@ -158,13 +225,6 @@ space = {}
 --- @field engine string
 --- @field format table
 local sp_options = {}
-
---- @class Space
---- @field enabled boolean
---- @field field_count number
---- @field id number
---- @field index Index[] @table of indexes
-local spaceObject = {}
 
 --- @class Iterator
 --- @field iterator string @comparison method
@@ -649,6 +709,62 @@ function indexObj:rename(new_name) end
 --- @return number
 function indexObj:bsize() end
 
+-- << Added indexObj functions
+
+--- An array describing the index fields. To learn more about the index field types,
+--- refer to this table: https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/create_index/#box-space-index-field-types
+--- @return table
+function indexObj:parts() end
+
+--- Remove unused index space. For the memtx storage engine this method does nothing;
+--- index_object:compact() is only for the vinyl storage engine. For example, with vinyl,
+--- if a tuple is deleted, the space is not immediately reclaimed. There is a scheduler for
+--- reclaiming space automatically based on factors such as lsm shape and amplification as discussed in the section
+--- Storing data with vinyl, so calling index_object:compact() manually is not always necessary.
+---
+--- Return: nil (Tarantool returns without waiting for compaction to complete)
+--- @return nil
+function indexObj:compact() end
+
+--- Return statistics about actions taken that affect the index.
+---
+--- This is for use with the vinyl engine.
+---
+--- Some detail items in the output from index_object:stat() are:
+---
+--- index_object:stat().latency – timings subdivided by percentages;
+---
+--- index_object:stat().bytes – the number of bytes total;
+---
+--- index_object:stat().disk.rows – the approximate number of tuples in each range;
+---
+--- index_object:stat().disk.statement – counts of inserts|updates|upserts|deletes;
+---
+--- index_object:stat().disk.compaction – counts of compactions and their amounts;
+---
+--- index_object:stat().disk.dump – counts of dumps and their amounts;
+---
+--- index_object:stat().disk.iterator.bloom – counts of bloom filter hits|misses;
+---
+--- index_object:stat().disk.pages – the size in pages;
+---
+--- index_object:stat().disk.last_level – size of data in the last LSM tree level;
+---
+--- index_object:stat().cache.evict – number of evictions from the cache;
+---
+--- index_object:stat().range_size – maximum number of bytes in a range;
+---
+--- index_object:stat().dumps_per_compaction – average number of dumps required to trigger major compaction in any range of the LSM tree.
+---
+--- Summary index statistics are also available via box.stat.vinyl().
+---
+--- Parameters: index_object (index_object) – an object reference.
+--- @param indexObj Index
+--- @return table statistics
+function indexObj:stat() end
+
+-- >>
+
 -- UTILITY
 
 --- @class BoxInfo
@@ -811,6 +927,38 @@ function rollback() end
 function savepoint() end
 --- @param sp table @savepoint
 function rollback_to_savepoint(sp) end
+
+-- added functions:
+
+-- from error:
+
+--- When called without arguments, box.error() re-throws whatever the last error was.
+function error() end
+
+--- When called without arguments, box.error() re-throws whatever the last error was.
+--- Throw an error. When called with a Lua-table argument, the code and reason have any user-desired values.
+--- The result will be those values.
+---
+--- Parameters:
+---
+--- reason (string) – description of an error, defined by user
+--- code (integer) – numeric code for this error, defined by user
+--- @param code integer
+--- @param reason string
+function error(reason, code) end
+
+--- Throw an error. This method emulates a request error, with text based on one of
+--- the pre-defined Tarantool errors defined in the file errcode.h in the source tree. Lua
+--- constants which correspond to those Tarantool errors are defined as members of box.error,
+--- for example box.error.NO_SUCH_USER == 45.
+---
+--- Parameters:
+---
+--- code (number) – number of a pre-defined error
+--- errtext(s) (string) – part of the message which will accompany the error
+--- @param code number
+--- @param errtext string
+function error(code, errtext) end
 
 --- Execute function as a transaction (explicit box.begin/commit, implicit box.rollback)
 --- @param func fun(...):any
