@@ -103,3 +103,7 @@
 ---@class void
 
 ---@class self
+
+--added classes:
+
+---@class integer
