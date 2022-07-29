@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote
+package com.tarantoollua.intellij.lua.debugger.remote
 
 import com.intellij.execution.ui.ConsoleViewContentType
 import com.intellij.openapi.vfs.VirtualFile
@@ -25,18 +25,18 @@ import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 import com.intellij.xdebugger.evaluation.XDebuggerEditorsProvider
 import com.intellij.xdebugger.frame.XSuspendContext
 import com.intellij.xdebugger.impl.XSourcePositionImpl
-import com.tang.intellij.lua.debugger.IRemoteConfiguration
-import com.tang.intellij.lua.debugger.LogConsoleType
-import com.tang.intellij.lua.debugger.LuaDebugProcess
-import com.tang.intellij.lua.debugger.LuaDebuggerEditorsProvider
-import com.tang.intellij.lua.debugger.remote.commands.DebugCommand
-import com.tang.intellij.lua.debugger.remote.commands.GetStackCommand
-import com.tang.intellij.lua.psi.LuaFileUtil
+import com.tarantoollua.intellij.lua.debugger.IRemoteConfiguration
+import com.tarantoollua.intellij.lua.debugger.LogConsoleType
+import com.tarantoollua.intellij.lua.debugger.LuaDebugProcess
+import com.tarantoollua.intellij.lua.debugger.LuaDebuggerEditorsProvider
+import com.tarantoollua.intellij.lua.debugger.remote.commands.DebugCommand
+import com.tarantoollua.intellij.lua.debugger.remote.commands.GetStackCommand
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil
 import java.net.BindException
 
 /**
 
- * Created by TangZX on 2016/12/30.
+ * Created by tarantoolluaZX on 2016/12/30.
  */
 open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session), MobServerListener {
 

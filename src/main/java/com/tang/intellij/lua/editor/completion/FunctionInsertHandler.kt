@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.completion.CompletionInitializationContext
 import com.intellij.codeInsight.completion.InsertionContext
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.ty.IFunSignature
-import com.tang.intellij.lua.ty.hasVarargs
-import com.tang.intellij.lua.ty.processArgs
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.ty.IFunSignature
+import com.tarantoollua.intellij.lua.ty.hasVarargs
+import com.tarantoollua.intellij.lua.ty.processArgs
 
 open class SignatureInsertHandler(val sig: IFunSignature, private val isColonStyle: Boolean = false) : ArgsInsertHandler() {
 

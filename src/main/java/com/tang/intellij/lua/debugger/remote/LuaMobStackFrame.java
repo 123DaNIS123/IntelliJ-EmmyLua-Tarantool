@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote;
+package com.tarantoollua.intellij.lua.debugger.remote;
 
 import com.intellij.ui.ColoredTextContainer;
 import com.intellij.ui.SimpleTextAttributes;
@@ -24,13 +24,13 @@ import com.intellij.xdebugger.frame.XCompositeNode;
 import com.intellij.xdebugger.frame.XNamedValue;
 import com.intellij.xdebugger.frame.XStackFrame;
 import com.intellij.xdebugger.frame.XValueChildrenList;
-import com.tang.intellij.lua.lang.LuaIcons;
+import com.tarantoollua.intellij.lua.lang.LuaIcons;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
  *
- * Created by tangzx on 2016/12/31.
+ * Created by tarantoolluazx on 2016/12/31.
  */
 public class LuaMobStackFrame extends XStackFrame {
 

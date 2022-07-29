@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection.doc
+package com.tarantoollua.intellij.lua.codeInsight.inspection.doc
 
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.LocalInspectionToolSession
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
-import com.tang.intellij.lua.comment.psi.LuaDocGeneralTy
-import com.tang.intellij.lua.comment.psi.LuaDocType
-import com.tang.intellij.lua.comment.psi.LuaDocVisitor
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocGeneralTy
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocType
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocVisitor
 
 class UnresolvedClassInspection : LocalInspectionTool() {
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean, session: LocalInspectionToolSession): PsiElementVisitor {

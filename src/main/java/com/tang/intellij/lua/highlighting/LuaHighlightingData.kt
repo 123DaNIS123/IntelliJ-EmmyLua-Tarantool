@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.highlighting
+package com.tarantoollua.intellij.lua.highlighting
 
 import com.intellij.execution.process.ConsoleHighlighter
 import com.intellij.ide.highlighter.custom.CustomHighlighterColors
@@ -23,7 +23,7 @@ import com.intellij.openapi.editor.colors.TextAttributesKey
 
 /**
  *
- * Created by TangZX on 2016/11/22.
+ * Created by tarantoolluaZX on 2016/11/22.
  */
 object LuaHighlightingData {
     val DOC_COMMENT_TAG = TextAttributesKey.createTextAttributesKey("LUA_DOC_TAG", DefaultLanguageHighlighterColors.DOC_COMMENT_TAG)

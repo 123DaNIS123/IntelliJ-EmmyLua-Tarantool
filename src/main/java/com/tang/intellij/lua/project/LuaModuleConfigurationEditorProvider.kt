@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.project
+package com.tarantoollua.intellij.lua.project
 
 import com.intellij.openapi.module.ModuleConfigurationEditor
 import com.intellij.openapi.module.ModuleType
@@ -24,7 +24,7 @@ import java.util.*
 
 /**
  *
- * Created by tangzx on 2016/12/24.
+ * Created by tarantoolluazx on 2016/12/24.
  */
 class LuaModuleConfigurationEditorProvider : ModuleConfigurationEditorProvider {
     override fun createEditors(moduleConfigurationState: ModuleConfigurationState): Array<ModuleConfigurationEditor> {

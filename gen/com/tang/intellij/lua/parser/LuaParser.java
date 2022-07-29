@@ -1,10 +1,10 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.parser;
+package com.tarantoollua.intellij.lua.parser;
 
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import static com.tang.intellij.lua.psi.LuaTypes.*;
-import static com.tang.intellij.lua.psi.LuaParserUtil.*;
+import static com.tarantoollua.intellij.lua.psi.LuaTypes.*;
+import static com.tarantoollua.intellij.lua.psi.LuaParserUtil.*;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.tree.TokenSet;

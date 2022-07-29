@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection
+package com.tarantoollua.intellij.lua.codeInsight.inspection
 
 import com.intellij.codeInspection.LocalInspectionToolSession
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.Ty
-import com.tang.intellij.lua.ty.TyTuple
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.Ty
+import com.tarantoollua.intellij.lua.ty.TyTuple
 
 class ReturnTypeInspection : StrictInspection() {
     override fun buildVisitor(myHolder: ProblemsHolder, isOnTheFly: Boolean, session: LocalInspectionToolSession): PsiElementVisitor =

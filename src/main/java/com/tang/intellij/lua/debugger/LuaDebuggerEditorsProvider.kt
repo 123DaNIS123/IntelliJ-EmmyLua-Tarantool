@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger
+package com.tarantoollua.intellij.lua.debugger
 
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.xdebugger.evaluation.XDebuggerEditorsProviderBase
-import com.tang.intellij.lua.lang.LuaFileType
-import com.tang.intellij.lua.psi.impl.LuaExprCodeFragmentImpl
+import com.tarantoollua.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.psi.impl.LuaExprCodeFragmentImpl
 
 /**
  *
- * Created by TangZX on 2016/12/30.
+ * Created by tarantoolluaZX on 2016/12/30.
  */
 class LuaDebuggerEditorsProvider : XDebuggerEditorsProviderBase() {
     override fun createExpressionCodeFragment(project: Project, text: String, context: PsiElement?, isPhysical: Boolean): PsiFile {

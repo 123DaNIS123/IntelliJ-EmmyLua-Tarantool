@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.braces
+package com.tarantoollua.intellij.lua.braces
 
 import com.intellij.lang.BracePair
 import com.intellij.lang.PairedBraceMatcher
 import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IElementType
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 
 /**
- * Created by tangzx
+ * Created by tarantoolluazx
  * Date : 2015/11/16.
  */
 class LuaBraceMatcher : PairedBraceMatcher {

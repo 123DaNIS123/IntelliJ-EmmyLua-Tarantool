@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElement
@@ -22,14 +22,14 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.io.FileUtil
 import com.intellij.openapi.vfs.VirtualFile
-import com.tang.intellij.lua.lang.LuaFileType
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.lang.type.LuaString
-import com.tang.intellij.lua.project.LuaSourceRootManager
+import com.tarantoollua.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.lang.type.LuaString
+import com.tarantoollua.intellij.lua.project.LuaSourceRootManager
 
 /**
  *
- * Created by tangzx on 2016/12/25.
+ * Created by tarantoolluazx on 2016/12/25.
  */
 class RequirePathCompletionProvider : LuaCompletionProvider() {
     override fun addCompletions(session: CompletionSession) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.comment.reference
+package com.tarantoollua.intellij.lua.comment.reference
 
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReferenceBase
 import com.intellij.util.IncorrectOperationException
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.comment.psi.LuaDocParamNameRef
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocParamNameRef
+import com.tarantoollua.intellij.lua.psi.*
 
 /**
  * 函数参数引用
- * Created by tangzx on 2016/11/25.
+ * Created by tarantoolluazx on 2016/11/25.
  */
 class LuaDocParamNameReference(element: LuaDocParamNameRef) : PsiReferenceBase<LuaDocParamNameRef>(element) {
 

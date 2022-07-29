@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.search
+package com.tarantoollua.intellij.lua.psi.search
 
 import com.intellij.openapi.application.QueryExecutorBase
 import com.intellij.openapi.project.DumbService
 import com.intellij.util.Processor
-import com.tang.intellij.lua.ty.ITyClass
-import com.tang.intellij.lua.ty.createSerializedClass
+import com.tarantoollua.intellij.lua.ty.ITyClass
+import com.tarantoollua.intellij.lua.ty.createSerializedClass
 
 /**
  *
- * Created by tangzx on 2017/3/29.
+ * Created by tarantoolluazx on 2017/3/29.
  */
 class LuaAllClassesSearchExecutor : QueryExecutorBase<ITyClass, LuaAllClassesSearch.SearchParameters>() {
     override fun processQuery(searchParameters: LuaAllClassesSearch.SearchParameters, processor: Processor<in ITyClass>) {

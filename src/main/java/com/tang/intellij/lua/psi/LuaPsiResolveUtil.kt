@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi
+package com.tarantoollua.intellij.lua.psi
 
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Processor
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.stubs.index.LuaClassMemberIndex
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassMemberIndex
 
 fun resolveLocal(ref: LuaNameExpr, context: SearchContext? = null) = resolveLocal(ref.name, ref, context)
 

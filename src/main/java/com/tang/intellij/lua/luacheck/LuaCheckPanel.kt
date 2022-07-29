@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.luacheck
+package com.tarantoollua.intellij.lua.luacheck
 
 import com.intellij.find.FindModel
 import com.intellij.find.impl.FindInProjectUtil
@@ -48,7 +48,7 @@ import javax.swing.tree.DefaultTreeModel
 
 /**
  * LuaCheckPanel
- * Created by tangzx on 2017/7/12.
+ * Created by tarantoolluazx on 2017/7/12.
  */
 class LuaCheckPanel(val project: Project) : SimpleToolWindowPanel(false), DataProvider {
     private val rootNode = DefaultMutableTreeNode()

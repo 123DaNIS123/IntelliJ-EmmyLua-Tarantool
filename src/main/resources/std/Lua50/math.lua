@@ -1,4 +1,4 @@
--- Copyright (c) 2018. tangzx(love.tangzx@qq.com)
+-- Copyright (c) 2018. tarantoolluazx(love.tarantoolluazx@qq.com)
 --
 -- Licensed under the Apache License, Version 2.0 (the "License"); you may not
 -- use this file except in compliance with the License. You may obtain a copy of
@@ -33,17 +33,17 @@ function math.acos(x) return 0 end
 function math.asin(x) return 0 end
 
 ---
---- Returns the arc tangent of `x` (in radians).
+--- Returns the arc tarantoolluaent of `x` (in radians).
 ---@param x number
 ---@return number
 function math.atan(x) return 0 end
 
---- Returns the arc tangent of `y/x` (in radians), but uses the signs of both
+--- Returns the arc tarantoolluaent of `y/x` (in radians), but uses the signs of both
 --- parameters to find the quadrant of the result. (It also handles correctly
 --- the case of `x` being zero.)
 ---
 --- The default value for `x` is 1, so that the call `math.atan(y)`` returns the
---- arc tangent of `y`.
+--- arc tarantoolluaent of `y`.
 ---@param y number
 ---@param x number
 ---@return number
@@ -162,7 +162,7 @@ function math.sin(x) return 0 end
 function math.sqrt(x) return 0 end
 
 ---
---- Returns the tangent of `x` (assumed to be in radians).
+--- Returns the tarantoolluaent of `x` (assumed to be in radians).
 ---@param x number
 ---@return number
 function math.tan(x) return 0 end

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger
+package com.tarantoollua.intellij.lua.debugger
 
 import com.intellij.execution.actions.ConfigurationContext
 import com.intellij.execution.actions.RunConfigurationProducer
 import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.debugger.app.LuaAppConfigurationType
-import com.tang.intellij.lua.debugger.app.LuaAppRunConfiguration
-import com.tang.intellij.lua.lang.LuaFileType
-import com.tang.intellij.lua.project.LuaSourceRootManager
-import com.tang.intellij.lua.psi.LuaFileUtil
-import com.tang.intellij.lua.psi.LuaPsiFile
+import com.tarantoollua.intellij.lua.debugger.app.LuaAppConfigurationType
+import com.tarantoollua.intellij.lua.debugger.app.LuaAppRunConfiguration
+import com.tarantoollua.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.project.LuaSourceRootManager
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil
+import com.tarantoollua.intellij.lua.psi.LuaPsiFile
 
 /**
  * Supports creating run configurations from context (by right-clicking a code element in the source editor or the project view).
- * Created by tangzx on 2017/6/3.
+ * Created by tarantoolluazx on 2017/6/3.
  */
 class LuaRunConfigurationProducer : RunConfigurationProducer<LuaAppRunConfiguration>(LuaAppConfigurationType.getInstance()) {
 

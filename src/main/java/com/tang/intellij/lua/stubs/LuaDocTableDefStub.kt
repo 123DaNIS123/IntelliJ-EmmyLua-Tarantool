@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs
+package com.tarantoollua.intellij.lua.stubs
 
 import com.intellij.psi.stubs.IndexSink
 import com.intellij.psi.stubs.StubElement
 import com.intellij.psi.stubs.StubInputStream
 import com.intellij.psi.stubs.StubOutputStream
 import com.intellij.util.io.StringRef
-import com.tang.intellij.lua.comment.psi.LuaDocTableDef
-import com.tang.intellij.lua.comment.psi.impl.LuaDocTableDefImpl
-import com.tang.intellij.lua.psi.LuaElementType
-import com.tang.intellij.lua.ty.getDocTableTypeName
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTableDef
+import com.tarantoollua.intellij.lua.comment.psi.impl.LuaDocTableDefImpl
+import com.tarantoollua.intellij.lua.psi.LuaElementType
+import com.tarantoollua.intellij.lua.ty.getDocTableTypeName
 
 class LuaDocTableDefType : LuaStubElementType<LuaDocTableDefStub, LuaDocTableDef>("DOC_TABLE_DEF") {
     override fun createPsi(stub: LuaDocTableDefStub): LuaDocTableDef {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi
+package com.tarantoollua.intellij.lua.psi
 
 import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.openapi.fileTypes.FileType
@@ -25,17 +25,17 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.util.CachedValue
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.lang.LuaFileType
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.stubs.LuaFileStub
-import com.tang.intellij.lua.util.Strings
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.stubs.LuaFileStub
+import com.tarantoollua.intellij.lua.util.Strings
 
 /**
- * Created by tangzx on 2015/11/15.
- * Email:love.tangzx@qq.com
+ * Created by tarantoolluazx on 2015/11/15.
+ * Email:love.tarantoolluazx@qq.com
  */
 open class LuaPsiFile(fileViewProvider: FileViewProvider) : PsiFileBase(fileViewProvider, LuaLanguage.INSTANCE), LuaTypeGuessable, LuaDeclarationScope {
 

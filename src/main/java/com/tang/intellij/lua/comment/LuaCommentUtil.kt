@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.comment
+package com.tarantoollua.intellij.lua.comment
 
 import com.intellij.codeInsight.template.Template
 import com.intellij.codeInsight.template.TemplateManager
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.psi.LuaDocPsiElement
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.psi.LuaCommentOwner
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.psi.LuaCommentOwner
 
 /**
  *
- * Created by TangZX on 2016/11/24.
+ * Created by tarantoolluaZX on 2016/11/24.
  */
 object LuaCommentUtil {
 

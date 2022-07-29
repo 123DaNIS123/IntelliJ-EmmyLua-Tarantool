@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote.value
+package com.tarantoollua.intellij.lua.debugger.remote.value
 
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.TextEditor
@@ -23,12 +23,12 @@ import com.intellij.xdebugger.XDebugSession
 import com.intellij.xdebugger.frame.XNamedValue
 import com.intellij.xdebugger.frame.XNavigatable
 import com.intellij.xdebugger.impl.XSourcePositionImpl
-import com.tang.intellij.lua.psi.LuaDeclarationTree
+import com.tarantoollua.intellij.lua.psi.LuaDeclarationTree
 import org.luaj.vm2.LuaValue
 
 /**
  * remote value
- * Created by tangzx on 2017/4/16.
+ * Created by tarantoolluazx on 2017/4/16.
  */
 abstract class LuaRValue(name: String) : XNamedValue(name) {
 

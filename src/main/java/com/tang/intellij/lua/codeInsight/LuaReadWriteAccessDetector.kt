@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight
+package com.tarantoollua.intellij.lua.codeInsight
 
 import com.intellij.codeInsight.highlighting.ReadWriteAccessDetector
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.comment.psi.LuaDocClassNameRef
-import com.tang.intellij.lua.comment.psi.LuaDocTagField
-import com.tang.intellij.lua.comment.psi.LuaDocParamNameRef
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocClassNameRef
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagField
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocParamNameRef
+import com.tarantoollua.intellij.lua.psi.*
 
 class LuaReadWriteAccessDetector : ReadWriteAccessDetector() {
     override fun getReferenceAccess(element: PsiElement, reference: PsiReference): Access {

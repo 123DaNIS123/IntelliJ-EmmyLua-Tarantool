@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.usages
+package com.tarantoollua.intellij.lua.usages
 
 import com.intellij.find.findUsages.FindUsagesHandler
 import com.intellij.find.findUsages.FindUsagesHandlerFactory
@@ -27,12 +27,12 @@ import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.usageView.UsageInfo
 import com.intellij.util.MergeQuery
 import com.intellij.util.Processor
-import com.tang.intellij.lua.psi.LuaClassMethod
-import com.tang.intellij.lua.psi.search.LuaOverridenMethodsSearch
-import com.tang.intellij.lua.psi.search.LuaOverridingMethodsSearch
-import com.tang.intellij.lua.reference.LuaOverridingMethodReference
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.ITyClass
+import com.tarantoollua.intellij.lua.psi.LuaClassMethod
+import com.tarantoollua.intellij.lua.psi.search.LuaOverridenMethodsSearch
+import com.tarantoollua.intellij.lua.psi.search.LuaOverridingMethodsSearch
+import com.tarantoollua.intellij.lua.reference.LuaOverridingMethodReference
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.ITyClass
 
 class LuaFindUsagesHandlerFactory : FindUsagesHandlerFactory() {
     override fun createFindUsagesHandler(element: PsiElement, forHighlightUsages: Boolean): FindUsagesHandler? {

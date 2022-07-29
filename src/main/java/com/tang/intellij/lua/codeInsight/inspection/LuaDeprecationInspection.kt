@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection
+package com.tarantoollua.intellij.lua.codeInsight.inspection
 
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.comment.psi.LuaDocClassNameRef
-import com.tang.intellij.lua.comment.psi.LuaDocPsiElement
-import com.tang.intellij.lua.comment.psi.LuaDocVisitor
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.psi.LuaClassMember
-import com.tang.intellij.lua.psi.LuaIndexExpr
-import com.tang.intellij.lua.psi.LuaNameExpr
-import com.tang.intellij.lua.psi.LuaVisitor
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocClassNameRef
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocVisitor
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.psi.LuaClassMember
+import com.tarantoollua.intellij.lua.psi.LuaIndexExpr
+import com.tarantoollua.intellij.lua.psi.LuaNameExpr
+import com.tarantoollua.intellij.lua.psi.LuaVisitor
 
 class LuaDeprecationInspection : LocalInspectionTool() {
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean) = object : LuaVisitor() {

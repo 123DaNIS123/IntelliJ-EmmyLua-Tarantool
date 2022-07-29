@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.codeHighlighting.RainbowHighlighter
 import com.intellij.openapi.editor.colors.TextAttributesKey
@@ -23,15 +23,15 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory
 import com.intellij.openapi.options.colors.AttributesDescriptor
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
-import com.tang.intellij.lua.highlighting.LuaHighlightingData
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.highlighting.LuaHighlightingData
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
 import org.jetbrains.annotations.NonNls
 import javax.swing.Icon
 
 /**
  * Color Settings Page
- * Created by TangZX on 2017/1/9.
+ * Created by tarantoolluaZX on 2017/1/9.
  */
 class LuaColorSettingsPage : ColorSettingsPage {
 

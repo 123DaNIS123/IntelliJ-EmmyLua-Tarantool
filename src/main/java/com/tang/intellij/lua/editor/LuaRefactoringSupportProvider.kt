@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.lang.refactoring.RefactoringSupportProvider
 import com.intellij.psi.PsiElement
 
 /**
  *
- * Created by TangZX on 2016/12/20.
+ * Created by tarantoolluaZX on 2016/12/20.
  */
 class LuaRefactoringSupportProvider : RefactoringSupportProvider() {
     override fun isMemberInplaceRenameAvailable(element: PsiElement, context: PsiElement?): Boolean {

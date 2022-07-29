@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.usages
+package com.tarantoollua.intellij.lua.usages
 
 import com.intellij.psi.PsiElement
 import com.intellij.usages.UsageTarget
 import com.intellij.usages.impl.rules.UsageType
 import com.intellij.usages.impl.rules.UsageTypeProviderEx
-import com.tang.intellij.lua.psi.LuaCallExpr
-import com.tang.intellij.lua.psi.LuaPsiElement
+import com.tarantoollua.intellij.lua.psi.LuaCallExpr
+import com.tarantoollua.intellij.lua.psi.LuaPsiElement
 
 class UsageTypeProvider : UsageTypeProviderEx {
     companion object {

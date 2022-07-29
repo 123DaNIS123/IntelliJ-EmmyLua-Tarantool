@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs
+package com.tarantoollua.intellij.lua.stubs
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.StubElement
-import com.tang.intellij.lua.psi.Visibility
+import com.tarantoollua.intellij.lua.psi.Visibility
 
 interface LuaClassMemberStub<T : PsiElement> : StubElement<T>, LuaDocTyStub {
     val visibility: Visibility

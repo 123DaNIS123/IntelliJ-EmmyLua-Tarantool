@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection
+package com.tarantoollua.intellij.lua.codeInsight.inspection
 
 import com.intellij.codeInspection.*
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementVisitor
-import com.tang.intellij.lua.lang.LuaLanguageLevel
-import com.tang.intellij.lua.lang.LuaParserDefinition
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.project.StdLibraryProvider
-import com.tang.intellij.lua.psi.LuaBinaryOp
-import com.tang.intellij.lua.psi.LuaUnaryOp
-import com.tang.intellij.lua.psi.LuaVisitor
-import com.tang.intellij.lua.psi.languageLevel
+import com.tarantoollua.intellij.lua.lang.LuaLanguageLevel
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.project.StdLibraryProvider
+import com.tarantoollua.intellij.lua.psi.LuaBinaryOp
+import com.tarantoollua.intellij.lua.psi.LuaUnaryOp
+import com.tarantoollua.intellij.lua.psi.LuaVisitor
+import com.tarantoollua.intellij.lua.psi.languageLevel
 
 class LanguageLevelInspection : LocalInspectionTool() {
 

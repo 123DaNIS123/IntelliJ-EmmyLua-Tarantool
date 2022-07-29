@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.luacheck;
+package com.tarantoollua.intellij.lua.luacheck;
 
 import com.intellij.ide.BrowserUtil;
 import com.intellij.openapi.options.Configurable;
@@ -25,7 +25,7 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.ui.HoverHyperlinkLabel;
 import com.intellij.ui.HyperlinkAdapter;
 import com.intellij.ui.RawCommandLineEditor;
-import com.tang.intellij.lua.LuaBundle;
+import com.tarantoollua.intellij.lua.LuaBundle;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.ty
+package com.tarantoollua.intellij.lua.ty
 
-import com.tang.intellij.lua.psi.LuaClassMember
+import com.tarantoollua.intellij.lua.psi.LuaClassMember
 
 class ClassMemberChain(val ty: ITyClass, var superChain: ClassMemberChain?) {
     private val members = mutableMapOf<String, LuaClassMember>()

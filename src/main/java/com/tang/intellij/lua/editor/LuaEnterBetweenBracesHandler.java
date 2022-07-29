@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor;
+package com.tarantoollua.intellij.lua.editor;
 
 import com.intellij.codeInsight.editorActions.enter.EnterBetweenBracesHandler;
 import com.intellij.openapi.actionSystem.DataContext;
@@ -22,12 +22,12 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import com.intellij.openapi.util.Ref;
 import com.intellij.psi.PsiFile;
-import com.tang.intellij.lua.lang.LuaLanguage;
+import com.tarantoollua.intellij.lua.lang.LuaLanguage;
 import org.jetbrains.annotations.NotNull;
 
 /**
  *
- * Created by tangzx on 2017/2/22.
+ * Created by tarantoolluazx on 2017/2/22.
  */
 public class LuaEnterBetweenBracesHandler extends EnterBetweenBracesHandler {
 

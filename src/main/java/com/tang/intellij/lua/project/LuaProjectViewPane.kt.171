@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.project
+package com.tarantoollua.intellij.lua.project
 
 import com.intellij.ide.SelectInTarget
 import com.intellij.ide.impl.ProjectViewSelectInTarget
@@ -31,10 +31,10 @@ import com.intellij.ide.util.treeView.AbstractTreeNode
 import com.intellij.ide.util.treeView.AbstractTreeUpdater
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.project.Project
-import com.tang.intellij.lua.lang.LuaFileType
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.project.nodes.LuaProjectRootNode
-import com.tang.intellij.lua.project.nodes.LuaPsiDirectoryNode
+import com.tarantoollua.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.project.nodes.LuaProjectRootNode
+import com.tarantoollua.intellij.lua.project.nodes.LuaPsiDirectoryNode
 import javax.swing.Icon
 import javax.swing.tree.DefaultTreeModel
 

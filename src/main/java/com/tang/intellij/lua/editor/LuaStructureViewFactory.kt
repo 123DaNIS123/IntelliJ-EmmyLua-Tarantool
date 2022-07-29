@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.icons.AllIcons
 import com.intellij.ide.IdeBundle
@@ -26,14 +26,14 @@ import com.intellij.ide.util.treeView.smartTree.SorterUtil
 import com.intellij.lang.PsiStructureViewFactory
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiFile
-import com.tang.intellij.lua.editor.structure.LuaClassFieldElement
-import com.tang.intellij.lua.editor.structure.LuaFileElement
-import com.tang.intellij.lua.editor.structure.LuaFuncElement
-import com.tang.intellij.lua.psi.LuaPsiFile
+import com.tarantoollua.intellij.lua.editor.structure.LuaClassFieldElement
+import com.tarantoollua.intellij.lua.editor.structure.LuaFileElement
+import com.tarantoollua.intellij.lua.editor.structure.LuaFuncElement
+import com.tarantoollua.intellij.lua.psi.LuaPsiFile
 
 /**
  * Structure View
- * Created by TangZX on 2016/12/13.
+ * Created by tarantoolluaZX on 2016/12/13.
  */
 class LuaStructureViewFactory : PsiStructureViewFactory {
     override fun getStructureViewBuilder(psiFile: PsiFile): StructureViewBuilder? {

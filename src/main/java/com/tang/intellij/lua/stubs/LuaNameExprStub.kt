@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs
+package com.tarantoollua.intellij.lua.stubs
 
 import com.intellij.lang.ASTNode
 import com.intellij.psi.stubs.IndexSink
@@ -22,17 +22,17 @@ import com.intellij.psi.stubs.StubElement
 import com.intellij.psi.stubs.StubInputStream
 import com.intellij.psi.stubs.StubOutputStream
 import com.intellij.util.io.StringRef
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.psi.impl.LuaNameExprImpl
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.stubs.index.LuaClassMemberIndex
-import com.tang.intellij.lua.stubs.index.StubKeys
-import com.tang.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.psi.impl.LuaNameExprImpl
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassMemberIndex
+import com.tarantoollua.intellij.lua.stubs.index.StubKeys
+import com.tarantoollua.intellij.lua.ty.ITy
 
 /**
  * name expr stub
- * Created by TangZX on 2017/4/12.
+ * Created by tarantoolluaZX on 2017/4/12.
  */
 class LuaNameExprType : LuaStubElementType<LuaNameExprStub, LuaNameExpr>("NAME_EXPR") {
 

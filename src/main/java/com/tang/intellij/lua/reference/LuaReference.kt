@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.reference
+package com.tarantoollua.intellij.lua.reference
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
-import com.tang.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.search.SearchContext
 
 /**
  *
- * Created by tangzx on 2017/4/9.
+ * Created by tarantoolluazx on 2017/4/9.
  */
 interface LuaReference : PsiReference {
     fun resolve(context: SearchContext): PsiElement?

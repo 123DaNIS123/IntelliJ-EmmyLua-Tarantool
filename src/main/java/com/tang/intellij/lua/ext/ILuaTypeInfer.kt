@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.ext
+package com.tarantoollua.intellij.lua.ext
 
 import com.intellij.openapi.extensions.ExtensionPointName
 import com.intellij.openapi.progress.ProgressManager
-import com.tang.intellij.lua.psi.LuaTypeGuessable
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.Ty
+import com.tarantoollua.intellij.lua.psi.LuaTypeGuessable
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.Ty
 
 interface ILuaTypeInfer {
     companion object {
-        private val EP_NAME = ExtensionPointName.create<ILuaTypeInfer>("com.tang.intellij.lua.luaTypeInfer")
+        private val EP_NAME = ExtensionPointName.create<ILuaTypeInfer>("com.tarantoollua.intellij.lua.luaTypeInfer")
 
         fun infer(target: LuaTypeGuessable, context: SearchContext): ITy {
             for (typeInfer in EP_NAME.extensions) {

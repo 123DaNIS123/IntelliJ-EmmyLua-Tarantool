@@ -34,7 +34,7 @@ end
 ---define another class Daddy
 ---@class Daddy : Person
 local DaddyClass = {
-    name = 'Tang'
+    name = 'tarantoollua'
 }
 
 ---@param code string

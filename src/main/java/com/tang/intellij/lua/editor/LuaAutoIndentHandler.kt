@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.codeInsight.editorActions.TypedHandlerDelegate
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
-import com.tang.intellij.lua.editor.completion.KeywordInsertHandler
-import com.tang.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.editor.completion.KeywordInsertHandler
+import com.tarantoollua.intellij.lua.lang.LuaFileType
 
 /**
  * 当打出 then else elseif end 时自动缩进
- * Created by TangZX on 2016/12/20.
+ * Created by tarantoolluaZX on 2016/12/20.
  */
 class LuaAutoIndentHandler : TypedHandlerDelegate() {
     override fun charTyped(c: Char, project: Project, editor: Editor, file: PsiFile): TypedHandlerDelegate.Result {

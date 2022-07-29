@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.codeInsight.AutoPopupController
 import com.intellij.codeInsight.editorActions.TypedHandlerDelegate
@@ -26,15 +26,15 @@ import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
-import com.tang.intellij.lua.codeInsight.template.macro.SuggestLuaParametersMacro
-import com.tang.intellij.lua.lang.LuaFileType
-import com.tang.intellij.lua.psi.LuaFuncBody
-import com.tang.intellij.lua.psi.LuaFuncBodyOwner
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.codeInsight.template.macro.SuggestLuaParametersMacro
+import com.tarantoollua.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.psi.LuaFuncBody
+import com.tarantoollua.intellij.lua.psi.LuaFuncBodyOwner
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 
 /**
 
- * Created by TangZX on 2016/11/28.
+ * Created by tarantoolluaZX on 2016/11/28.
  */
 class LuaTypedHandler : TypedHandlerDelegate() {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.postfix;
+package com.tarantoollua.intellij.lua.codeInsight.postfix;
 
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateExpressionSelector;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateExpressionSelectorBase;
@@ -25,9 +25,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.SmartList;
 import com.intellij.util.containers.ContainerUtil;
-import com.tang.intellij.lua.psi.LuaExpr;
-import com.tang.intellij.lua.psi.LuaExprStat;
-import com.tang.intellij.lua.psi.LuaParenExpr;
+import com.tarantoollua.intellij.lua.psi.LuaExpr;
+import com.tarantoollua.intellij.lua.psi.LuaExprStat;
+import com.tarantoollua.intellij.lua.psi.LuaParenExpr;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;

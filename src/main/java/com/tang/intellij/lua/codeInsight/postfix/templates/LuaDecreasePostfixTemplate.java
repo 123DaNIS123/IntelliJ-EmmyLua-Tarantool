@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.postfix.templates;
+package com.tarantoollua.intellij.lua.codeInsight.postfix.templates;
 
 import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.impl.TextExpression;
@@ -23,11 +23,11 @@ import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorTopmost;
+import static com.tarantoollua.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorTopmost;
 
 /**
  *
- * Created by TangZX on 2017/2/7.
+ * Created by tarantoolluaZX on 2017/2/7.
  */
 public class LuaDecreasePostfixTemplate extends StringBasedPostfixTemplate {
     public LuaDecreasePostfixTemplate() {

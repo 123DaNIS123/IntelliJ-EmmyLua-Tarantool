@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.formatter
+package com.tarantoollua.intellij.lua.editor.formatter
 
 import com.intellij.application.options.CodeStyleAbstractConfigurable
 import com.intellij.application.options.CodeStyleAbstractPanel
@@ -23,11 +23,11 @@ import com.intellij.openapi.options.Configurable
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CodeStyleSettingsProvider
 import com.intellij.psi.codeStyle.CustomCodeStyleSettings
-import com.tang.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
 
 /**
 
- * Created by tangzx on 2017/2/22.
+ * Created by tarantoolluazx on 2017/2/22.
  */
 class LuaCodeStyleSettingsProvider : CodeStyleSettingsProvider() {
     override fun createSettingsPage(settings: CodeStyleSettings, originalSettings: CodeStyleSettings): Configurable {

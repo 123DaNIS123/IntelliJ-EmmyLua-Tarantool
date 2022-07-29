@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.lang
+package com.tarantoollua.intellij.lua.lang
 
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
@@ -28,17 +28,17 @@ import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
-import com.tang.intellij.lua.comment.psi.LuaDocElementType
-import com.tang.intellij.lua.comment.psi.LuaDocTypes
-import com.tang.intellij.lua.comment.psi.impl.LuaCommentImpl
-import com.tang.intellij.lua.lexer.LuaLexerAdapter
-import com.tang.intellij.lua.parser.LuaParser
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.stubs.LuaFileElementType
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocElementType
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTypes
+import com.tarantoollua.intellij.lua.comment.psi.impl.LuaCommentImpl
+import com.tarantoollua.intellij.lua.lexer.LuaLexerAdapter
+import com.tarantoollua.intellij.lua.parser.LuaParser
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.stubs.LuaFileElementType
 
 /**
- * Created by tangzx on 2015/11/15.
- * Email:love.tangzx@qq.com
+ * Created by tarantoolluazx on 2015/11/15.
+ * Email:love.tarantoolluazx@qq.com
  */
 class LuaParserDefinition : ParserDefinition {
 

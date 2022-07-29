@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.search
+package com.tarantoollua.intellij.lua.psi.search
 
 import com.intellij.openapi.project.Project
 import com.intellij.psi.search.SearchScope
 import com.intellij.psi.search.searches.ExtensibleQueryFactory
 import com.intellij.util.Query
-import com.tang.intellij.lua.ty.ITyClass
+import com.tarantoollua.intellij.lua.ty.ITyClass
 
 /**
  *
- * Created by tangzx on 2017/3/29.
+ * Created by tarantoolluazx on 2017/3/29.
  */
-class LuaAllClassesSearch : ExtensibleQueryFactory<ITyClass, LuaAllClassesSearch.SearchParameters>("com.tang.intellij.lua") {
+class LuaAllClassesSearch : ExtensibleQueryFactory<ITyClass, LuaAllClassesSearch.SearchParameters>("com.tarantoollua.intellij.lua") {
 
     class SearchParameters(val searchScope: SearchScope, val project: Project)
 

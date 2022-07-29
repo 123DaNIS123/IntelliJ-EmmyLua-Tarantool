@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.AutoPopupController
 import com.intellij.codeInsight.completion.InsertHandler
@@ -29,10 +29,10 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.TokenType
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.psi.LuaExpr
-import com.tang.intellij.lua.psi.LuaParamInfo
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.psi.LuaExpr
+import com.tarantoollua.intellij.lua.psi.LuaParamInfo
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 
 abstract class ArgsInsertHandler : InsertHandler<LookupElement> {
 

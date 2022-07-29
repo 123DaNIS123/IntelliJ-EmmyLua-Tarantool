@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs
+package com.tarantoollua.intellij.lua.stubs
 
 import com.intellij.lang.ASTNode
 import com.intellij.psi.stubs.IndexSink
@@ -23,19 +23,19 @@ import com.intellij.psi.stubs.StubInputStream
 import com.intellij.psi.stubs.StubOutputStream
 import com.intellij.util.BitUtil
 import com.intellij.util.io.StringRef
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.comment.psi.LuaDocTagField
-import com.tang.intellij.lua.comment.psi.impl.LuaDocTagFieldImpl
-import com.tang.intellij.lua.psi.LuaElementType
-import com.tang.intellij.lua.psi.Visibility
-import com.tang.intellij.lua.stubs.index.LuaClassMemberIndex
-import com.tang.intellij.lua.stubs.index.StubKeys
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.Ty
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagField
+import com.tarantoollua.intellij.lua.comment.psi.impl.LuaDocTagFieldImpl
+import com.tarantoollua.intellij.lua.psi.LuaElementType
+import com.tarantoollua.intellij.lua.psi.Visibility
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassMemberIndex
+import com.tarantoollua.intellij.lua.stubs.index.StubKeys
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.Ty
 
 /**
 
- * Created by tangzx on 2016/12/10.
+ * Created by tarantoolluazx on 2016/12/10.
  */
 class LuaDocTagFieldType : LuaStubElementType<LuaDocTagFieldStub, LuaDocTagField>("CLASS_DOC_FIELD") {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight
+package com.tarantoollua.intellij.lua.codeInsight
 
 import com.intellij.codeInsight.daemon.AbstractLineMarkerProvider
 import com.intellij.codeInsight.daemon.DaemonCodeAnalyzerSettings
@@ -32,18 +32,18 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.FunctionUtil
 import com.intellij.util.Query
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.psi.search.LuaClassInheritorsSearch
-import com.tang.intellij.lua.psi.search.LuaOverridingMethodsSearch
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.stubs.index.LuaClassMemberIndex
-import com.tang.intellij.lua.ty.TyClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.psi.search.LuaClassInheritorsSearch
+import com.tarantoollua.intellij.lua.psi.search.LuaOverridingMethodsSearch
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassMemberIndex
+import com.tarantoollua.intellij.lua.ty.TyClass
 
 /**
  * line marker
- * Created by tangzx on 2016/12/11.
+ * Created by tarantoolluazx on 2016/12/11.
  */
 class LuaLineMarkerProvider : AbstractLineMarkerProvider() {
 

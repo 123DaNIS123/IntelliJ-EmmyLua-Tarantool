@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.ide.actions.QualifiedNameProvider
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.psi.LuaFileUtil
-import com.tang.intellij.lua.psi.LuaPsiFile
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil
+import com.tarantoollua.intellij.lua.psi.LuaPsiFile
 
 /**
  *
- * Created by TangZX on 2016/12/30.
+ * Created by tarantoolluaZX on 2016/12/30.
  */
 class LuaQualifiedNameProvider : QualifiedNameProvider {
     override fun adjustElementToCopy(psiElement: PsiElement): PsiElement? {

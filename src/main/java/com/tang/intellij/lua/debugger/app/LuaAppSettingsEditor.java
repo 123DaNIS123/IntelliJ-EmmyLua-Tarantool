@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.app;
+package com.tarantoollua.intellij.lua.debugger.app;
 
 import com.intellij.codeInsight.completion.CompletionResultSet;
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
@@ -33,10 +33,10 @@ import com.intellij.ui.RawCommandLineEditor;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.TextFieldCompletionProvider;
 import com.intellij.util.textCompletion.TextFieldWithCompletion;
-import com.tang.intellij.lua.debugger.DebuggerType;
-import com.tang.intellij.lua.lang.LuaFileType;
-import com.tang.intellij.lua.lang.LuaIcons;
-import com.tang.intellij.lua.psi.LuaFileUtil;
+import com.tarantoollua.intellij.lua.debugger.DebuggerType;
+import com.tarantoollua.intellij.lua.lang.LuaFileType;
+import com.tarantoollua.intellij.lua.lang.LuaIcons;
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -47,7 +47,7 @@ import java.util.SortedMap;
 
 /**
  *
- * Created by tangzx on 2017/5/7.
+ * Created by tarantoolluazx on 2017/5/7.
  */
 public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration> {
     private TextFieldWithBrowseButton myProgram;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.completion.InsertHandler
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.psi.tree.IElementType
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.psi.LuaClassField
-import com.tang.intellij.lua.psi.LuaClassMember
-import com.tang.intellij.lua.psi.LuaPsiElement
-import com.tang.intellij.lua.refactoring.LuaRefactoringUtil
-import com.tang.intellij.lua.ty.IFunSignature
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.ITyFunction
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.psi.LuaClassField
+import com.tarantoollua.intellij.lua.psi.LuaClassMember
+import com.tarantoollua.intellij.lua.psi.LuaPsiElement
+import com.tarantoollua.intellij.lua.refactoring.LuaRefactoringUtil
+import com.tarantoollua.intellij.lua.ty.IFunSignature
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.ITyFunction
 import javax.swing.Icon
 
 class LookupElementFactory {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection
+package com.tarantoollua.intellij.lua.codeInsight.inspection
 
 import com.intellij.codeInspection.*
 import com.intellij.openapi.application.ApplicationManager
@@ -23,17 +23,17 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElementVisitor
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.refactoring.RefactoringFactory
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.comment.psi.LuaDocPsiElement
-import com.tang.intellij.lua.psi.LuaLocalDef
-import com.tang.intellij.lua.psi.LuaLocalFuncDef
-import com.tang.intellij.lua.psi.LuaParamNameDef
-import com.tang.intellij.lua.psi.LuaVisitor
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement
+import com.tarantoollua.intellij.lua.psi.LuaLocalDef
+import com.tarantoollua.intellij.lua.psi.LuaLocalFuncDef
+import com.tarantoollua.intellij.lua.psi.LuaParamNameDef
+import com.tarantoollua.intellij.lua.psi.LuaVisitor
 import org.jetbrains.annotations.Nls
 
 /**
  *
- * Created by TangZX on 2017/2/8.
+ * Created by tarantoolluaZX on 2017/2/8.
  */
 class RemoveUnusedLocal : LocalInspectionTool() {
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean, session: LocalInspectionToolSession): PsiElementVisitor {

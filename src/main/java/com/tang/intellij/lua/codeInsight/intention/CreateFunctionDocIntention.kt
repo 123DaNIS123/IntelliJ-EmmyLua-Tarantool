@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.intention
+package com.tarantoollua.intellij.lua.codeInsight.intention
 
 import com.intellij.codeInsight.template.TemplateManager
 import com.intellij.codeInsight.template.impl.MacroCallNode
 import com.intellij.codeInsight.template.impl.TextExpression
 import com.intellij.openapi.editor.Editor
-import com.tang.intellij.lua.codeInsight.template.macro.SuggestTypeMacro
-import com.tang.intellij.lua.psi.LuaCommentOwner
-import com.tang.intellij.lua.psi.LuaFuncBodyOwner
+import com.tarantoollua.intellij.lua.codeInsight.template.macro.SuggestTypeMacro
+import com.tarantoollua.intellij.lua.psi.LuaCommentOwner
+import com.tarantoollua.intellij.lua.psi.LuaFuncBodyOwner
 import org.jetbrains.annotations.Nls
 
 

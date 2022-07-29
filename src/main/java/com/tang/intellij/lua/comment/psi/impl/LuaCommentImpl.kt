@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.comment.psi.impl
+package com.tarantoollua.intellij.lua.comment.psi.impl
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
@@ -22,18 +22,18 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementVisitor
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.comment.psi.*
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.psi.LuaCommentOwner
-import com.tang.intellij.lua.psi.LuaTypes
-import com.tang.intellij.lua.psi.LuaVisitor
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.comment.psi.*
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.psi.LuaCommentOwner
+import com.tarantoollua.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.psi.LuaVisitor
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.*
 
 /**
- * Created by Tangzx on 2016/11/21.
+ * Created by tarantoolluazx on 2016/11/21.
  *
  */
 class LuaCommentImpl(node: ASTNode) : ASTWrapperPsiElement(node), LuaComment {

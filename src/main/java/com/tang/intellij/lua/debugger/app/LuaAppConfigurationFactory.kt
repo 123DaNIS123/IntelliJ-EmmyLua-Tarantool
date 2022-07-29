@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.app
+package com.tarantoollua.intellij.lua.debugger.app
 
 import com.intellij.execution.configurations.ConfigurationType
 import com.intellij.execution.configurations.RunConfiguration
 import com.intellij.openapi.project.Project
-import com.tang.intellij.lua.debugger.LuaConfigurationFactory
+import com.tarantoollua.intellij.lua.debugger.LuaConfigurationFactory
 
 /**
  *
- * Created by tangzx on 2017/5/7.
+ * Created by tarantoolluazx on 2017/5/7.
  */
 class LuaAppConfigurationFactory(type: ConfigurationType) : LuaConfigurationFactory(type) {
 

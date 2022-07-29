@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight
+package com.tarantoollua.intellij.lua.codeInsight
 
 import com.intellij.codeInsight.hints.HintInfo
 import com.intellij.codeInsight.hints.InlayInfo
@@ -22,14 +22,14 @@ import com.intellij.codeInsight.hints.InlayParameterHintsProvider
 import com.intellij.codeInsight.hints.Option
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.*
 import java.util.*
 
 /**
 
- * Created by TangZX on 2016/12/14.
+ * Created by tarantoolluaZX on 2016/12/14.
  */
 class LuaParameterHintsProvider : InlayParameterHintsProvider {
     companion object {

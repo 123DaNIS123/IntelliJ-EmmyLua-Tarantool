@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection;
+package com.tarantoollua.intellij.lua.codeInsight.inspection;
 
 import com.intellij.codeInspection.LocalInspectionTool;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiWhiteSpace;
-import com.tang.intellij.lua.psi.LuaBlock;
-import com.tang.intellij.lua.psi.LuaLocalDef;
-import com.tang.intellij.lua.psi.LuaLocalFuncDef;
+import com.tarantoollua.intellij.lua.psi.LuaBlock;
+import com.tarantoollua.intellij.lua.psi.LuaLocalDef;
+import com.tarantoollua.intellij.lua.psi.LuaLocalFuncDef;
 
 /**
  *
- * Created by TangZX on 2017/2/8.
+ * Created by tarantoolluaZX on 2017/2/8.
  */
 abstract class EmptyBodyBase extends LocalInspectionTool {
 

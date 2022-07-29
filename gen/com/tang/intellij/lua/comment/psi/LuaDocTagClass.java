@@ -1,15 +1,15 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.comment.psi;
+package com.tarantoollua.intellij.lua.comment.psi;
 
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNameIdentifierOwner;
-import com.tang.intellij.lua.psi.LuaClass;
+import com.tarantoollua.intellij.lua.psi.LuaClass;
 import com.intellij.psi.StubBasedPsiElement;
-import com.tang.intellij.lua.stubs.LuaDocTagClassStub;
+import com.tarantoollua.intellij.lua.stubs.LuaDocTagClassStub;
 import com.intellij.navigation.ItemPresentation;
-import com.tang.intellij.lua.ty.ITyClass;
+import com.tarantoollua.intellij.lua.ty.ITyClass;
 
 public interface LuaDocTagClass extends LuaDocPsiElement, PsiNameIdentifierOwner, LuaClass, LuaDocTag, StubBasedPsiElement<LuaDocTagClassStub> {
 

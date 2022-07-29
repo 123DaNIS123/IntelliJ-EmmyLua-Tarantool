@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote.value
+package com.tarantoollua.intellij.lua.debugger.remote.value
 
 import com.intellij.xdebugger.frame.XValueNode
 import com.intellij.xdebugger.frame.XValuePlace
 import com.intellij.xdebugger.frame.presentation.XValuePresentation
-import com.tang.intellij.lua.debugger.LuaXNumberPresentation
-import com.tang.intellij.lua.debugger.LuaXStringPresentation
-import com.tang.intellij.lua.debugger.LuaXValuePresentation
-import com.tang.intellij.lua.highlighting.LuaHighlightingData
+import com.tarantoollua.intellij.lua.debugger.LuaXNumberPresentation
+import com.tarantoollua.intellij.lua.debugger.LuaXStringPresentation
+import com.tarantoollua.intellij.lua.debugger.LuaXValuePresentation
+import com.tarantoollua.intellij.lua.highlighting.LuaHighlightingData
 import org.luaj.vm2.*
 
 /**
  *
- * Created by tangzx on 2017/4/16.
+ * Created by tarantoolluazx on 2017/4/16.
  */
 class LuaRPrimitive(name: String) : LuaRValue(name) {
     private var type: String? = null

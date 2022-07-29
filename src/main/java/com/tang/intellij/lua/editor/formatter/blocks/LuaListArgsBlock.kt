@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.formatter.blocks
+package com.tarantoollua.intellij.lua.editor.formatter.blocks
 
 import com.intellij.formatting.Alignment
 import com.intellij.formatting.ChildAttributes
 import com.intellij.formatting.Indent
 import com.intellij.formatting.Wrap
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.editor.formatter.LuaFormatContext
-import com.tang.intellij.lua.psi.LuaExpr
-import com.tang.intellij.lua.psi.LuaListArgs
+import com.tarantoollua.intellij.lua.editor.formatter.LuaFormatContext
+import com.tarantoollua.intellij.lua.psi.LuaExpr
+import com.tarantoollua.intellij.lua.psi.LuaListArgs
 
 class LuaListArgsBlock(psi: LuaListArgs, wrap: Wrap?, alignment: Alignment?, indent: Indent, ctx: LuaFormatContext)
     : LuaScriptBlock(psi, wrap, alignment, indent, ctx) {

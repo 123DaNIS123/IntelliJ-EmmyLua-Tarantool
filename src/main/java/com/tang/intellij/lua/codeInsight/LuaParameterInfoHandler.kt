@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,24 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight
+package com.tarantoollua.intellij.lua.codeInsight
 
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.lang.parameterInfo.*
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Processor
-import com.tang.intellij.lua.psi.LuaArgs
-import com.tang.intellij.lua.psi.LuaCallExpr
-import com.tang.intellij.lua.psi.LuaListArgs
-import com.tang.intellij.lua.psi.LuaTypes
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.psi.LuaArgs
+import com.tarantoollua.intellij.lua.psi.LuaCallExpr
+import com.tarantoollua.intellij.lua.psi.LuaListArgs
+import com.tarantoollua.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.*
 
 data class ParameterInfoType(val sig: IFunSignature, val isColonStyle: Boolean)
 
 /**
  *
- * Created by tangzx on 2016/12/25.
+ * Created by tarantoolluazx on 2016/12/25.
  */
 class LuaParameterInfoHandler : ParameterInfoHandler<LuaArgs, ParameterInfoType> {
     override fun couldShowInLookup(): Boolean {

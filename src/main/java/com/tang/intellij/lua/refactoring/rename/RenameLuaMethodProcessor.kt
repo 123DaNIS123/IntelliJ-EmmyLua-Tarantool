@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.refactoring.rename
+package com.tarantoollua.intellij.lua.refactoring.rename
 
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.psi.PsiElement
@@ -22,13 +22,13 @@ import com.intellij.psi.search.SearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.refactoring.rename.RenamePsiElementProcessor
 import com.intellij.util.MergeQuery
-import com.tang.intellij.lua.psi.LuaClassMethod
-import com.tang.intellij.lua.psi.search.LuaOverridenMethodsSearch
-import com.tang.intellij.lua.psi.search.LuaOverridingMethodsSearch
+import com.tarantoollua.intellij.lua.psi.LuaClassMethod
+import com.tarantoollua.intellij.lua.psi.search.LuaOverridenMethodsSearch
+import com.tarantoollua.intellij.lua.psi.search.LuaOverridingMethodsSearch
 
 /**
  *
- * Created by tangzx on 2017/3/29.
+ * Created by tarantoolluazx on 2017/3/29.
  */
 class RenameLuaMethodProcessor : RenamePsiElementProcessor() {
     override fun canProcessElement(psiElement: PsiElement): Boolean {

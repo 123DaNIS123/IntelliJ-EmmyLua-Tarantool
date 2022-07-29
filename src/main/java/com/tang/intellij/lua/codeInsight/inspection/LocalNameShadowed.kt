@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection
+package com.tarantoollua.intellij.lua.codeInsight.inspection
 
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.LocalInspectionToolSession
@@ -26,8 +26,8 @@ import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.PsiNamedElement
 import com.intellij.refactoring.RefactoringActionHandler
 import com.intellij.refactoring.RefactoringActionHandlerFactory
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.psi.*
 
 class LocalNameShadowed : LocalInspectionTool() {
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean, session: LocalInspectionToolSession): PsiElementVisitor {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.reference
+package com.tarantoollua.intellij.lua.reference
 
 import com.intellij.patterns.PlatformPatterns.psiElement
 import com.intellij.psi.*
 import com.intellij.util.ProcessingContext
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.psi.*
 
 /**
  * reference contributor
- * Created by tangzx on 2016/12/14.
+ * Created by tarantoolluazx on 2016/12/14.
  */
 class LuaReferenceContributor : PsiReferenceContributor() {
     override fun registerReferenceProviders(psiReferenceRegistrar: PsiReferenceRegistrar) {

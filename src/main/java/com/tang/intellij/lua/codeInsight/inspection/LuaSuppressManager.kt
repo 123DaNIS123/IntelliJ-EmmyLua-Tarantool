@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.inspection
+package com.tarantoollua.intellij.lua.codeInsight.inspection
 
 import com.intellij.codeInspection.InspectionSuppressor
 import com.intellij.codeInspection.SuppressQuickFix
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.psi.LuaDocTagSuppress
-import com.tang.intellij.lua.comment.psi.LuaDocTypes
-import com.tang.intellij.lua.psi.LuaCommentOwner
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagSuppress
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTypes
+import com.tarantoollua.intellij.lua.psi.LuaCommentOwner
 
 class LuaSuppressManager : InspectionSuppressor {
     override fun getSuppressActions(element: PsiElement?, toolId: String): Array<SuppressQuickFix> {

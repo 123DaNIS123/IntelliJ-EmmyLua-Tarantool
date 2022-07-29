@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.tang.intellij.lua.project.LuaSettingsPanel">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.tarantoollua.intellij.lua.project.LuaSettingsPanel">
   <grid id="27dc6" binding="myPanel" layout-manager="FormLayout">
     <rowspec value="center:d:noGrow"/>
     <rowspec value="top:4dlu:noGrow"/>
@@ -167,7 +167,7 @@
           </component>
         </children>
       </grid>
-      <component id="7ec70" class="com.tang.intellij.lua.project.LuaAdditionalSourcesRootPanel" binding="additionalRoots">
+      <component id="7ec70" class="com.tarantoollua.intellij.lua.project.LuaAdditionalSourcesRootPanel" binding="additionalRoots">
         <constraints>
           <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <forms/>

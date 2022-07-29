@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight
+package com.tarantoollua.intellij.lua.codeInsight
 
 import com.intellij.codeInsight.daemon.RainbowVisitor
 import com.intellij.codeInsight.daemon.impl.HighlightVisitor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.comment.psi.LuaDocParamNameRef
-import com.tang.intellij.lua.highlighting.LuaHighlightingData
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocParamNameRef
+import com.tarantoollua.intellij.lua.highlighting.LuaHighlightingData
+import com.tarantoollua.intellij.lua.psi.*
 
 class LuaRainbowVisitor : RainbowVisitor() {
     override fun clone(): HighlightVisitor = LuaRainbowVisitor()

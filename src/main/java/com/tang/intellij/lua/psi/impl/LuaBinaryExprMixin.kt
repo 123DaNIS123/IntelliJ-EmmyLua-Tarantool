@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.impl
+package com.tarantoollua.intellij.lua.psi.impl
 
 import com.intellij.lang.ASTNode
 import com.intellij.psi.stubs.IStubElementType
 import com.intellij.psi.tree.IElementType
-import com.tang.intellij.lua.psi.LuaBinaryExpr
-import com.tang.intellij.lua.stubs.LuaBinaryExprStub
+import com.tarantoollua.intellij.lua.psi.LuaBinaryExpr
+import com.tarantoollua.intellij.lua.stubs.LuaBinaryExprStub
 
 abstract class LuaBinaryExprMixin : LuaExprStubMixin<LuaBinaryExprStub>, LuaBinaryExpr {
     constructor(stub: LuaBinaryExprStub, nodeType: IStubElementType<*, *>)

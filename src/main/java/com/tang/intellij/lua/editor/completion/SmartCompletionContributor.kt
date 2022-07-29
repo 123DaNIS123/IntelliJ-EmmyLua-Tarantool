@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.psi.LuaNameExpr
-import com.tang.intellij.lua.psi.LuaTypes
-import com.tang.intellij.lua.psi.shouldBe
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.TyStringLiteral
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.psi.LuaNameExpr
+import com.tarantoollua.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.psi.shouldBe
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.TyStringLiteral
 
 class SmartCompletionContributor : CompletionContributor() {
     init {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs
+package com.tarantoollua.intellij.lua.stubs
 
 import com.intellij.openapi.util.Computable
 import com.intellij.psi.stubs.StubElement
-import com.tang.intellij.lua.ext.recursionGuard
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.ext.recursionGuard
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.*
 
 /**
  * func body owner stub
- * Created by TangZX on 2017/2/4.
+ * Created by tarantoolluaZX on 2017/2/4.
  */
 interface LuaFuncBodyOwnerStub<T : LuaFuncBodyOwner> : StubElement<T> {
     val returnDocTy:ITy?

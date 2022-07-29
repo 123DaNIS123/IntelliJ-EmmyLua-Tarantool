@@ -1,13 +1,13 @@
-package com.tang.intellij.lua.lexer;
+package com.tarantoollua.intellij.lua.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
-import com.tang.intellij.lua.lang.LuaLanguageLevel;
+import com.tarantoollua.intellij.lua.lang.LuaLanguageLevel;
 
 import java.io.Reader;
 
-import static com.tang.intellij.lua.psi.LuaTypes.*;
+import static com.tarantoollua.intellij.lua.psi.LuaTypes.*;
 
 %%
 

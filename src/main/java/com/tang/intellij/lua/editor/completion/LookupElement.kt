@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,16 @@
 
 @file:Suppress("EqualsOrHashCode")
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.lookup.LookupElementPresentation
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.psi.LuaClassField
-import com.tang.intellij.lua.psi.LuaPsiElement
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.psi.LuaClassField
+import com.tarantoollua.intellij.lua.psi.LuaPsiElement
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.*
 import javax.swing.Icon
 
 interface LuaDocumentationLookupElement {
@@ -34,7 +34,7 @@ interface LuaDocumentationLookupElement {
 
 /**
  * lookup elements
- * Created by TangZX on 2017/5/22.
+ * Created by tarantoolluaZX on 2017/5/22.
  */
 
 open class LuaTypeGuessableLookupElement(name: String, val psi: LuaPsiElement, private val type: ITy, bold: Boolean, icon: Icon)
@@ -56,8 +56,8 @@ open class LuaTypeGuessableLookupElement(name: String, val psi: LuaPsiElement, p
     }
 
     /**
-     * https://github.com/tangzx/IntelliJ-EmmyLua/issues/54
-     * @see [com.tang.intellij.lua.documentation.LuaDocumentationProvider]
+     * https://github.com/tarantoolluazx/IntelliJ-EmmyLua/issues/54
+     * @see [com.tarantoollua.intellij.lua.documentation.LuaDocumentationProvider]
      */
     override fun getObject(): Any {
         return psi
@@ -139,7 +139,7 @@ class TyFunctionLookupElement(name: String,
     }
 
     /**
-     * https://github.com/tangzx/IntelliJ-EmmyLua/issues/54
+     * https://github.com/tarantoolluazx/IntelliJ-EmmyLua/issues/54
      */
     override fun getObject(): Any {
         return psi

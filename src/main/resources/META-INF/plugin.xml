@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+  ~ Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,10 +15,10 @@
   -->
 
 <idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
-    <id>com.tang</id>
+    <id>com.tarantoollua</id>
     <name>Tarantool with EmmyLua</name>
     <version>1.3.6</version>
-    <vendor email="love.tangzx@qq.com">tangzx</vendor>
+    <vendor email="love.tarantoolluazx@qq.com">tarantoolluazx</vendor>
     <category>Custom Languages</category>
     <description><![CDATA[
     Support for Lua programming language.<br>
@@ -79,18 +79,18 @@
         <li>[NEW] Lua 5.4 syntax support</li>
         <li>[NEW] Additional code style settings <a href="https://github.com/EmmyLua/IntelliJ-EmmyLua/pull/379">see pr#379</a> (by @pouwelsjochem)</li>
         <li>[FIX] bug fix #371, #373, #359, #357, #337, #338, #344, #298, #355</li>
-        <a href="https://tangzx.github.io/emmydoc/changelogs.html?plugin">Full changelog</a>
+        <a href="https://tarantoolluazx.github.io/emmydoc/changelogs.html?plugin">Full changelog</a>
     </ul>
     <strong>1.3.4</strong>
     <ul>
         <li>[NEW] compatible with IDEA202</li>
-        <a href="https://tangzx.github.io/emmydoc/changelogs.html?plugin">Full changelog</a>
+        <a href="https://tarantoolluazx.github.io/emmydoc/changelogs.html?plugin">Full changelog</a>
     </ul>
     <strong>1.3.3</strong>
     <ul>
         <li>[NEW] compatible with IDEA201</li>
         <li>[NEW] bit32 api for lua5.2 (by @Benjamin Dobell)</li>
-        <a href="https://tangzx.github.io/emmydoc/changelogs.html?plugin">Full changelog</a>
+        <a href="https://tarantoolluazx.github.io/emmydoc/changelogs.html?plugin">Full changelog</a>
     </ul>
     <strong>1.3.2</strong>
     <ul>

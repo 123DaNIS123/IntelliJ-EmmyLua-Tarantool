@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote.commands
+package com.tarantoollua.intellij.lua.debugger.remote.commands
 
-import com.tang.intellij.lua.debugger.remote.LuaMobDebugProcess
-import com.tang.intellij.lua.debugger.remote.MobClient
+import com.tarantoollua.intellij.lua.debugger.remote.LuaMobDebugProcess
+import com.tarantoollua.intellij.lua.debugger.remote.MobClient
 
 /**
  * Remote Debug Command
- * Created by tangzx on 2016/12/31.
+ * Created by tarantoolluazx on 2016/12/31.
  */
 abstract class DebugCommand {
 

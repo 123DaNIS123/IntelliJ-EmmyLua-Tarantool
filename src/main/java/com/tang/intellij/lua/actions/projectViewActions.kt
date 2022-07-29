@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.actions
+package com.tarantoollua.intellij.lua.actions
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -23,8 +23,8 @@ import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.roots.ModuleRootManager
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.project.LuaSourceRootManager
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.project.LuaSourceRootManager
 
 class MarkLuaSourceRootAction : AnAction(), DumbAware {
     override fun actionPerformed(event: AnActionEvent) {

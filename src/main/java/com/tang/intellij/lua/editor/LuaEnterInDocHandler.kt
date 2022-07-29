@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.codeInsight.editorActions.enter.EnterHandlerDelegate
 import com.intellij.openapi.actionSystem.DataContext
@@ -27,12 +27,12 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.codeStyle.CodeStyleManager
 import com.intellij.psi.tree.TokenSet
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.psi.LuaDocTypes
-import com.tang.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTypes
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
 
 /**
  * LuaEnterInDocHandler
- * Created by tangzx on 2017/2/19.
+ * Created by tarantoolluazx on 2017/2/19.
  */
 class LuaEnterInDocHandler : EnterHandlerDelegate {
     override fun preprocessEnter(psiFile: PsiFile,

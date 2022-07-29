@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,22 +15,22 @@
  */
 
 {
-  parserClass="com.tang.intellij.lua.comment.parser.LuaDocParser"
+  parserClass="com.tarantoollua.intellij.lua.comment.parser.LuaDocParser"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
-  implements="com.tang.intellij.lua.comment.psi.LuaDocPsiElement"
+  implements="com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement"
 
   psiClassPrefix="LuaDoc"
   psiImplClassSuffix="Impl"
-  psiPackage="com.tang.intellij.lua.comment.psi"
-  psiImplPackage="com.tang.intellij.lua.comment.psi.impl"
-  psiImplUtilClass="com.tang.intellij.lua.comment.psi.LuaDocPsiImplUtilKt"
+  psiPackage="com.tarantoollua.intellij.lua.comment.psi"
+  psiImplPackage="com.tarantoollua.intellij.lua.comment.psi.impl"
+  psiImplUtilClass="com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiImplUtilKt"
 
-  parserUtilClass="com.tang.intellij.lua.psi.LuaParserUtil"
-  elementTypeHolderClass="com.tang.intellij.lua.comment.psi.LuaDocTypes"
-  elementTypeClass="com.tang.intellij.lua.comment.psi.LuaDocElementType"
-  elementTypeFactory="com.tang.intellij.lua.lang.LuaParserDefinitionKt.createDocType"
-  tokenTypeClass="com.tang.intellij.lua.comment.psi.LuaDocTokenType"
+  parserUtilClass="com.tarantoollua.intellij.lua.psi.LuaParserUtil"
+  elementTypeHolderClass="com.tarantoollua.intellij.lua.comment.psi.LuaDocTypes"
+  elementTypeClass="com.tarantoollua.intellij.lua.comment.psi.LuaDocElementType"
+  elementTypeFactory="com.tarantoollua.intellij.lua.lang.LuaParserDefinitionKt.createDocType"
+  tokenTypeClass="com.tarantoollua.intellij.lua.comment.psi.LuaDocTokenType"
   extends(".*ty") = 'ty'
 
   tokens = [
@@ -76,7 +76,7 @@
         TAG_NAME_SUPPRESS = 'suppress'
   ]
   implements("tag.*") = [
-    "com.tang.intellij.lua.comment.psi.LuaDocTag"
+    "com.tarantoollua.intellij.lua.comment.psi.LuaDocTag"
   ]
 }
 
@@ -100,7 +100,7 @@ private doc_item ::= '@' (tag_param
     | tag_generic_list)
 
 ty ::= union_ty | function_ty | table_ty | generic_ty | arr_ty | general_ty | par_ty | string_literal_ty {
-    implements = ['com.tang.intellij.lua.comment.psi.LuaDocType']
+    implements = ['com.tarantoollua.intellij.lua.comment.psi.LuaDocType']
 }
 
 arr_ty ::= ty '[]' {
@@ -123,8 +123,8 @@ private tableField2 ::= ID ':' ty { pin = 1 }
 
 tableField ::= tableField2 {
     implements = [
-        "com.tang.intellij.lua.comment.psi.LuaDocPsiElement"
-        "com.tang.intellij.lua.psi.LuaClassField"
+        "com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement"
+        "com.tarantoollua.intellij.lua.psi.LuaClassField"
         "com.intellij.psi.PsiNameIdentifierOwner"
     ]
     methods = [
@@ -137,12 +137,12 @@ tableField ::= tableField2 {
         guessType
         isDeprecated
     ]
-    stubClass = "com.tang.intellij.lua.stubs.LuaDocTableFieldStub"
+    stubClass = "com.tarantoollua.intellij.lua.stubs.LuaDocTableFieldStub"
 }
 
 table_def ::= '{' fieldList '}' {
     pin = 1
-    stubClass = "com.tang.intellij.lua.stubs.LuaDocTableDefStub"
+    stubClass = "com.tarantoollua.intellij.lua.stubs.LuaDocTableDefStub"
 }
 
 table_ty ::= table_def {
@@ -179,11 +179,11 @@ access_modifier ::= PRIVATE | PUBLIC | PROTECTED | TAG_NAME_PRIVATE | TAG_NAME_P
 tag_field ::= TAG_NAME_FIELD access_modifier? ('<' class_name_ref '>')? ID ty comment_string? {
     pin = 1
     implements = [
-        "com.tang.intellij.lua.psi.LuaClassField"
-        "com.tang.intellij.lua.comment.psi.LuaDocPsiElement"
+        "com.tarantoollua.intellij.lua.psi.LuaClassField"
+        "com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement"
         "com.intellij.psi.PsiNameIdentifierOwner"
     ]
-    stubClass = "com.tang.intellij.lua.stubs.LuaDocTagFieldStub"
+    stubClass = "com.tarantoollua.intellij.lua.stubs.LuaDocTagFieldStub"
     methods = [
         guessParentType
         getVisibility
@@ -239,11 +239,11 @@ class_name_ref ::= ID {
 tag_class ::= (TAG_NAME_CLASS|TAG_NAME_MODULE) ID (EXTENDS class_name_ref)? comment_string? {
     pin = 2
     implements = [
-        "com.tang.intellij.lua.comment.psi.LuaDocPsiElement"
+        "com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement"
         "com.intellij.psi.PsiNameIdentifierOwner"
-        "com.tang.intellij.lua.psi.LuaClass"
+        "com.tarantoollua.intellij.lua.psi.LuaClass"
     ]
-    stubClass = "com.tang.intellij.lua.stubs.LuaDocTagClassStub"
+    stubClass = "com.tarantoollua.intellij.lua.stubs.LuaDocTagClassStub"
     methods = [
         getType
         
@@ -263,7 +263,7 @@ tag_class ::= (TAG_NAME_CLASS|TAG_NAME_MODULE) ID (EXTENDS class_name_ref)? comm
 // @type CLASS_REF
 tag_type ::= TAG_NAME_TYPE ty comment_string? {
     pin = 1
-    stubClass = "com.tang.intellij.lua.stubs.LuaDocTagTypeStub"
+    stubClass = "com.tarantoollua.intellij.lua.stubs.LuaDocTagTypeStub"
     methods = [getType]
 }
 
@@ -285,7 +285,7 @@ generic_def ::= ID (EXTENDS class_name_ref)? {
     pin = 1
     implements = [
         "com.intellij.psi.PsiNameIdentifierOwner"
-        "com.tang.intellij.lua.comment.psi.LuaDocPsiElement"
+        "com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement"
     ]
     methods = [
         getNameIdentifier
@@ -302,8 +302,8 @@ tag_generic_list ::= TAG_NAME_GENERIC generic_def (',' generic_def)* {
 tag_alias ::= TAG_NAME_ALIAS ID ty {
     pin = 1
     implements = [
-        "com.tang.intellij.lua.psi.LuaTypeAlias"
-        "com.tang.intellij.lua.comment.psi.LuaDocPsiElement"
+        "com.tarantoollua.intellij.lua.psi.LuaTypeAlias"
+        "com.tarantoollua.intellij.lua.comment.psi.LuaDocPsiElement"
         "com.intellij.psi.PsiNameIdentifierOwner"
     ]
     methods = [
@@ -313,7 +313,7 @@ tag_alias ::= TAG_NAME_ALIAS ID ty {
         getTextOffset
         getType
     ]
-    stubClass = "com.tang.intellij.lua.stubs.LuaDocTagAliasStub"
+    stubClass = "com.tarantoollua.intellij.lua.stubs.LuaDocTagAliasStub"
 }
 
 tag_suppress ::= TAG_NAME_SUPPRESS ID (',' ID)* {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.luacheck
+package com.tarantoollua.intellij.lua.luacheck
 
 import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.project.DumbService
@@ -24,7 +24,7 @@ import com.intellij.openapi.wm.ToolWindowFactory
 
 /**
  * ToolWindowFactory
- * Created by tangzx on 2017/7/11.
+ * Created by tarantoolluazx on 2017/7/11.
  */
 class LuaCheckToolWindowFactory : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {

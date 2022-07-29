@@ -1,5 +1,5 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.psi;
+package com.tarantoollua.intellij.lua.psi;
 
 import java.util.List;
 import org.jetbrains.annotations.*;

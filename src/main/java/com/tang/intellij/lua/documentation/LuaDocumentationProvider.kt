@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.documentation
+package com.tarantoollua.intellij.lua.documentation
 
 import com.intellij.codeInsight.documentation.DocumentationManagerUtil
 import com.intellij.lang.documentation.AbstractDocumentationProvider
@@ -22,17 +22,17 @@ import com.intellij.lang.documentation.DocumentationProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.comment.psi.LuaDocTagField
-import com.tang.intellij.lua.editor.completion.LuaDocumentationLookupElement
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.stubs.index.LuaClassIndex
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagField
+import com.tarantoollua.intellij.lua.editor.completion.LuaDocumentationLookupElement
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassIndex
+import com.tarantoollua.intellij.lua.ty.*
 
 /**
  * Documentation support
- * Created by tangzx on 2016/12/10.
+ * Created by tarantoolluazx on 2016/12/10.
  */
 class LuaDocumentationProvider : AbstractDocumentationProvider(), DocumentationProvider {
 

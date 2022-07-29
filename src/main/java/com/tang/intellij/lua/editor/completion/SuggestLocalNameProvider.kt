@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.icons.AllIcons
 import com.intellij.psi.codeStyle.NameUtil
 import com.intellij.util.Processor
-import com.tang.intellij.lua.editor.LuaNameSuggestionProvider
-import com.tang.intellij.lua.psi.search.LuaShortNamesManager
+import com.tarantoollua.intellij.lua.editor.LuaNameSuggestionProvider
+import com.tarantoollua.intellij.lua.psi.search.LuaShortNamesManager
 
 class SuggestLocalNameProvider : LuaCompletionProvider() {
     override fun addCompletions(session: CompletionSession) {

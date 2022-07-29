@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.refactoring.inline
+package com.tarantoollua.intellij.lua.refactoring.inline
 
 import com.intellij.lang.Language
 import com.intellij.lang.refactoring.InlineActionHandler
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
 
 // todo: impl inline action
 class LuaInlineActionHandler : InlineActionHandler() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.lang.Language
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.ui.breadcrumbs.BreadcrumbsProvider
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.psi.*
 
 class LuaBreadcrumbsProvider : BreadcrumbsProvider {
     override fun getLanguages(): Array<Language> {

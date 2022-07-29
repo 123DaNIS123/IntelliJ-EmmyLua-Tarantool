@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi
+package com.tarantoollua.intellij.lua.psi
 
 import com.intellij.extapi.psi.StubBasedPsiElementBase
 import com.intellij.openapi.progress.ProgressManager
@@ -25,16 +25,16 @@ import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Processor
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.comment.psi.LuaDocGenericDef
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.comment.psi.LuaDocTagOverload
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.lang.type.LuaString
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.stubs.LuaFuncBodyOwnerStub
-import com.tang.intellij.lua.stubs.index.LuaClassMemberIndex
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocGenericDef
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagOverload
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.lang.type.LuaString
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.stubs.LuaFuncBodyOwnerStub
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassMemberIndex
+import com.tarantoollua.intellij.lua.ty.*
 
 /**
  * 1.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger
+package com.tarantoollua.intellij.lua.debugger
 
 import com.intellij.xdebugger.frame.XExecutionStack
 import com.intellij.xdebugger.frame.XStackFrame
@@ -22,7 +22,7 @@ import com.intellij.xdebugger.impl.frame.XStackFrameContainerEx
 
 /**
  *
- * Created by tangzx on 2016/12/31.
+ * Created by tarantoolluazx on 2016/12/31.
  */
 class LuaExecutionStack(private val stackFrameList: List<XStackFrame>) : XExecutionStack("LuaStack") {
     private var _topFrame: XStackFrame? = null

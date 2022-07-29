@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.formatter
+package com.tarantoollua.intellij.lua.editor.formatter
 
 import com.intellij.formatting.Alignment
 import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
-import com.tang.intellij.lua.editor.formatter.blocks.LuaScriptBlock
+import com.tarantoollua.intellij.lua.editor.formatter.blocks.LuaScriptBlock
 
 class LuaFormatContext(val settings: CommonCodeStyleSettings, val luaSettings: LuaCodeStyleSettings, val spaceBuilder: SpacingBuilder) {
     var eqAlignment: Alignment? = null

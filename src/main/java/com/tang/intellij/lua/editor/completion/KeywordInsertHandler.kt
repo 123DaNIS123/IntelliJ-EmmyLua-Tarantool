@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.completion.InsertHandler
 import com.intellij.codeInsight.completion.InsertionContext
@@ -30,14 +30,14 @@ import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.codeStyle.CodeStyleManager
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.codeInsight.template.macro.SuggestLuaParametersMacro
-import com.tang.intellij.lua.psi.LuaClosureExpr
-import com.tang.intellij.lua.psi.LuaIndentRange
-import com.tang.intellij.lua.psi.LuaTypes.*
+import com.tarantoollua.intellij.lua.codeInsight.template.macro.SuggestLuaParametersMacro
+import com.tarantoollua.intellij.lua.psi.LuaClosureExpr
+import com.tarantoollua.intellij.lua.psi.LuaIndentRange
+import com.tarantoollua.intellij.lua.psi.LuaTypes.*
 
 /**
  * 关键字插入时缩进处理
- * Created by TangZX on 2016/12/20.
+ * Created by tarantoolluaZX on 2016/12/20.
  */
 class KeywordInsertHandler internal constructor(private val keyWordToken: IElementType) : InsertHandler<LookupElement> {
 

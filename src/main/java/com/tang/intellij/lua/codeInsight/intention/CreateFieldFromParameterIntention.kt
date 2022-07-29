@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.intention
+package com.tarantoollua.intellij.lua.codeInsight.intention
 
 import com.intellij.codeInsight.intention.impl.BaseIntentionAction
 import com.intellij.codeInsight.template.Template
@@ -29,15 +29,15 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.IncorrectOperationException
-import com.tang.intellij.lua.codeInsight.template.macro.SuggestTypeMacro
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.psi.search.LuaShortNamesManager
-import com.tang.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.codeInsight.template.macro.SuggestTypeMacro
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.psi.search.LuaShortNamesManager
+import com.tarantoollua.intellij.lua.search.SearchContext
 import org.jetbrains.annotations.Nls
 
 /**
  *
- * Created by tangzx on 2017/2/11.
+ * Created by tarantoolluazx on 2017/2/11.
  */
 class CreateFieldFromParameterIntention : BaseIntentionAction() {
     @Nls

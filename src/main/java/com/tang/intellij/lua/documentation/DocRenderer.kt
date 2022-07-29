@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.documentation
+package com.tarantoollua.intellij.lua.documentation
 
 import com.intellij.codeInsight.documentation.DocumentationManagerUtil
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.comment.psi.*
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.ty.IFunSignature
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.ITyRenderer
+import com.tarantoollua.intellij.lua.comment.psi.*
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.ty.IFunSignature
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.ITyRenderer
 
 inline fun StringBuilder.wrap(prefix: String, postfix: String, crossinline body: () -> Unit) {
     this.append(prefix)

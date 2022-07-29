@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.template.context
+package com.tarantoollua.intellij.lua.codeInsight.template.context
 
 import com.intellij.codeInsight.template.TemplateContextType
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.psi.LuaFuncBody
+import com.tarantoollua.intellij.lua.psi.LuaFuncBody
 
 class LuaFunContextType : TemplateContextType("LUA_FUNCTION", "function", LuaCodeContextType::class.java) {
 

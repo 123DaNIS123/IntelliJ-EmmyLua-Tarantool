@@ -1,11 +1,11 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.comment.psi;
+package com.tarantoollua.intellij.lua.comment.psi;
 
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;
-import com.tang.intellij.lua.lang.LuaParserDefinitionKt;
-import com.tang.intellij.lua.comment.psi.impl.*;
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinitionKt;
+import com.tarantoollua.intellij.lua.comment.psi.impl.*;
 
 public interface LuaDocTypes {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi;
+package com.tarantoollua.intellij.lua.psi;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.PsiBuilder;
@@ -27,19 +27,19 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.ILazyParseableElementType;
 import com.intellij.psi.tree.IReparseableElementType;
 import com.intellij.util.CharTable;
-import com.tang.intellij.lua.comment.lexer.LuaDocLexerAdapter;
-import com.tang.intellij.lua.comment.parser.LuaDocParser;
-import com.tang.intellij.lua.lang.LuaLanguage;
-import com.tang.intellij.lua.lang.LuaParserDefinition;
-import com.tang.intellij.lua.lexer.LuaLexerAdapter;
-import com.tang.intellij.lua.parser.LuaParser;
-import com.tang.intellij.lua.stubs.*;
+import com.tarantoollua.intellij.lua.comment.lexer.LuaDocLexerAdapter;
+import com.tarantoollua.intellij.lua.comment.parser.LuaDocParser;
+import com.tarantoollua.intellij.lua.lang.LuaLanguage;
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition;
+import com.tarantoollua.intellij.lua.lexer.LuaLexerAdapter;
+import com.tarantoollua.intellij.lua.parser.LuaParser;
+import com.tarantoollua.intellij.lua.stubs.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Created by tangzx on 2015/11/15.
- * Email:love.tangzx@qq.com
+ * Created by tarantoolluazx on 2015/11/15.
+ * Email:love.tarantoolluazx@qq.com
  */
 public class LuaElementType extends IElementType {
     public LuaElementType(String debugName) {

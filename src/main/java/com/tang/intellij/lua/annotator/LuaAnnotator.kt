@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.annotator
+package com.tarantoollua.intellij.lua.annotator
 
 import com.intellij.lang.annotation.AnnotationBuilder
 import com.intellij.lang.annotation.AnnotationHolder
@@ -22,15 +22,15 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.comment.psi.*
-import com.tang.intellij.lua.highlighting.LuaHighlightingData
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.comment.psi.*
+import com.tarantoollua.intellij.lua.highlighting.LuaHighlightingData
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.search.SearchContext
 
 /**
  * LuaAnnotator
- * Created by TangZX on 2016/11/22.
+ * Created by tarantoolluaZX on 2016/11/22.
  */
 class LuaAnnotator : Annotator {
     private var myHolder: AnnotationHolder? = null

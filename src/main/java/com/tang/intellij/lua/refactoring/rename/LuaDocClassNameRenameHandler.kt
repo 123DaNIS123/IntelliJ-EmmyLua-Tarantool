@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.refactoring.rename
+package com.tarantoollua.intellij.lua.refactoring.rename
 
 import com.intellij.patterns.ElementPattern
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.PsiElement
 import com.intellij.refactoring.rename.RenameInputValidator
 import com.intellij.util.ProcessingContext
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.refactoring.LuaRefactoringUtil
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.refactoring.LuaRefactoringUtil
 
 class LuaDocClassRenameInputValidator : RenameInputValidator {
     override fun isInputValid(newName: String, element: PsiElement, context: ProcessingContext): Boolean {

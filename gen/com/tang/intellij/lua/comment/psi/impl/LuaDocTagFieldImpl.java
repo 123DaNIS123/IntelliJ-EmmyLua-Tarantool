@@ -1,5 +1,5 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.comment.psi.impl;
+package com.tarantoollua.intellij.lua.comment.psi.impl;
 
 import java.util.List;
 import org.jetbrains.annotations.*;
@@ -7,14 +7,14 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import static com.tang.intellij.lua.comment.psi.LuaDocTypes.*;
+import static com.tarantoollua.intellij.lua.comment.psi.LuaDocTypes.*;
 import com.intellij.extapi.psi.StubBasedPsiElementBase;
-import com.tang.intellij.lua.stubs.LuaDocTagFieldStub;
-import com.tang.intellij.lua.comment.psi.*;
+import com.tarantoollua.intellij.lua.stubs.LuaDocTagFieldStub;
+import com.tarantoollua.intellij.lua.comment.psi.*;
 import com.intellij.navigation.ItemPresentation;
-import com.tang.intellij.lua.psi.Visibility;
-import com.tang.intellij.lua.search.SearchContext;
-import com.tang.intellij.lua.ty.ITy;
+import com.tarantoollua.intellij.lua.psi.Visibility;
+import com.tarantoollua.intellij.lua.search.SearchContext;
+import com.tarantoollua.intellij.lua.ty.ITy;
 import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.tree.IElementType;
 

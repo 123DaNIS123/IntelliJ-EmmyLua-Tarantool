@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.intention
+package com.tarantoollua.intellij.lua.codeInsight.intention
 
 import com.intellij.codeInsight.intention.impl.BaseIntentionAction
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.psi.*
 
 class ComputeConstantValueIntention : BaseIntentionAction() {
     override fun getFamilyName() = "Compute constant value"

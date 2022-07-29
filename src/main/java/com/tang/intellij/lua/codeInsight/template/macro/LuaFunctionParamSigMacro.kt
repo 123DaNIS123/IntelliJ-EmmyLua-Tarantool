@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.template.macro
+package com.tarantoollua.intellij.lua.codeInsight.template.macro
 
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.codeInsight.template.*
 import com.intellij.psi.PsiFile
-import com.tang.intellij.lua.codeInsight.template.context.LuaFunContextType
-import com.tang.intellij.lua.psi.LuaFuncBodyOwner
+import com.tarantoollua.intellij.lua.codeInsight.template.context.LuaFunContextType
+import com.tarantoollua.intellij.lua.psi.LuaFuncBodyOwner
 
 class LuaFunctionParamSigMacro : Macro() {
     override fun getPresentableName() = "LuaFunctionParamSignature()"
