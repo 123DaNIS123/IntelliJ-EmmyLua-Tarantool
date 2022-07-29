@@ -46,6 +46,7 @@ backup = {}
 ---
 --- Return:  a table with the names of snapshot and vinyl files that should
 --- be copied
+--- @param n number
 --- @return table
 function backup.start() end
 --- Informs the server that activities related to the removal of outdated
