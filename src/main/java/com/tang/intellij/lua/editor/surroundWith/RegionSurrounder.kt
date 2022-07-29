@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.surroundWith
+package com.tarantoollua.intellij.lua.editor.surroundWith
 
 import com.intellij.lang.surroundWith.Surrounder
 import com.intellij.openapi.editor.Editor
@@ -24,7 +24,7 @@ import com.intellij.psi.PsiElement
 
 /**
  * region surrounder
- * Created by tangzx on 2017/2/25.
+ * Created by tarantoolluazx on 2017/2/25.
  */
 open class RegionSurrounder(
         val desc: String,

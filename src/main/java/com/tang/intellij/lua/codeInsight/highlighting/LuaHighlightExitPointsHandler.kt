@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.highlighting
+package com.tarantoollua.intellij.lua.codeInsight.highlighting
 
 import com.intellij.codeInsight.highlighting.HighlightUsagesHandlerBase
 import com.intellij.openapi.editor.Editor
@@ -22,13 +22,13 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Consumer
-import com.tang.intellij.lua.comment.psi.LuaDocTagOverload
-import com.tang.intellij.lua.comment.psi.LuaDocTagReturn
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagOverload
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagReturn
+import com.tarantoollua.intellij.lua.psi.*
 
 /**
 
- * Created by tangzx on 2017/3/18.
+ * Created by tarantoolluazx on 2017/3/18.
  */
 class LuaHighlightExitPointsHandler internal constructor(editor: Editor, file: PsiFile, private val target: LuaReturnStat, private val funcBody: LuaFuncBody) : HighlightUsagesHandlerBase<PsiElement>(editor, file) {
 

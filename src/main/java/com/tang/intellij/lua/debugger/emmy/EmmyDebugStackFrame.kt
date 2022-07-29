@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.emmy
+package com.tarantoollua.intellij.lua.debugger.emmy
 
 import com.intellij.ui.ColoredTextContainer
 import com.intellij.ui.SimpleTextAttributes
@@ -23,8 +23,8 @@ import com.intellij.xdebugger.frame.XCompositeNode
 import com.intellij.xdebugger.frame.XStackFrame
 import com.intellij.xdebugger.frame.XValueChildrenList
 import com.intellij.xdebugger.impl.XSourcePositionImpl
-import com.tang.intellij.lua.debugger.emmy.value.LuaXValue
-import com.tang.intellij.lua.psi.LuaFileUtil
+import com.tarantoollua.intellij.lua.debugger.emmy.value.LuaXValue
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil
 
 class EmmyDebugStackFrame(val data: Stack, val process: EmmyDebugProcessBase) : XStackFrame() {
     private val values = XValueChildrenList()

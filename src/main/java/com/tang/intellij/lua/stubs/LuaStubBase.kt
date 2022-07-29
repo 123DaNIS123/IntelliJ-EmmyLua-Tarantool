@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs
+package com.tarantoollua.intellij.lua.stubs
 
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.stubs.*
 import com.intellij.psi.tree.IStubFileElementType
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.psi.LuaBlock
-import com.tang.intellij.lua.psi.LuaPsiElement
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.Ty
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.psi.LuaBlock
+import com.tarantoollua.intellij.lua.psi.LuaPsiElement
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.Ty
 
 abstract class LuaStubElementType<StubT : StubElement<*>, PsiT : LuaPsiElement>(debugName: String)
     : IStubElementType<StubT, PsiT>(debugName, LuaLanguage.INSTANCE) {

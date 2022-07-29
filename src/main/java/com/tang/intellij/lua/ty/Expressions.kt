@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.ty
+package com.tarantoollua.intellij.lua.ty
 
 import com.intellij.openapi.util.Computable
 import com.intellij.psi.PsiElement
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Processor
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.ext.recursionGuard
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.psi.impl.LuaNameExprMixin
-import com.tang.intellij.lua.psi.search.LuaShortNamesManager
-import com.tang.intellij.lua.search.GuardType
-import com.tang.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.ext.recursionGuard
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.psi.impl.LuaNameExprMixin
+import com.tarantoollua.intellij.lua.psi.search.LuaShortNamesManager
+import com.tarantoollua.intellij.lua.search.GuardType
+import com.tarantoollua.intellij.lua.search.SearchContext
 
 fun inferExpr(expr: LuaExpr?, context: SearchContext): ITy {
     if (expr == null)

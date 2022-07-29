@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.formatter
+package com.tarantoollua.intellij.lua.editor.formatter
 
 import com.intellij.formatting.*
 import com.intellij.lang.ASTNode
@@ -22,14 +22,14 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.codeStyle.CodeStyleSettings
-import com.tang.intellij.lua.editor.formatter.blocks.LuaScriptBlock
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.lang.LuaParserDefinition
-import com.tang.intellij.lua.psi.LuaTypes.*
+import com.tarantoollua.intellij.lua.editor.formatter.blocks.LuaScriptBlock
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition
+import com.tarantoollua.intellij.lua.psi.LuaTypes.*
 
 /**
  *
- * Created by tangzx on 2016/12/3.
+ * Created by tarantoolluazx on 2016/12/3.
  */
 class LuaFormattingModelBuilder : FormattingModelBuilder {
     override fun createModel(element: PsiElement, settings: CodeStyleSettings): FormattingModel {

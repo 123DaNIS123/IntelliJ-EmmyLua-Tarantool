@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote
+package com.tarantoollua.intellij.lua.debugger.remote
 
 import com.intellij.execution.ui.ConsoleViewContentType
-import com.tang.intellij.lua.debugger.DebugLogger
-import com.tang.intellij.lua.debugger.LogConsoleType
+import com.tarantoollua.intellij.lua.debugger.DebugLogger
+import com.tarantoollua.intellij.lua.debugger.LogConsoleType
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.nio.channels.ServerSocketChannel

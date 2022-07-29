@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.comment.reference
+package com.tarantoollua.intellij.lua.comment.reference
 
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -22,11 +22,11 @@ import com.intellij.psi.PsiElementResolveResult
 import com.intellij.psi.PsiPolyVariantReferenceBase
 import com.intellij.psi.ResolveResult
 import com.intellij.util.Processor
-import com.tang.intellij.lua.comment.psi.LuaDocTagSee
-import com.tang.intellij.lua.psi.LuaElementFactory
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.stubs.index.LuaClassMemberIndex
-import com.tang.intellij.lua.ty.ITyClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagSee
+import com.tarantoollua.intellij.lua.psi.LuaElementFactory
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassMemberIndex
+import com.tarantoollua.intellij.lua.ty.ITyClass
 
 class LuaDocSeeReference(see: LuaDocTagSee) :
         PsiPolyVariantReferenceBase<LuaDocTagSee>(see){

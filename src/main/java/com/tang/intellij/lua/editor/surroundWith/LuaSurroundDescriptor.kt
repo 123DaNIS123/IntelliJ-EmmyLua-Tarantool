@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.surroundWith
+package com.tarantoollua.intellij.lua.editor.surroundWith
 
 import com.intellij.lang.surroundWith.SurroundDescriptor
 import com.intellij.lang.surroundWith.Surrounder
@@ -24,13 +24,13 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.PsiUtilCore
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.psi.LuaStatement
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.psi.LuaStatement
 import java.util.*
 
 /**
  * SurroundDescriptor
- * Created by tangzx on 2017/2/25.
+ * Created by tarantoolluazx on 2017/2/25.
  */
 class LuaSurroundDescriptor : SurroundDescriptor {
     private val surrounders = arrayOf<Surrounder>(

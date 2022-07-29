@@ -1,5 +1,5 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.psi.impl;
+package com.tarantoollua.intellij.lua.psi.impl;
 
 import java.util.List;
 import org.jetbrains.annotations.*;
@@ -7,10 +7,10 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import static com.tang.intellij.lua.psi.LuaTypes.*;
+import static com.tarantoollua.intellij.lua.psi.LuaTypes.*;
 import com.intellij.extapi.psi.StubBasedPsiElementBase;
-import com.tang.intellij.lua.stubs.LuaNameDefStub;
-import com.tang.intellij.lua.psi.*;
+import com.tarantoollua.intellij.lua.stubs.LuaNameDefStub;
+import com.tarantoollua.intellij.lua.psi.*;
 import com.intellij.psi.search.SearchScope;
 import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.tree.IElementType;

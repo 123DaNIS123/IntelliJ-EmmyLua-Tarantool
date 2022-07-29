@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.refactoring
+package com.tarantoollua.intellij.lua.refactoring
 
 import com.intellij.codeInsight.PsiEquivalenceUtil
 import com.intellij.openapi.util.text.StringUtil
 import com.intellij.openapi.util.text.StringUtil.isJavaIdentifierPart
 import com.intellij.openapi.util.text.StringUtil.isJavaIdentifierStart
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.psi.LuaVisitor
+import com.tarantoollua.intellij.lua.psi.LuaVisitor
 import java.util.*
 
 /**
  * RefactoringUtil
- * Created by tangzx on 2017/4/30.
+ * Created by tarantoolluazx on 2017/4/30.
  */
 object LuaRefactoringUtil {
     fun getOccurrences(pattern: PsiElement, context: PsiElement?): List<PsiElement> {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.project
+package com.tarantoollua.intellij.lua.project
 
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.util.xmlb.XmlSerializerUtil
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.lang.LuaLanguageLevel
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.lang.LuaLanguageLevel
 import java.nio.charset.Charset
 
 /**
  *
- * Created by tangzx on 2017/6/12.
+ * Created by tarantoolluazx on 2017/6/12.
  */
 @State(name = "LuaSettings", storages = [(Storage("emmy.xml"))])
 class LuaSettings : PersistentStateComponent<LuaSettings> {

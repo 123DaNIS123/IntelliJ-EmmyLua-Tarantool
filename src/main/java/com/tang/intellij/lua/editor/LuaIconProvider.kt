@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.ide.IconProvider
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.psi.LuaClassMethodDef
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.psi.LuaClassMethodDef
 import javax.swing.Icon
 
 /**
  * icon provider
- * Created by TangZX on 2017/4/12.
+ * Created by tarantoolluaZX on 2017/4/12.
  */
 class LuaIconProvider : IconProvider() {
     override fun getIcon(psiElement: PsiElement, iconFlags: Int): Icon? {

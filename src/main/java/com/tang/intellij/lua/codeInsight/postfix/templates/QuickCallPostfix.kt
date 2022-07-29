@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.postfix.templates
+package com.tarantoollua.intellij.lua.codeInsight.postfix.templates
 
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorAllExpressionsWithCurrentOffset
+import com.tarantoollua.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorAllExpressionsWithCurrentOffset
 
 abstract class LuaCallPostfixTemplate(private val fn:String) : StringBasedPostfixTemplate(fn, "$fn(expr)", selectorAllExpressionsWithCurrentOffset()) {
 

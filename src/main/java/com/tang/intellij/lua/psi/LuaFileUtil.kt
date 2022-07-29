@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi
+package com.tarantoollua.intellij.lua.psi
 
 import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.extensions.PluginId
@@ -26,25 +26,25 @@ import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.util.SmartList
-import com.tang.intellij.lua.ext.ILuaFileResolver
-import com.tang.intellij.lua.project.LuaSourceRootManager
+import com.tarantoollua.intellij.lua.ext.ILuaFileResolver
+import com.tarantoollua.intellij.lua.project.LuaSourceRootManager
 import java.io.File
 
 /**
  *
- * Created by tangzx on 2017/1/4.
+ * Created by tarantoolluazx on 2017/1/4.
  */
 object LuaFileUtil {
 
     val pluginFolder: File?
         get() {
-            val descriptor = PluginManagerCore.getPlugin(PluginId.getId("com.tang"))
+            val descriptor = PluginManagerCore.getPlugin(PluginId.getId("com.tarantoollua"))
             return descriptor?.path
         }
 
     val pluginVirtualDirectory: VirtualFile?
         get() {
-            val descriptor = PluginManagerCore.getPlugin(PluginId.getId("com.tang"))
+            val descriptor = PluginManagerCore.getPlugin(PluginId.getId("com.tarantoollua"))
             if (descriptor != null) {
                 val pluginPath = descriptor.path
 

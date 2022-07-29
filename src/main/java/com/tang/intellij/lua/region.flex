@@ -1,10 +1,10 @@
-package com.tang.intellij.lua.lexer;
+package com.tarantoollua.intellij.lua.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
 
-import static com.tang.intellij.lua.psi.LuaRegionTypes.*;
+import static com.tarantoollua.intellij.lua.psi.LuaRegionTypes.*;
 %%
 
 %class _LuaRegionLexer

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElementBuilder
@@ -26,16 +26,16 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.tree.TokenSet
 import com.intellij.util.ProcessingContext
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.refactoring.LuaRefactoringUtil
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.refactoring.LuaRefactoringUtil
 
 /**
 
- * Created by tangzx on 2016/11/27.
+ * Created by tarantoolluazx on 2016/11/27.
  */
 class LuaCompletionContributor : CompletionContributor() {
     private var suggestWords = true

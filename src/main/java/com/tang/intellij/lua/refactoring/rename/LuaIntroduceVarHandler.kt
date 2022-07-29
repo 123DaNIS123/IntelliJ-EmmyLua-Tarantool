@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.refactoring.rename
+package com.tarantoollua.intellij.lua.refactoring.rename
 
 import com.intellij.codeInsight.CodeInsightUtilCore
 import com.intellij.openapi.actionSystem.DataContext
@@ -29,12 +29,12 @@ import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.refactoring.RefactoringActionHandler
 import com.intellij.refactoring.introduce.inplace.InplaceVariableIntroducer
 import com.intellij.refactoring.introduce.inplace.OccurrencesChooser
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.refactoring.LuaRefactoringUtil
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.refactoring.LuaRefactoringUtil
 
 /**
  *
- * Created by tangzx on 2017/4/25.
+ * Created by tarantoolluazx on 2017/4/25.
  */
 class LuaIntroduceVarHandler : RefactoringActionHandler {
 

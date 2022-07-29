@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.structure
+package com.tarantoollua.intellij.lua.editor.structure
 
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.psi.LuaLocalFuncDef
-import com.tang.intellij.lua.psi.LuaPsiElement
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.psi.LuaLocalFuncDef
+import com.tarantoollua.intellij.lua.psi.LuaPsiElement
 
 class LuaLocalFuncElement(target: LuaPsiElement, name: String, paramSignature: String)
     : LuaFuncElement(target, name, paramSignature, LuaIcons.LOCAL_FUNCTION) {

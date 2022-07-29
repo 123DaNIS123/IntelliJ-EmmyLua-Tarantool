@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.formatter.blocks
+package com.tarantoollua.intellij.lua.editor.formatter.blocks
 
 import com.intellij.formatting.*
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.editor.formatter.LuaFormatContext
-import com.tang.intellij.lua.psi.LuaFuncBody
-import com.tang.intellij.lua.psi.LuaParamNameDef
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.editor.formatter.LuaFormatContext
+import com.tarantoollua.intellij.lua.psi.LuaFuncBody
+import com.tarantoollua.intellij.lua.psi.LuaParamNameDef
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 
 class LuaFuncBodyBlock(psi: LuaFuncBody, wrap: Wrap?, alignment: Alignment?, indent: Indent, ctx: LuaFormatContext)
     : LuaIndentBlock(psi, wrap, alignment, indent, ctx) {

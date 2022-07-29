@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.test.inspections
+package com.tarantoollua.intellij.test.inspections
 
-import com.tang.intellij.lua.codeInsight.inspection.ReturnTypeInspection
+import com.tarantoollua.intellij.lua.codeInsight.inspection.ReturnTypeInspection
 
 class ReturnTypeInspectionTest : LuaInspectionsTestBase(ReturnTypeInspection()) {
 

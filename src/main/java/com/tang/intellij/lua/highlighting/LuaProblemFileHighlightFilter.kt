@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.highlighting
+package com.tarantoollua.intellij.lua.highlighting
 
 import com.intellij.openapi.util.Condition
 import com.intellij.openapi.vfs.VirtualFile
-import com.tang.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.lang.LuaFileType
 
 /**
  *
- * Created by tangzx on 2017/1/11.
+ * Created by tarantoolluazx on 2017/1/11.
  */
 class LuaProblemFileHighlightFilter : Condition<VirtualFile> {
     override fun value(file: VirtualFile): Boolean {

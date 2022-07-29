@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.emmy.value
+package com.tarantoollua.intellij.lua.debugger.emmy.value
 
 import com.intellij.icons.AllIcons
 import com.intellij.xdebugger.evaluation.XDebuggerEvaluator
 import com.intellij.xdebugger.frame.*
-import com.tang.intellij.lua.debugger.LuaXBoolPresentation
-import com.tang.intellij.lua.debugger.LuaXNumberPresentation
-import com.tang.intellij.lua.debugger.LuaXStringPresentation
-import com.tang.intellij.lua.debugger.emmy.EmmyDebugStackFrame
-import com.tang.intellij.lua.debugger.emmy.LuaValueType
-import com.tang.intellij.lua.debugger.emmy.VariableValue
-import com.tang.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.debugger.LuaXBoolPresentation
+import com.tarantoollua.intellij.lua.debugger.LuaXNumberPresentation
+import com.tarantoollua.intellij.lua.debugger.LuaXStringPresentation
+import com.tarantoollua.intellij.lua.debugger.emmy.EmmyDebugStackFrame
+import com.tarantoollua.intellij.lua.debugger.emmy.LuaValueType
+import com.tarantoollua.intellij.lua.debugger.emmy.VariableValue
+import com.tarantoollua.intellij.lua.lang.LuaIcons
 import java.util.*
 
 abstract class LuaXValue(val value: VariableValue) : XValue() {

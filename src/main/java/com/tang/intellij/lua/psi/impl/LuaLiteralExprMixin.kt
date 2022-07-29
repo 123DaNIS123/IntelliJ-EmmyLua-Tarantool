@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.impl
+package com.tarantoollua.intellij.lua.psi.impl
 
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
@@ -22,12 +22,12 @@ import com.intellij.psi.LiteralTextEscaper
 import com.intellij.psi.PsiLanguageInjectionHost
 import com.intellij.psi.stubs.IStubElementType
 import com.intellij.psi.tree.IElementType
-import com.tang.intellij.lua.lang.type.LuaString
-import com.tang.intellij.lua.psi.LuaElementFactory
-import com.tang.intellij.lua.psi.LuaLiteralExpr
-import com.tang.intellij.lua.psi.LuaLiteralKind
-import com.tang.intellij.lua.psi.kind
-import com.tang.intellij.lua.stubs.LuaLiteralExprStub
+import com.tarantoollua.intellij.lua.lang.type.LuaString
+import com.tarantoollua.intellij.lua.psi.LuaElementFactory
+import com.tarantoollua.intellij.lua.psi.LuaLiteralExpr
+import com.tarantoollua.intellij.lua.psi.LuaLiteralKind
+import com.tarantoollua.intellij.lua.psi.kind
+import com.tarantoollua.intellij.lua.stubs.LuaLiteralExprStub
 import java.lang.StringBuilder
 
 internal class TextEscaper(host: LuaLiteralExprMixin) : LiteralTextEscaper<LuaLiteralExprMixin>(host) {

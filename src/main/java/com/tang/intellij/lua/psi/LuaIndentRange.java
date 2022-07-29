@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi;
+package com.tarantoollua.intellij.lua.psi;
 
 /**
  * 里面的内容要缩进
- * Created by TangZX on 2016/12/20.
+ * Created by tarantoolluaZX on 2016/12/20.
  */
 public interface LuaIndentRange extends LuaPsiElement {
 }

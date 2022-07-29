@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.template.context
+package com.tarantoollua.intellij.lua.codeInsight.template.context
 
 import com.intellij.codeInsight.template.TemplateContextType
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.util.PsiUtilCore
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.lang.LuaFileType
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 
 /**
 
- * Created by tangzx on 2017/2/11.
+ * Created by tarantoolluazx on 2017/2/11.
  */
 class LuaCodeContextType : TemplateContextType("LUA_CODE", "Lua") {
 

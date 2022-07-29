@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion;
+package com.tarantoollua.intellij.lua.editor.completion;
 
 import com.intellij.codeInsight.completion.BasicInsertHandler;
 import com.intellij.codeInsight.completion.InsertHandler;
@@ -24,8 +24,8 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.codeInsight.lookup.LookupElementPresentation;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.text.StringUtil;
-import com.tang.intellij.lua.lang.LuaIcons;
-import com.tang.intellij.lua.psi.search.LuaShortNamesManager;
+import com.tarantoollua.intellij.lua.lang.LuaIcons;
+import com.tarantoollua.intellij.lua.psi.search.LuaShortNamesManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,7 +34,7 @@ import java.util.Collection;
 
 /**
  * LuaLookupElement
- * Created by TangZX on 2016/12/16.
+ * Created by tarantoolluaZX on 2016/12/16.
  */
 public class LuaLookupElement extends LookupElement implements Comparable<LookupElement> {
     private boolean itemTextUnderlined;

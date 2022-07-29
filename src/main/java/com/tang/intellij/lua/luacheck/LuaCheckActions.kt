@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.luacheck
+package com.tarantoollua.intellij.lua.luacheck
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.options.ShowSettingsUtil
-import com.tang.intellij.lua.lang.LuaFileType
+import com.tarantoollua.intellij.lua.lang.LuaFileType
 
 class LuaCheckGroup : AnAction() {
     override fun actionPerformed(event: AnActionEvent) {

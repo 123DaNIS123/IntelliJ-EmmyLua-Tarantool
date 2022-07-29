@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.project
+package com.tarantoollua.intellij.lua.project
 
 import com.intellij.openapi.fileChooser.FileChooser
 import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.ui.IdeBorderFactory
 import com.intellij.ui.ToolbarDecorator
-import com.tang.intellij.lua.LuaBundle
+import com.tarantoollua.intellij.lua.LuaBundle
 import java.awt.BorderLayout
 import javax.swing.DefaultListModel
 import javax.swing.JList

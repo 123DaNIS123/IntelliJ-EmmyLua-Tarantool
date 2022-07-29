@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi;
+package com.tarantoollua.intellij.lua.psi;
 
-import com.tang.intellij.lua.search.SearchContext;
-import com.tang.intellij.lua.ty.ITy;
+import com.tarantoollua.intellij.lua.search.SearchContext;
+import com.tarantoollua.intellij.lua.ty.ITy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
  * #lambda function
  * #class method
  *
- * Created by TangZX on 2016/12/9.
+ * Created by tarantoolluaZX on 2016/12/9.
  */
 public interface LuaFuncBodyOwner extends LuaParametersOwner, LuaTypeGuessable {
     @Nullable

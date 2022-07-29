@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.reference
+package com.tarantoollua.intellij.lua.reference
 
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReferenceBase
 import com.intellij.util.IncorrectOperationException
-import com.tang.intellij.lua.lang.type.LuaString
-import com.tang.intellij.lua.psi.LuaElementFactory
-import com.tang.intellij.lua.psi.LuaIndexExpr
-import com.tang.intellij.lua.psi.LuaLiteralExpr
-import com.tang.intellij.lua.psi.resolve
-import com.tang.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.lang.type.LuaString
+import com.tarantoollua.intellij.lua.psi.LuaElementFactory
+import com.tarantoollua.intellij.lua.psi.LuaIndexExpr
+import com.tarantoollua.intellij.lua.psi.LuaLiteralExpr
+import com.tarantoollua.intellij.lua.psi.resolve
+import com.tarantoollua.intellij.lua.search.SearchContext
 
 class LuaIndexBracketReference internal constructor(element: LuaIndexExpr, private val id: LuaLiteralExpr)
     : PsiReferenceBase<LuaIndexExpr>(element), LuaReference {

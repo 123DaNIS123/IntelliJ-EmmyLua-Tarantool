@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.project;
+package com.tarantoollua.intellij.lua.project;
 
 import com.intellij.codeInsight.daemon.DaemonCodeAnalyzer;
 import com.intellij.openapi.options.Configurable;
@@ -24,7 +24,7 @@ import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.FileContentUtil;
-import com.tang.intellij.lua.lang.LuaLanguageLevel;
+import com.tarantoollua.intellij.lua.lang.LuaLanguageLevel;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -38,7 +38,7 @@ import java.util.Objects;
 import java.util.SortedMap;
 
 /**
- * Created by tangzx on 2017/6/12.
+ * Created by tarantoolluazx on 2017/6/12.
  */
 public class LuaSettingsPanel implements SearchableConfigurable, Configurable.NoScroll {
     private final LuaSettings settings;

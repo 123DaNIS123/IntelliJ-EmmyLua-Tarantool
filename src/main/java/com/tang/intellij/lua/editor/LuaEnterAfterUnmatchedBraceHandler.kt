@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor
+package com.tarantoollua.intellij.lua.editor
 
 import com.intellij.codeInsight.editorActions.enter.EnterHandlerDelegate
 import com.intellij.openapi.actionSystem.DataContext
@@ -29,14 +29,14 @@ import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.codeStyle.CodeStyleManager
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.lua.psi.LuaIndentRange
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.psi.LuaIndentRange
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 
 /**
  * 回车时的自动补全
- * Created by tangzx on 2016/11/26.
+ * Created by tarantoolluazx on 2016/11/26.
  */
 class LuaEnterAfterUnmatchedBraceHandler : EnterHandlerDelegate {
 

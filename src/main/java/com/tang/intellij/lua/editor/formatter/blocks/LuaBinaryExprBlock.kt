@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.formatter.blocks
+package com.tarantoollua.intellij.lua.editor.formatter.blocks
 
 import com.intellij.formatting.*
 import com.intellij.psi.PsiElement
 import com.intellij.psi.tree.TokenSet
-import com.tang.intellij.lua.editor.formatter.LuaFormatContext
-import com.tang.intellij.lua.psi.LuaBinaryExpr
-import com.tang.intellij.lua.psi.LuaTypes.*
+import com.tarantoollua.intellij.lua.editor.formatter.LuaFormatContext
+import com.tarantoollua.intellij.lua.psi.LuaBinaryExpr
+import com.tarantoollua.intellij.lua.psi.LuaTypes.*
 
 /**
  * binary
- * Created by tangzx on 2017/4/23.
+ * Created by tarantoolluazx on 2017/4/23.
  */
 class LuaBinaryExprBlock internal constructor(psi: LuaBinaryExpr,
                                               wrap: Wrap?,

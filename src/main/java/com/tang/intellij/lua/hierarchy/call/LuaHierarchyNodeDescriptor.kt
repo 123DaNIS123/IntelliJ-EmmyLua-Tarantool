@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.hierarchy.call
+package com.tarantoollua.intellij.lua.hierarchy.call
 
 import com.intellij.icons.AllIcons
 import com.intellij.ide.IdeBundle
@@ -24,7 +24,7 @@ import com.intellij.openapi.util.Comparing
 import com.intellij.pom.Navigatable
 import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.psi.LuaLocalFuncDef
+import com.tarantoollua.intellij.lua.psi.LuaLocalFuncDef
 
 class LuaHierarchyNodeDescriptor(parentDescriptor: HierarchyNodeDescriptor?, element: PsiElement, isBase: Boolean)
     : HierarchyNodeDescriptor(element.project, parentDescriptor, element, isBase), Navigatable {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.impl
+package com.tarantoollua.intellij.lua.psi.impl
 
 import com.intellij.openapi.project.Project
 import com.intellij.psi.FileViewProvider
@@ -23,9 +23,9 @@ import com.intellij.psi.SingleRootFileViewProvider
 import com.intellij.psi.impl.PsiManagerEx
 import com.intellij.psi.impl.source.tree.FileElement
 import com.intellij.testFramework.LightVirtualFile
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.psi.LuaExprCodeFragment
-import com.tang.intellij.lua.psi.LuaPsiFile
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.psi.LuaExprCodeFragment
+import com.tarantoollua.intellij.lua.psi.LuaPsiFile
 
 class LuaExprCodeFragmentImpl(project: Project, name: String, text: CharSequence, var myPhysical: Boolean)
     : LuaPsiFile(PsiManagerEx.getInstanceEx(project).fileManager.createFileViewProvider(LightVirtualFile(name, LuaLanguage.INSTANCE, text), myPhysical)), LuaExprCodeFragment {

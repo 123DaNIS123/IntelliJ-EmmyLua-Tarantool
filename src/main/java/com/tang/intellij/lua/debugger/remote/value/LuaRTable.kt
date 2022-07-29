@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote.value
+package com.tarantoollua.intellij.lua.debugger.remote.value
 
 import com.intellij.icons.AllIcons
 import com.intellij.xdebugger.evaluation.XDebuggerEvaluator
 import com.intellij.xdebugger.frame.*
 import com.intellij.xdebugger.impl.XDebugSessionImpl
-import com.tang.intellij.lua.debugger.remote.LuaMobDebugProcess
+import com.tarantoollua.intellij.lua.debugger.remote.LuaMobDebugProcess
 import org.luaj.vm2.LuaTable
 import org.luaj.vm2.LuaValue
 import java.util.*
 
 /**
  *
- * Created by tangzx on 2017/4/16.
+ * Created by tarantoolluazx on 2017/4/16.
  */
 class LuaRTable(name: String) : LuaRValue(name) {
     private var list: XValueChildrenList? = null

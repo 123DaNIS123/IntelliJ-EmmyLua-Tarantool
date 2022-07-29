@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.lang.type
+package com.tarantoollua.intellij.lua.lang.type
 
 import java.util.regex.Pattern
 
 /**
  *
- * Created by tangzx on 2016/12/25.
+ * Created by tarantoolluazx on 2016/12/25.
  */
 class LuaString {
     var start: Int = 0

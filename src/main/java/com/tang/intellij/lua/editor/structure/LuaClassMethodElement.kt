@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.structure
+package com.tarantoollua.intellij.lua.editor.structure
 
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.psi.LuaClassMethodDef
-import com.tang.intellij.lua.psi.LuaPsiElement
-import com.tang.intellij.lua.psi.Visibility
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.psi.LuaClassMethodDef
+import com.tarantoollua.intellij.lua.psi.LuaPsiElement
+import com.tarantoollua.intellij.lua.psi.Visibility
 
 class LuaClassMethodElement(target: LuaPsiElement, name: String, paramSignature: String, visibility: Visibility = Visibility.PUBLIC)
     : LuaFuncElement(target, name, paramSignature, visibility.warpIcon(LuaIcons.CLASS_METHOD)) {

@@ -1,5 +1,5 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.psi.impl;
+package com.tarantoollua.intellij.lua.psi.impl;
 
 import java.util.List;
 import org.jetbrains.annotations.*;
@@ -7,15 +7,15 @@ import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import static com.tang.intellij.lua.psi.LuaTypes.*;
-import com.tang.intellij.lua.psi.*;
+import static com.tarantoollua.intellij.lua.psi.LuaTypes.*;
+import com.tarantoollua.intellij.lua.psi.*;
 import com.intellij.navigation.ItemPresentation;
-import com.tang.intellij.lua.search.SearchContext;
-import com.tang.intellij.lua.ty.ITy;
-import com.tang.intellij.lua.stubs.LuaIndexExprStub;
+import com.tarantoollua.intellij.lua.search.SearchContext;
+import com.tarantoollua.intellij.lua.ty.ITy;
+import com.tarantoollua.intellij.lua.stubs.LuaIndexExprStub;
 import com.intellij.psi.stubs.IStubElementType;
 import com.intellij.psi.tree.IElementType;
-import com.tang.intellij.lua.stubs.LuaExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaExprStub;
 
 public class LuaIndexExprImpl extends LuaIndexExprMixin implements LuaIndexExpr {
 

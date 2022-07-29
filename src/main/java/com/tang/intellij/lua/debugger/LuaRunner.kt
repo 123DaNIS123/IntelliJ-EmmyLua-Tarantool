@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger
+package com.tarantoollua.intellij.lua.debugger
 
 import com.intellij.execution.configurations.RunProfile
 import com.intellij.execution.configurations.RunnerSettings
@@ -24,7 +24,7 @@ import com.intellij.execution.runners.GenericProgramRunner
 
 /**
  * lua runner
- * Created by tangzx on 2017/6/10.
+ * Created by tarantoolluazx on 2017/6/10.
  */
 abstract class LuaRunner : GenericProgramRunner<RunnerSettings>() {
     override fun canRun(executorId: String, runProfile: RunProfile): Boolean {

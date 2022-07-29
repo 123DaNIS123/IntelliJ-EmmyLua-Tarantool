@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.search
+package com.tarantoollua.intellij.lua.search
 
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
@@ -22,15 +22,15 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.ProjectAndLibrariesScope
-import com.tang.intellij.lua.ext.ILuaTypeInfer
-import com.tang.intellij.lua.psi.LuaTypeGuessable
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.Ty
+import com.tarantoollua.intellij.lua.ext.ILuaTypeInfer
+import com.tarantoollua.intellij.lua.psi.LuaTypeGuessable
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.Ty
 import java.util.*
 
 /**
 
- * Created by tangzx on 2017/1/14.
+ * Created by tarantoolluazx on 2017/1/14.
  */
 class SearchContext private constructor(val project: Project) {
 

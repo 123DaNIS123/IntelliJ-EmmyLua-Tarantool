@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.structure
+package com.tarantoollua.intellij.lua.editor.structure
 
 import com.intellij.ide.util.treeView.smartTree.TreeElement
 import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.comment.psi.LuaDocTagField
-import com.tang.intellij.lua.comment.psi.LuaDocVisitor
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagField
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocVisitor
+import com.tarantoollua.intellij.lua.psi.*
 import java.util.*
 
 

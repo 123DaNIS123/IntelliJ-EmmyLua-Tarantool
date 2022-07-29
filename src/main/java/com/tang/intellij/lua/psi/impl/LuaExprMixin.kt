@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.impl
+package com.tarantoollua.intellij.lua.psi.impl
 
 import com.intellij.lang.ASTNode
 import com.intellij.psi.stubs.IStubElementType
 import com.intellij.psi.tree.IElementType
-import com.tang.intellij.lua.psi.LuaExpr
-import com.tang.intellij.lua.stubs.LuaExprStubImpl
+import com.tarantoollua.intellij.lua.psi.LuaExpr
+import com.tarantoollua.intellij.lua.stubs.LuaExprStubImpl
 
 /**
  * 表达式基类
- * Created by TangZX on 2016/12/4.
+ * Created by tarantoolluaZX on 2016/12/4.
  */
 abstract class LuaExprMixin : LuaExprStubMixin<LuaExprStubImpl<*>>, LuaExpr {
 

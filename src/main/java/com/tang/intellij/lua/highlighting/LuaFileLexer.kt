@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.highlighting
+package com.tarantoollua.intellij.lua.highlighting
 
 import com.intellij.lexer.FlexAdapter
 import com.intellij.lexer.LayeredLexer
 import com.intellij.lexer.MergingLexerAdapter
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
-import com.tang.intellij.lua.comment.lexer.LuaDocLexerAdapter
-import com.tang.intellij.lua.lexer.LuaLexerAdapter
-import com.tang.intellij.lua.lexer.LuaRegionLexer
-import com.tang.intellij.lua.lexer._LuaStringLexer
-import com.tang.intellij.lua.psi.LuaElementType
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.comment.lexer.LuaDocLexerAdapter
+import com.tarantoollua.intellij.lua.lexer.LuaLexerAdapter
+import com.tarantoollua.intellij.lua.lexer.LuaRegionLexer
+import com.tarantoollua.intellij.lua.lexer._LuaStringLexer
+import com.tarantoollua.intellij.lua.psi.LuaElementType
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 
 /**
  * for highlight
- * Created by tangzx on 2016/11/29.
+ * Created by tarantoolluazx on 2016/11/29.
  */
 internal class LuaFileLexer : LayeredLexer(LuaLexerAdapter()) {
     init {

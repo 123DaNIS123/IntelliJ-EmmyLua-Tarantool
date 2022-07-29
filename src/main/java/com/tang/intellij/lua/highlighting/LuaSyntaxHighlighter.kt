@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.highlighting
+package com.tarantoollua.intellij.lua.highlighting
 
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
@@ -22,19 +22,19 @@ import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.StringEscapesTokenTypes
 import com.intellij.psi.tree.IElementType
-import com.tang.intellij.lua.comment.psi.LuaDocTokenType
-import com.tang.intellij.lua.comment.psi.LuaDocTypes
-import com.tang.intellij.lua.lang.LuaParserDefinition.Companion.DOC_KEYWORD_TOKENS
-import com.tang.intellij.lua.lang.LuaParserDefinition.Companion.DOC_TAG_TOKENS
-import com.tang.intellij.lua.lang.LuaParserDefinition.Companion.KEYWORD_TOKENS
-import com.tang.intellij.lua.lang.LuaParserDefinition.Companion.PRIMITIVE_TYPE_SET
-import com.tang.intellij.lua.psi.LuaRegionTypes
-import com.tang.intellij.lua.psi.LuaStringTypes
-import com.tang.intellij.lua.psi.LuaTypes
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTokenType
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTypes
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition.Companion.DOC_KEYWORD_TOKENS
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition.Companion.DOC_TAG_TOKENS
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition.Companion.KEYWORD_TOKENS
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition.Companion.PRIMITIVE_TYPE_SET
+import com.tarantoollua.intellij.lua.psi.LuaRegionTypes
+import com.tarantoollua.intellij.lua.psi.LuaStringTypes
+import com.tarantoollua.intellij.lua.psi.LuaTypes
 import java.util.*
 
 /**
- * Created by tangzx
+ * Created by tarantoolluazx
  * Date : 2015/11/15.
  */
 class LuaSyntaxHighlighter : SyntaxHighlighterBase() {

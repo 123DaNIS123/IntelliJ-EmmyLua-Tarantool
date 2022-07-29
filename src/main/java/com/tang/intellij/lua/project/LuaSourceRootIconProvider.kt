@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.project
+package com.tarantoollua.intellij.lua.project
 
 import com.intellij.ide.IconProvider
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiElement
-import com.tang.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.lang.LuaIcons
 import javax.swing.Icon
 
 class LuaSourceRootIconProvider : IconProvider() {

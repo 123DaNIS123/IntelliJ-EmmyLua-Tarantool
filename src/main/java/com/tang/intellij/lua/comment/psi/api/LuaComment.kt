@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.comment.psi.api
+package com.tarantoollua.intellij.lua.comment.psi.api
 
 import com.intellij.psi.PsiComment
-import com.tang.intellij.lua.comment.psi.*
-import com.tang.intellij.lua.psi.LuaCommentOwner
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.ITySubstitutor
+import com.tarantoollua.intellij.lua.comment.psi.*
+import com.tarantoollua.intellij.lua.psi.LuaCommentOwner
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.ITySubstitutor
 
 /**
- * Created by Tangzx on 2016/11/21.
+ * Created by tarantoolluazx on 2016/11/21.
  *
  */
 interface LuaComment : PsiComment, LuaDocPsiElement {

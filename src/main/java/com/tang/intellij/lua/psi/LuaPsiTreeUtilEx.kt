@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi
+package com.tarantoollua.intellij.lua.psi
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
@@ -22,7 +22,7 @@ import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.StubBasedPsiElement
 import com.intellij.psi.stubs.StubElement
 import com.intellij.util.Processor
-import com.tang.intellij.lua.stubs.LuaFileStub
+import com.tarantoollua.intellij.lua.stubs.LuaFileStub
 
 typealias STUB_ELE = StubElement<*>
 typealias STUB_PSI = StubBasedPsiElement<*>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.structure
+package com.tarantoollua.intellij.lua.editor.structure
 
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.lang.LuaIcons
 
 /**
- * Created by TangZX on 2016/12/13.
+ * Created by tarantoolluaZX on 2016/12/13.
  */
 class LuaClassElement(docTagClass: LuaDocTagClass, className: String? = null)
     : LuaVarElement(docTagClass, className ?: docTagClass.name, LuaIcons.CLASS)

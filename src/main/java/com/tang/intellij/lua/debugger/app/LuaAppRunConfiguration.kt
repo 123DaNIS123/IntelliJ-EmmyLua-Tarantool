@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.app
+package com.tarantoollua.intellij.lua.debugger.app
 
 import com.intellij.execution.ExecutionException
 import com.intellij.execution.Executor
@@ -32,11 +32,11 @@ import com.intellij.openapi.util.SystemInfoRt
 import com.intellij.openapi.util.WriteExternalException
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.util.execution.ParametersListUtil
-import com.tang.intellij.lua.debugger.DebuggerType
-import com.tang.intellij.lua.debugger.IRemoteConfiguration
-import com.tang.intellij.lua.debugger.LuaCommandLineState
-import com.tang.intellij.lua.debugger.LuaRunConfiguration
-import com.tang.intellij.lua.psi.LuaFileUtil
+import com.tarantoollua.intellij.lua.debugger.DebuggerType
+import com.tarantoollua.intellij.lua.debugger.IRemoteConfiguration
+import com.tarantoollua.intellij.lua.debugger.LuaCommandLineState
+import com.tarantoollua.intellij.lua.debugger.LuaRunConfiguration
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil
 import org.jdom.Element
 import java.io.File
 import java.nio.charset.Charset
@@ -44,7 +44,7 @@ import java.util.*
 
 /**
  *
- * Created by tangzx on 2017/5/7.
+ * Created by tarantoolluazx on 2017/5/7.
  */
 class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
     : LuaRunConfiguration(project, factory), IRemoteConfiguration {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote.commands
+package com.tarantoollua.intellij.lua.debugger.remote.commands
 
 import com.intellij.xdebugger.frame.XStackFrame
-import com.tang.intellij.lua.debugger.LuaExecutionStack
-import com.tang.intellij.lua.debugger.remote.LuaMobStackFrame
-import com.tang.intellij.lua.debugger.remote.value.LuaRValue
+import com.tarantoollua.intellij.lua.debugger.LuaExecutionStack
+import com.tarantoollua.intellij.lua.debugger.remote.LuaMobStackFrame
+import com.tarantoollua.intellij.lua.debugger.remote.value.LuaRValue
 import org.luaj.vm2.LuaTable
 import org.luaj.vm2.lib.jse.JsePlatform
 import java.util.*
@@ -27,7 +27,7 @@ import java.util.regex.Pattern
 
 /**
  *
- * Created by tangzx on 2016/12/31.
+ * Created by tarantoolluazx on 2016/12/31.
  */
 class GetStackCommand : DefaultCommand("STACK --{maxlevel=0}", 1) {
 

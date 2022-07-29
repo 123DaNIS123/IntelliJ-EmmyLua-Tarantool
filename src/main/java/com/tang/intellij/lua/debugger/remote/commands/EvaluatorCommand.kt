@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote.commands
+package com.tarantoollua.intellij.lua.debugger.remote.commands
 
 import com.intellij.openapi.application.ApplicationManager
 import java.util.regex.Pattern
 
 /**
  *
- * Created by tangzx on 2017/1/1.
+ * Created by tarantoolluazx on 2017/1/1.
  */
 class EvaluatorCommand(expr: String, stackLevel: Int, private val callback: Callback) : DefaultCommand("EXEC $expr --{maxlevel=1, stack=$stackLevel}", 2) {
     private var hasError2Process: Boolean = false

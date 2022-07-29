@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.search
+package com.tarantoollua.intellij.lua.psi.search
 
 import com.intellij.openapi.project.DumbService
 import com.intellij.util.Processor
 import com.intellij.util.QueryExecutor
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.stubs.index.LuaSuperClassIndex
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.stubs.index.LuaSuperClassIndex
 
 /**
  * LuaClassInheritorsSearchExecutor
- * Created by tangzx on 2017/3/28.
+ * Created by tarantoolluazx on 2017/3/28.
  */
 class LuaClassInheritorsSearchExecutor : QueryExecutor<LuaDocTagClass, LuaClassInheritorsSearch.SearchParameters> {
 

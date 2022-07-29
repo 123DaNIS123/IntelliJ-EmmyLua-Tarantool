@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.actions;
+package com.tarantoollua.intellij.lua.actions;
 
 import com.intellij.ide.actions.CreateFileFromTemplateAction;
 import com.intellij.ide.actions.CreateFileFromTemplateDialog;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDirectory;
-import com.tang.intellij.lua.lang.LuaIcons;
+import com.tarantoollua.intellij.lua.lang.LuaIcons;
 
 /**
  *
- * Created by tangzx on 2016/12/24.
+ * Created by tarantoolluazx on 2016/12/24.
  */
 public class CreateLuaFileAction extends CreateFileFromTemplateAction implements DumbAware {
     private static final String CREATE_LUA_FILE = "New Lua File";

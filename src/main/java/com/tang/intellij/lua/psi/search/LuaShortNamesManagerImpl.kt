@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.search
+package com.tarantoollua.intellij.lua.psi.search
 
 import com.intellij.openapi.project.Project
 import com.intellij.util.Processor
-import com.tang.intellij.lua.psi.LuaClass
-import com.tang.intellij.lua.psi.LuaClassMember
-import com.tang.intellij.lua.psi.LuaTypeAlias
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.stubs.index.LuaAliasIndex
-import com.tang.intellij.lua.stubs.index.LuaClassIndex
-import com.tang.intellij.lua.stubs.index.LuaClassMemberIndex
-import com.tang.intellij.lua.ty.ITyClass
+import com.tarantoollua.intellij.lua.psi.LuaClass
+import com.tarantoollua.intellij.lua.psi.LuaClassMember
+import com.tarantoollua.intellij.lua.psi.LuaTypeAlias
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.stubs.index.LuaAliasIndex
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassIndex
+import com.tarantoollua.intellij.lua.stubs.index.LuaClassMemberIndex
+import com.tarantoollua.intellij.lua.ty.ITyClass
 
 class LuaShortNamesManagerImpl : LuaShortNamesManager() {
 

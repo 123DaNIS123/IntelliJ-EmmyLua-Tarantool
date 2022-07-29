@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.psi.impl
+package com.tarantoollua.intellij.lua.psi.impl
 
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiReference
 import com.intellij.psi.stubs.IStubElementType
 import com.intellij.psi.tree.IElementType
-import com.tang.intellij.lua.comment.psi.LuaDocAccessModifier
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.stubs.LuaIndexExprStub
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocAccessModifier
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.stubs.LuaIndexExprStub
 
 /**
 
- * Created by TangZX on 2017/4/12.
+ * Created by tarantoolluaZX on 2017/4/12.
  */
 abstract class LuaIndexExprMixin : LuaExprStubMixin<LuaIndexExprStub>, LuaExpr, LuaClassField {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.postfix.templates;
+package com.tarantoollua.intellij.lua.codeInsight.postfix.templates;
 
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.tang.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorTopmost;
+import static com.tarantoollua.intellij.lua.codeInsight.postfix.LuaPostfixUtils.selectorTopmost;
 
 /**
  * return expr
- * Created by tangzx on 2017/2/5.
+ * Created by tarantoolluazx on 2017/2/5.
  */
 public class LuaReturnPostfixTemplate extends StringBasedPostfixTemplate {
     public LuaReturnPostfixTemplate() {

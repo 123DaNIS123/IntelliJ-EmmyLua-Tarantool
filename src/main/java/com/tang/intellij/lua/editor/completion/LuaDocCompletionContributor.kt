@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElementBuilder
@@ -23,20 +23,20 @@ import com.intellij.patterns.PlatformPatterns.psiElement
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
 import com.intellij.util.Processor
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.comment.psi.*
-import com.tang.intellij.lua.comment.psi.api.LuaComment
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.lang.LuaParserDefinition
-import com.tang.intellij.lua.psi.LuaClassField
-import com.tang.intellij.lua.psi.LuaFuncBodyOwner
-import com.tang.intellij.lua.psi.search.LuaShortNamesManager
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.ITyClass
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.comment.psi.*
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition
+import com.tarantoollua.intellij.lua.psi.LuaClassField
+import com.tarantoollua.intellij.lua.psi.LuaFuncBodyOwner
+import com.tarantoollua.intellij.lua.psi.search.LuaShortNamesManager
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.ITyClass
 
 /**
  * doc 相关代码完成
- * Created by tangzx on 2016/12/2.
+ * Created by tarantoolluazx on 2016/12/2.
  */
 class LuaDocCompletionContributor : CompletionContributor() {
     init {

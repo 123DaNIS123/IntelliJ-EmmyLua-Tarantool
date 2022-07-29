@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.usages
+package com.tarantoollua.intellij.lua.usages
 
 import com.intellij.lang.cacheBuilder.DefaultWordsScanner
 import com.intellij.lang.cacheBuilder.WordsScanner
@@ -22,15 +22,15 @@ import com.intellij.lang.findUsages.FindUsagesProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.tree.TokenSet
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
-import com.tang.intellij.lua.comment.psi.LuaDocTagField
-import com.tang.intellij.lua.lang.LuaParserDefinition
-import com.tang.intellij.lua.lexer.LuaLexerAdapter
-import com.tang.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagField
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition
+import com.tarantoollua.intellij.lua.lexer.LuaLexerAdapter
+import com.tarantoollua.intellij.lua.psi.*
 
 /**
  *
- * Created by TangZX on 2016/11/24.
+ * Created by tarantoolluaZX on 2016/11/24.
  */
 class LuaFindUsagesProvider : FindUsagesProvider {
     override fun getWordsScanner(): WordsScanner? {

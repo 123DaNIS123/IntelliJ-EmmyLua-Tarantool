@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote
+package com.tarantoollua.intellij.lua.debugger.remote
 
 import com.intellij.execution.ExecutionException
 import com.intellij.execution.Executor
@@ -30,14 +30,14 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.InvalidDataException
 import com.intellij.openapi.util.JDOMExternalizerUtil
 import com.intellij.openapi.util.WriteExternalException
-import com.tang.intellij.lua.debugger.IRemoteConfiguration
-import com.tang.intellij.lua.debugger.LuaCommandLineState
-import com.tang.intellij.lua.debugger.LuaRunConfiguration
+import com.tarantoollua.intellij.lua.debugger.IRemoteConfiguration
+import com.tarantoollua.intellij.lua.debugger.LuaCommandLineState
+import com.tarantoollua.intellij.lua.debugger.LuaRunConfiguration
 import org.jdom.Element
 
 /**
  *
- * Created by TangZX on 2016/12/30.
+ * Created by tarantoolluaZX on 2016/12/30.
  */
 class LuaMobConfiguration(project: Project, factory: ConfigurationFactory)
     : LuaRunConfiguration(project, factory), IRemoteConfiguration, RunConfigurationWithSuppressedDefaultRunAction {

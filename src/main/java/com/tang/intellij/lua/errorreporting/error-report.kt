@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.errorreporting
+package com.tarantoollua.intellij.lua.errorreporting
 
 import com.intellij.CommonBundle
 import com.intellij.diagnostic.AbstractMessage
@@ -39,7 +39,7 @@ import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.SystemInfo
 import com.intellij.util.Consumer
-import com.tang.intellij.lua.util.appendLine
+import com.tarantoollua.intellij.lua.util.appendLine
 import org.eclipse.egit.github.core.Issue
 import org.eclipse.egit.github.core.Label
 import org.eclipse.egit.github.core.RepositoryId
@@ -253,7 +253,7 @@ private fun getKeyValuePairs(
 		error: GitHubErrorBean,
 		appInfo: ApplicationInfoEx,
 		namesInfo: ApplicationNamesInfo): MutableMap<String, String> {
-	PluginManagerCore.getPlugin(PluginId.findId("com.tang"))?.run {
+	PluginManagerCore.getPlugin(PluginId.findId("com.tarantoollua"))?.run {
 		if (error.pluginName.isBlank()) error.pluginName = name
 		if (error.pluginVersion.isBlank()) error.pluginVersion = version
 	}

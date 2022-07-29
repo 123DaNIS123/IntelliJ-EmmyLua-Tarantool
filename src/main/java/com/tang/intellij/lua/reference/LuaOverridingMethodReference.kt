@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.reference
+package com.tarantoollua.intellij.lua.reference
 
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReferenceBase
-import com.tang.intellij.lua.psi.LuaClassMethod
+import com.tarantoollua.intellij.lua.psi.LuaClassMethod
 
 class LuaOverridingMethodReference(val methodDef: LuaClassMethod, val target: LuaClassMethod)
     : PsiReferenceBase<LuaClassMethod>(methodDef) {

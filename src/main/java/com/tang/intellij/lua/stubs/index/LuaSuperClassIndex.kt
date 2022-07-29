@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs.index
+package com.tarantoollua.intellij.lua.stubs.index
 
 import com.intellij.openapi.project.Project
 import com.intellij.psi.search.GlobalSearchScope
@@ -22,11 +22,11 @@ import com.intellij.psi.stubs.StringStubIndexExtension
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.util.Processor
 import com.intellij.util.containers.ContainerUtil
-import com.tang.intellij.lua.comment.psi.LuaDocTagClass
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagClass
 
 /**
  *
- * Created by TangZX on 2017/3/29.
+ * Created by tarantoolluaZX on 2017/3/29.
  */
 class LuaSuperClassIndex : StringStubIndexExtension<LuaDocTagClass>() {
     override fun getKey() = StubKeys.SUPER_CLASS

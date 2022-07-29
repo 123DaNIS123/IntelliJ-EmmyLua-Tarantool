@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.emmy
+package com.tarantoollua.intellij.lua.debugger.emmy
 
 import com.google.gson.Gson
 import com.intellij.execution.ui.ConsoleViewContentType
@@ -26,9 +26,9 @@ import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 import com.intellij.xdebugger.evaluation.XDebuggerEditorsProvider
 import com.intellij.xdebugger.frame.XSuspendContext
 import com.intellij.xdebugger.impl.XDebugSessionImpl
-import com.tang.intellij.lua.debugger.*
-import com.tang.intellij.lua.psi.LuaFileManager
-import com.tang.intellij.lua.psi.LuaFileUtil
+import com.tarantoollua.intellij.lua.debugger.*
+import com.tarantoollua.intellij.lua.psi.LuaFileManager
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil
 import java.io.File
 
 abstract class EmmyDebugProcessBase(session: XDebugSession) : LuaDebugProcess(session), ITransportHandler {

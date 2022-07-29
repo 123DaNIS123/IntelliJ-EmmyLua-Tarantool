@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight;
+package com.tarantoollua.intellij.lua.codeInsight;
 
 import com.intellij.codeInsight.editorActions.BackspaceHandlerDelegate;
 import com.intellij.lang.ASTNode;
@@ -23,13 +23,13 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.tang.intellij.lua.comment.psi.LuaDocTypes;
-import com.tang.intellij.lua.comment.psi.api.LuaComment;
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTypes;
+import com.tarantoollua.intellij.lua.comment.psi.api.LuaComment;
 import org.jetbrains.annotations.NotNull;
 
 /**
  *
- * Created by tangzx on 2016/12/28.
+ * Created by tarantoolluazx on 2016/12/28.
  */
 public class LuaBackspaceHandlerDelegate extends BackspaceHandlerDelegate {
     @Override

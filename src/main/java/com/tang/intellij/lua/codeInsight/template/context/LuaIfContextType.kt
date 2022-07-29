@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.template.context
+package com.tarantoollua.intellij.lua.codeInsight.template.context
 
 import com.intellij.codeInsight.template.TemplateContextType
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.psi.LuaIfStat
+import com.tarantoollua.intellij.lua.psi.LuaIfStat
 
 /**
  * in if statement
- * Created by TangZX on 2017/4/14.
+ * Created by tarantoolluaZX on 2017/4/14.
  */
 class LuaIfContextType : TemplateContextType("LUA_IF", "If statement", LuaCodeContextType::class.java) {
 

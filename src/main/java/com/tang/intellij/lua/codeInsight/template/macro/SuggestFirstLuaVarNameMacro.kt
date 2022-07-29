@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.codeInsight.template.macro
+package com.tarantoollua.intellij.lua.codeInsight.template.macro
 
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
@@ -22,11 +22,11 @@ import com.intellij.codeInsight.template.Expression
 import com.intellij.codeInsight.template.ExpressionContext
 import com.intellij.codeInsight.template.Macro
 import com.intellij.codeInsight.template.Result
-import com.tang.intellij.lua.psi.LuaDeclarationTree
+import com.tarantoollua.intellij.lua.psi.LuaDeclarationTree
 
 /**
  *
- * Created by TangZX on 2017/4/8.
+ * Created by tarantoolluaZX on 2017/4/8.
  */
 class SuggestFirstLuaVarNameMacro : Macro() {
     override fun getName(): String {

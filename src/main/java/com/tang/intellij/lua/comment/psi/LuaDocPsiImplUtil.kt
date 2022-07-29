@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 @file:Suppress("UNUSED_PARAMETER")
 
-package com.tang.intellij.lua.comment.psi
+package com.tarantoollua.intellij.lua.comment.psi
 
 import com.intellij.icons.AllIcons
 import com.intellij.navigation.ItemPresentation
@@ -26,20 +26,20 @@ import com.intellij.psi.PsiReference
 import com.intellij.psi.StubBasedPsiElement
 import com.intellij.psi.stubs.StubElement
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.LuaCommentUtil
-import com.tang.intellij.lua.comment.reference.LuaClassNameReference
-import com.tang.intellij.lua.comment.reference.LuaDocParamNameReference
-import com.tang.intellij.lua.comment.reference.LuaDocSeeReference
-import com.tang.intellij.lua.psi.LuaClassMember
-import com.tang.intellij.lua.psi.LuaElementFactory
-import com.tang.intellij.lua.psi.Visibility
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.comment.LuaCommentUtil
+import com.tarantoollua.intellij.lua.comment.reference.LuaClassNameReference
+import com.tarantoollua.intellij.lua.comment.reference.LuaDocParamNameReference
+import com.tarantoollua.intellij.lua.comment.reference.LuaDocSeeReference
+import com.tarantoollua.intellij.lua.psi.LuaClassMember
+import com.tarantoollua.intellij.lua.psi.LuaElementFactory
+import com.tarantoollua.intellij.lua.psi.Visibility
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.*
 import javax.swing.Icon
 
 /**
 
- * Created by TangZX on 2016/11/24.
+ * Created by tarantoolluaZX on 2016/11/24.
  */
 fun getReference(paramNameRef: LuaDocParamNameRef): PsiReference {
     return LuaDocParamNameReference(paramNameRef)

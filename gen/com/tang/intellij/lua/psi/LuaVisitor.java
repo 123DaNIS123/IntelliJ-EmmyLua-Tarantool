@@ -1,17 +1,17 @@
 // This is a generated file. Not intended for manual editing.
-package com.tang.intellij.lua.psi;
+package com.tarantoollua.intellij.lua.psi;
 
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiNameIdentifierOwner;
-import com.tang.intellij.lua.stubs.LuaExprStubElement;
-import com.tang.intellij.lua.stubs.LuaNameExprStub;
-import com.tang.intellij.lua.stubs.LuaTableExprStub;
-import com.tang.intellij.lua.stubs.LuaUnaryExprStub;
-import com.tang.intellij.lua.stubs.LuaLiteralExprStub;
-import com.tang.intellij.lua.stubs.LuaClosureExprStub;
-import com.tang.intellij.lua.stubs.LuaBinaryExprStub;
-import com.tang.intellij.lua.stubs.LuaIndexExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaExprStubElement;
+import com.tarantoollua.intellij.lua.stubs.LuaNameExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaTableExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaUnaryExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaLiteralExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaClosureExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaBinaryExprStub;
+import com.tarantoollua.intellij.lua.stubs.LuaIndexExprStub;
 
 public class LuaVisitor extends PsiElementVisitor {
 

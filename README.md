@@ -103,7 +103,7 @@ QQ交流群：1群：`29850775` 2群：`529914962`
 
 ## Developed By
 
-[**@tangzx** 阿唐](https://github.com/tangzx)
+[**@tarantoolluazx** 阿唐](https://github.com/tarantoolluazx)
 
 **Contributors**
 - [**@dsmgit** dsmgit](https://github.com/dsmgit)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.app
+package com.tarantoollua.intellij.lua.debugger.app
 
 import com.intellij.execution.configurations.GeneralCommandLine
 import com.intellij.execution.process.OSProcessHandler
@@ -26,9 +26,9 @@ import com.intellij.openapi.module.ModuleManager
 import com.intellij.openapi.roots.ModuleRootManager
 import com.intellij.openapi.util.Key
 import com.intellij.xdebugger.XDebugSession
-import com.tang.intellij.lua.debugger.LogConsoleType
-import com.tang.intellij.lua.debugger.remote.LuaMobDebugProcess
-import com.tang.intellij.lua.psi.LuaFileUtil
+import com.tarantoollua.intellij.lua.debugger.LogConsoleType
+import com.tarantoollua.intellij.lua.debugger.remote.LuaMobDebugProcess
+import com.tarantoollua.intellij.lua.psi.LuaFileUtil
 
 internal class LuaAppMobProcess(session: XDebugSession) : LuaMobDebugProcess(session) {
     private val configuration: LuaAppRunConfiguration = session.runProfile as LuaAppRunConfiguration

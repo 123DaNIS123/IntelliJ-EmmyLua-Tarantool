@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.stubs
+package com.tarantoollua.intellij.lua.stubs
 
 import com.intellij.psi.stubs.IndexSink
 import com.intellij.psi.stubs.StubElement
@@ -22,14 +22,14 @@ import com.intellij.psi.stubs.StubInputStream
 import com.intellij.psi.stubs.StubOutputStream
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.io.StringRef
-import com.tang.intellij.lua.psi.LuaCommentOwner
-import com.tang.intellij.lua.psi.LuaElementType
-import com.tang.intellij.lua.psi.LuaNameDef
-import com.tang.intellij.lua.psi.LuaParamNameDef
-import com.tang.intellij.lua.psi.impl.LuaNameDefImpl
-import com.tang.intellij.lua.psi.impl.LuaParamNameDefImpl
-import com.tang.intellij.lua.ty.ITy
-import com.tang.intellij.lua.ty.getAnonymousType
+import com.tarantoollua.intellij.lua.psi.LuaCommentOwner
+import com.tarantoollua.intellij.lua.psi.LuaElementType
+import com.tarantoollua.intellij.lua.psi.LuaNameDef
+import com.tarantoollua.intellij.lua.psi.LuaParamNameDef
+import com.tarantoollua.intellij.lua.psi.impl.LuaNameDefImpl
+import com.tarantoollua.intellij.lua.psi.impl.LuaParamNameDefImpl
+import com.tarantoollua.intellij.lua.ty.ITy
+import com.tarantoollua.intellij.lua.ty.getAnonymousType
 
 class LuaNameDefElementType : LuaStubElementType<LuaNameDefStub, LuaNameDef>("NAME_DEF") {
     override fun indexStub(stub: LuaNameDefStub, sink: IndexSink) {

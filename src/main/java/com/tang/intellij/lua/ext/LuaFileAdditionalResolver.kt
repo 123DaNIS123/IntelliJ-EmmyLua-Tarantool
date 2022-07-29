@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.ext
+package com.tarantoollua.intellij.lua.ext
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileManager
-import com.tang.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.lua.project.LuaSettings
 
 class LuaFileAdditionalResolver : ILuaFileResolver {
     override fun find(project: Project, shortUrl: String, extNames: Array<String>): VirtualFile? {

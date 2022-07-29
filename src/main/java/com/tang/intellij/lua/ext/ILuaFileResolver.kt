@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.ext
+package com.tarantoollua.intellij.lua.ext
 
 import com.intellij.openapi.extensions.ExtensionPointName
 import com.intellij.openapi.project.Project
@@ -22,7 +22,7 @@ import com.intellij.openapi.vfs.VirtualFile
 
 interface ILuaFileResolver {
     companion object {
-        private val EP_NAME = ExtensionPointName.create<ILuaFileResolver>("com.tang.intellij.lua.luaFileResolver")
+        private val EP_NAME = ExtensionPointName.create<ILuaFileResolver>("com.tarantoollua.intellij.lua.luaFileResolver")
 
         fun findLuaFile(project: Project, shortUrl: String, extNames: Array<String>): VirtualFile? {
             for (resolver in EP_NAME.extensions) {

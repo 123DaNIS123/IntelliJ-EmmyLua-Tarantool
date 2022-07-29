@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.lang
+package com.tarantoollua.intellij.lua.lang
 
 import com.intellij.lang.Language
 import com.intellij.openapi.util.TextRange
@@ -22,10 +22,10 @@ import com.intellij.psi.InjectedLanguagePlaces
 import com.intellij.psi.LanguageInjector
 import com.intellij.psi.PsiLanguageInjectionHost
 import com.intellij.psi.util.PsiTreeUtil
-import com.tang.intellij.lua.comment.psi.LuaDocTagLan
-import com.tang.intellij.lua.lang.type.LuaString
-import com.tang.intellij.lua.psi.LuaCommentOwner
-import com.tang.intellij.lua.psi.LuaLiteralExpr
+import com.tarantoollua.intellij.lua.comment.psi.LuaDocTagLan
+import com.tarantoollua.intellij.lua.lang.type.LuaString
+import com.tarantoollua.intellij.lua.psi.LuaCommentOwner
+import com.tarantoollua.intellij.lua.psi.LuaLiteralExpr
 
 class LuaLanguageInjector : LanguageInjector {
     override fun getLanguagesToInject(injectionHost: PsiLanguageInjectionHost, languagePlaces: InjectedLanguagePlaces) {

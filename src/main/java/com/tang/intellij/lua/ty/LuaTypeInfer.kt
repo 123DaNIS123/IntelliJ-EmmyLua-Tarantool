@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.ty
+package com.tarantoollua.intellij.lua.ty
 
-import com.tang.intellij.lua.ext.ILuaTypeInfer
-import com.tang.intellij.lua.psi.LuaTypeGuessable
-import com.tang.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ext.ILuaTypeInfer
+import com.tarantoollua.intellij.lua.psi.LuaTypeGuessable
+import com.tarantoollua.intellij.lua.search.SearchContext
 
 class LuaTypeInfer : ILuaTypeInfer {
     override fun inferType(target: LuaTypeGuessable, context: SearchContext): ITy {

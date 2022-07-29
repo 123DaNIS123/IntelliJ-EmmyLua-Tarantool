@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.spellchecker
+package com.tarantoollua.intellij.lua.spellchecker
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.spellchecker.inspections.PlainTextSplitter
 import com.intellij.spellchecker.tokenizer.*
-import com.tang.intellij.lua.lang.LuaLanguage
-import com.tang.intellij.lua.psi.LuaLiteralExpr
-import com.tang.intellij.lua.psi.LuaLiteralKind
-import com.tang.intellij.lua.psi.kind
+import com.tarantoollua.intellij.lua.lang.LuaLanguage
+import com.tarantoollua.intellij.lua.psi.LuaLiteralExpr
+import com.tarantoollua.intellij.lua.psi.LuaLiteralKind
+import com.tarantoollua.intellij.lua.psi.kind
 
 class LuaSpellcheckingStrategy : SpellcheckingStrategy() {
     override fun isMyContext(element: PsiElement): Boolean {

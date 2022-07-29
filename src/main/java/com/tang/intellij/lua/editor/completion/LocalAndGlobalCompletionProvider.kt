@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.completion
+package com.tarantoollua.intellij.lua.editor.completion
 
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.psi.tree.TokenSet
 import com.intellij.util.Processor
-import com.tang.intellij.lua.Constants
-import com.tang.intellij.lua.lang.LuaIcons
-import com.tang.intellij.lua.lang.LuaParserDefinition
-import com.tang.intellij.lua.psi.*
-import com.tang.intellij.lua.search.SearchContext
-import com.tang.intellij.lua.ty.*
+import com.tarantoollua.intellij.lua.Constants
+import com.tarantoollua.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.lang.LuaParserDefinition
+import com.tarantoollua.intellij.lua.psi.*
+import com.tarantoollua.intellij.lua.search.SearchContext
+import com.tarantoollua.intellij.lua.ty.*
 
 /**
  * suggest local/global vars and functions
- * Created by TangZX on 2017/4/11.
+ * Created by tarantoolluaZX on 2017/4/11.
  */
 class LocalAndGlobalCompletionProvider(private val mask: Int) : ClassMemberCompletionProvider() {
 

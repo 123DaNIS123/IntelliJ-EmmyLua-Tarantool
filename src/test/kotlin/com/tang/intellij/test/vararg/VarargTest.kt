@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.test.vararg
+package com.tarantoollua.intellij.test.vararg
 
-import com.tang.intellij.test.completion.TestCompletionBase
+import com.tarantoollua.intellij.test.completion.TestCompletionBase
 
 class VarargTest : TestCompletionBase() {
     fun `test vararg 1`() {

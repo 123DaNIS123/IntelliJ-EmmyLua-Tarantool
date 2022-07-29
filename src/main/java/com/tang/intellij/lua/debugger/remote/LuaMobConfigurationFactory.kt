@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.remote
+package com.tarantoollua.intellij.lua.debugger.remote
 
 import com.intellij.execution.configurations.RunConfiguration
 import com.intellij.openapi.project.Project
-import com.tang.intellij.lua.debugger.LuaConfigurationFactory
+import com.tarantoollua.intellij.lua.debugger.LuaConfigurationFactory
 
 /**
  *
- * Created by TangZX on 2016/12/30.
+ * Created by tarantoolluaZX on 2016/12/30.
  */
 class LuaMobConfigurationFactory(type: LuaMobConfigurationType) : LuaConfigurationFactory(type) {
 

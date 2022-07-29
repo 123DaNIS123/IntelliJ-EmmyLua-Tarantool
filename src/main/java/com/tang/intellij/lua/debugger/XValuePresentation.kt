@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger
+package com.tarantoollua.intellij.lua.debugger
 
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.xdebugger.frame.presentation.XNumericValuePresentation
 import com.intellij.xdebugger.frame.presentation.XStringValuePresentation
 import com.intellij.xdebugger.frame.presentation.XValuePresentation
-import com.tang.intellij.lua.highlighting.LuaHighlightingData
+import com.tarantoollua.intellij.lua.highlighting.LuaHighlightingData
 
 open class LuaXValuePresentation(val sType: String, val sValue:String, val tkey : TextAttributesKey? = null) : XValuePresentation() {
     override fun renderValue(renderer: XValueTextRenderer) {

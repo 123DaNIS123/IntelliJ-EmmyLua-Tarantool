@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.editor.structure
+package com.tarantoollua.intellij.lua.editor.structure
 
 import com.intellij.ide.structureView.StructureViewTreeElement
 import com.intellij.ide.util.treeView.smartTree.TreeElement
@@ -23,7 +23,7 @@ import com.intellij.navigation.NavigationItem
 import javax.swing.Icon
 
 /**
- * Created by TangZX on 2016/12/28.
+ * Created by tarantoolluaZX on 2016/12/28.
  */
 open class LuaTreeElement(val element: NavigationItem, var name: String, val icon: Icon) : StructureViewTreeElement {
     var parent: LuaTreeElement? = null

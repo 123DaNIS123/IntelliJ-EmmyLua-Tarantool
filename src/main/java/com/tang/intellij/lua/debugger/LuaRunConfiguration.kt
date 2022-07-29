@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger
+package com.tarantoollua.intellij.lua.debugger
 
 import com.intellij.execution.configuration.AbstractRunConfiguration
 import com.intellij.execution.configurations.ConfigurationFactory
@@ -27,7 +27,7 @@ import com.intellij.openapi.roots.ModuleRootManager
 
 /**
  *
- * Created by tangzx on 2017/6/4.
+ * Created by tarantoolluazx on 2017/6/4.
  */
 abstract class LuaRunConfiguration(project: Project, factory: ConfigurationFactory) : AbstractRunConfiguration(project, factory) {
     @Throws(RuntimeConfigurationException::class)

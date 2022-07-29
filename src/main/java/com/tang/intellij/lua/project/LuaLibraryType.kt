@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.project
+package com.tarantoollua.intellij.lua.project
 
 import com.intellij.openapi.fileChooser.FileChooser
 import com.intellij.openapi.project.Project
@@ -28,13 +28,13 @@ import com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditor
 import com.intellij.openapi.util.io.FileUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.util.PathUtil
-import com.tang.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.lang.LuaIcons
 import javax.swing.Icon
 import javax.swing.JComponent
 
 /**
  *
- * Created by tangzx on 2016/12/24.
+ * Created by tarantoolluazx on 2016/12/24.
  */
 class LuaLibraryType : LibraryType<DummyLibraryProperties>(LuaLibraryKind.INSTANCE) {
 

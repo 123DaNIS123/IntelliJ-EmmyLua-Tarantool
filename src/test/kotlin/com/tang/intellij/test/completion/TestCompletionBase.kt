@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.test.completion
+package com.tarantoollua.intellij.test.completion
 
 import com.intellij.openapi.fileEditor.FileDocumentManager
-import com.tang.intellij.lua.project.LuaSettings
-import com.tang.intellij.test.LuaTestBase
-import com.tang.intellij.test.fileTreeFromText
+import com.tarantoollua.intellij.lua.project.LuaSettings
+import com.tarantoollua.intellij.test.LuaTestBase
+import com.tarantoollua.intellij.test.fileTreeFromText
 
 abstract class TestCompletionBase : LuaTestBase() {
     override fun getTestDataPath(): String {

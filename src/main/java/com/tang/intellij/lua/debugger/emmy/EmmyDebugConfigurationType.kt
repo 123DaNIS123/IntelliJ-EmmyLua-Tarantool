@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. tangzx(love.tangzx@qq.com)
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tang.intellij.lua.debugger.emmy
+package com.tarantoollua.intellij.lua.debugger.emmy
 
 import com.intellij.execution.Executor
 import com.intellij.execution.configurations.ConfigurationFactory
@@ -28,10 +28,10 @@ import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.options.SettingsEditorGroup
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.JDOMExternalizerUtil
-import com.tang.intellij.lua.debugger.LuaCommandLineState
-import com.tang.intellij.lua.debugger.LuaConfigurationFactory
-import com.tang.intellij.lua.debugger.LuaRunConfiguration
-import com.tang.intellij.lua.lang.LuaIcons
+import com.tarantoollua.intellij.lua.debugger.LuaCommandLineState
+import com.tarantoollua.intellij.lua.debugger.LuaConfigurationFactory
+import com.tarantoollua.intellij.lua.debugger.LuaRunConfiguration
+import com.tarantoollua.intellij.lua.lang.LuaIcons
 import org.jdom.Element
 import javax.swing.Icon
 
