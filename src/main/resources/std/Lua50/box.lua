@@ -26,6 +26,119 @@ session = {}
 --- @field BITS_ALL_NOT_SET string
 index = {}
 
+-- BACKUPS
+
+--- Informs the server that activities related to the removal of outdated
+--- backups must be suspended.
+---
+--- To guarantee an opportunity
+--- to copy these files, Tarantool will not delete them. But there will be no
+--- read-only mode and checkpoints will continue by schedule as usual.
+---
+--- Param: number n: optional argument starting with Tarantool 1.10.1 that
+--- indicates the checkpoint
+--- to use relative to the latest checkpoint. For example ``n = 0`` means
+--- “backup will be based on the latest checkpoint”, ``n = 1`` means "backup
+--- will be based on the first checkpoint before the latest checkpoint (counting
+--- backwards)", and so on. The default value for n is zero.
+---
+--- Return:  a table with the names of snapshot and vinyl files that should
+--- be copied
+--- @return table
+function backup.start() end
+--- Informs the server that activities related to the removal of outdated
+--- backups must be suspended.
+---
+--- To guarantee an opportunity
+--- to copy these files, Tarantool will not delete them. But there will be no
+--- read-only mode and checkpoints will continue by schedule as usual.
+---
+--- Param: number n: optional argument starting with Tarantool 1.10.1 that
+--- indicates the checkpoint
+--- to use relative to the latest checkpoint. For example ``n = 0`` means
+--- “backup will be based on the latest checkpoint”, ``n = 1`` means "backup
+--- will be based on the first checkpoint before the latest checkpoint (counting
+--- backwards)", and so on. The default value for n is zero.
+---
+--- Return:  a table with the names of snapshot and vinyl files that should
+--- be copied
+--- @param n number
+--- @return table
+function backup.start(n) end
+
+--- Informs the server that normal operations may resume.
+function backup.stop() end
+
+-- box.ctl
+
+--- Check whether the recovery process has finished.
+--- Until it has finished, space changes such as insert or update are not possible.
+--- Return: true if recovery has finished, otherwise false
+--- @return boolean
+function ctl.is_recovery_finished() end
+
+--- The box.ctl submodule also contains two functions for the two server trigger definitions:
+--- on_shutdown and on_schema_init. Please, familiarize yourself with the mechanism of trigger functions before using them.
+--- Create a “schema_init trigger”. The trigger-function will be executed when box.cfg{} happens for the first time.
+--- That is, the schema_init trigger is called before the server’s configuration and recovery begins,
+--- and therefore box.ctl.on_schema_init must be called before box.cfg is called.
+---
+--- Parameters:
+--- trigger-function (function) – function which will become the trigger function
+---
+--- old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
+---
+--- Return: nil or function pointer
+--- @param trigger_function function
+--- @param old_trigger_function function
+--- @return function
+function ctl.on_schema_init(trigger_function) end
+--- The box.ctl submodule also contains two functions for the two server trigger definitions:
+--- on_shutdown and on_schema_init. Please, familiarize yourself with the mechanism of trigger functions before using them.
+--- Create a “schema_init trigger”. The trigger-function will be executed when box.cfg{} happens for the first time.
+--- That is, the schema_init trigger is called before the server’s configuration and recovery begins,
+--- and therefore box.ctl.on_schema_init must be called before box.cfg is called.
+---
+--- Parameters:
+--- trigger-function (function) – function which will become the trigger function
+---
+--- old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
+---
+--- Return: nil or function pointer
+--- @param trigger_function function
+--- @param old_trigger_function function
+--- @return function
+function ctl.on_schema_init(trigger_function, old_trigger_function) end
+
+--- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
+--- or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal
+--- (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination).
+---
+---Parameters:
+---
+--- trigger-function (function) – function which will become the trigger function
+--- old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
+---
+--- Return: nil or function pointer
+--- @param trigger_function function
+--- @param old_trigger_function function
+--- @return nil
+function box.ctl.on_shutdown(trigger_function) end
+--- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
+--- or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal
+--- (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination).
+---
+---Parameters:
+---
+--- trigger-function (function) – function which will become the trigger function
+--- old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
+---
+--- Return: nil or function pointer
+--- @param trigger_function function
+--- @param old_trigger_function function
+--- @return nil
+function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
+
 -- SPACES
 
 --- Box runtime spaces table
