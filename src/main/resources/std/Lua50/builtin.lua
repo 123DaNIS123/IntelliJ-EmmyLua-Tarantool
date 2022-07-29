@@ -104,4 +104,6 @@
 
 ---@class self
 
----@class pointer
+--added classes:
+
+---@class integer
