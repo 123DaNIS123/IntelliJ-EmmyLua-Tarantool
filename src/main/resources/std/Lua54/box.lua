@@ -276,16 +276,24 @@ function ctl.wait_rw(number) end
 
 error = {}
 
----
---- Clear the record of errors, so functions like box.error() or box.error.last()
---- will have no effect.
-function error.clear() end
 
 -- function box.error() end
 
+--- Since version 2.4.1. Errors can be organized into lists. To achieve this, a Lua table representing an error object
+--- has .prev field and e:set_prev(err) method.
+---
+--- error_object.prev --
+--- Return a previous error, if any.
+---
+--- error_object:set_prev(error object) --
+--- Set an error as the previous error. Accepts an error object or nil.
 --- @class Error
 --- @field prev
 local errorObject = {}
+
+--- Set an error as the previous error. Accepts an error object or nil.
+--- @param error_object Error
+function errorObject:set_prev(error_object) end
 
 --- Clear the record of errors, so functions like box.error() or box.error.last()
 --- will have no effect.
@@ -307,7 +315,6 @@ function error.clear() end
 ---
 --- Additionally, if the error is a system error (for example due to a failure in socket or file io),
 --- there may be a fifth member: “errno” (number) C standard error number.
---- @param error Error
 --- @return table
 function error.last() end
 
@@ -820,8 +827,14 @@ function indexObj:update(key, update) end
 function indexObj:delete(key) end
 
 --- Alter options. Vinyl engine does not support this function.
---- @param options IndexOptions
-function indexObj:alter(options) end
+---
+--- Alter an index. It is legal in some circumstances to change one or more of the index characteristics,
+--- for example its type, its sequence options, its parts, and whether it is unique. Usually this causes rebuilding
+--- of the space, except for the simple case where a part’s is_nullable flag is changed from false to true.
+--- @param index_object Index
+--- @param options table
+function indexObj:alter(index_object, options) end
+-- was: @param options IndexOptions changed to:
 
 --- Drops current index and all bound tuples.
 function indexObj:drop() end
@@ -1106,21 +1119,6 @@ function rollback_to_savepoint(sp) end
 
 -- from error:
 
---- When called without arguments, box.error() re-throws whatever the last error was.
-function error() end
-
---- When called without arguments, box.error() re-throws whatever the last error was.
---- Throw an error. When called with a Lua-table argument, the code and reason have any user-desired values.
---- The result will be those values.
----
---- Parameters:
----
---- reason (string) – description of an error, defined by user
---- code (integer) – numeric code for this error, defined by user
---- @param code integer
---- @param reason string
-function error(reason, code) end
-
 --- Throw an error. This method emulates a request error, with text based on one of
 --- the pre-defined Tarantool errors defined in the file errcode.h in the source tree. Lua
 --- constants which correspond to those Tarantool errors are defined as members of box.error,
@@ -1130,6 +1128,8 @@ function error(reason, code) end
 ---
 --- code (number) – number of a pre-defined error
 --- errtext(s) (string) – part of the message which will accompany the error
+---
+--- When called without arguments, box.error() re-throws whatever the last error was.
 --- @param code number
 --- @param errtext string
 function error(code, errtext) end
