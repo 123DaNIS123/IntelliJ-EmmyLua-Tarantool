@@ -108,4 +108,4 @@
 
 ---@class integer
 
----@class function_ptr
+--@class function_ptr
