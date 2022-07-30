@@ -104,6 +104,8 @@
 
 ---@class self
 
---added classes:
+--added classes for Tarantool:
 
 ---@class integer
+
+---@class function_ptr

@@ -211,7 +211,7 @@ function ctl.is_recovery_finished() end
 --- Return: nil or function pointer
 --- @param trigger_function function
 --- @param old_trigger_function function
---- @return function_ptr
+--- @return function_ptr|nil
 function box.ctl.on_schema_init(trigger_function, old_trigger_function) end
 
 --- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
@@ -226,7 +226,7 @@ function box.ctl.on_schema_init(trigger_function, old_trigger_function) end
 --- Return: nil or function pointer
 --- @param trigger_function function
 --- @param old_trigger_function function
---- @return nil|function_ptr
+--- @return function_ptr|nil
 function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
 
 --- Wait, then choose new replication leader.
@@ -241,7 +241,7 @@ function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
 ---Parameters: none
 ---
 ---Return: nil or function pointer
----@return nil|function_ptr
+---@return function_ptr|nil
 function box.ctl.promote() end
 
 --- Wait until box.info.ro is true.
@@ -250,7 +250,7 @@ function box.ctl.promote() end
 ---
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
---- @return nil|Error
+--- @return Error|nil
 function box.ctl.wait_ro(number) end
 
 --- Wait until box.info.ro is false.
@@ -259,7 +259,7 @@ function box.ctl.wait_ro(number) end
 ---
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
---- @return nil|Error
+--- @return Error|nil
 function box.ctl.wait_rw(number) end
 
 -- box.error
