@@ -164,6 +164,8 @@ index = {}
 
 -- box.backup
 
+backup = {}
+
 --- Informs the server that activities related to the removal of outdated
 --- backups must be suspended.
 ---
@@ -187,15 +189,18 @@ function backup.start(n)
 end
 
 --- Informs the server that normal operations may resume.
-function box.backup.stop() end
+function backup.stop() end
 
 -- box.ctl
+
+ctl = {}
 
 --- Check whether the recovery process has finished.
 --- Until it has finished, space changes such as insert or update are not possible.
 --- Return: true if recovery has finished, otherwise false
 --- @return boolean
 function ctl.is_recovery_finished() end
+
 
 --- The box.ctl submodule also contains two functions for the two server trigger definitions:
 --- on_shutdown and on_schema_init. Please, familiarize yourself with the mechanism of trigger functions before using them.
@@ -211,8 +216,9 @@ function ctl.is_recovery_finished() end
 --- Return: nil or function pointer
 --- @param trigger_function function
 --- @param old_trigger_function function
---- @return function_ptr
-function box.ctl.on_schema_init(trigger_function, old_trigger_function) end
+--- @return function_ptr|nil
+function ctl.on_schema_init(trigger_function, old_trigger_function) end
+
 
 --- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
 --- or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal
@@ -226,8 +232,9 @@ function box.ctl.on_schema_init(trigger_function, old_trigger_function) end
 --- Return: nil or function pointer
 --- @param trigger_function function
 --- @param old_trigger_function function
---- @return function_ptr
-function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
+--- @return function_ptr|nil
+function ctl.on_shutdown(trigger_function, old_trigger_function) end
+
 
 --- Wait, then choose new replication leader.
 ---
@@ -241,8 +248,9 @@ function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
 ---Parameters: none
 ---
 ---Return: nil or function pointer
----@return function_ptr
-function box.ctl.promote() end
+---@return function_ptr|nil
+function ctl.promote() end
+
 
 --- Wait until box.info.ro is true.
 ---
@@ -250,8 +258,9 @@ function box.ctl.promote() end
 ---
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
---- @return Error
-function box.ctl.wait_ro(number) end
+--- @return Error|nil
+function ctl.wait_ro(number) end
+
 
 --- Wait until box.info.ro is false.
 ---
@@ -259,8 +268,9 @@ function box.ctl.wait_ro(number) end
 ---
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
---- @return Error
-function box.ctl.wait_rw(number) end
+--- @return Error|nil
+function ctl.wait_rw(number) end
+
 
 -- box.error
 
