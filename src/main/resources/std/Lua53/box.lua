@@ -9,6 +9,142 @@
 --- @field sequence SequenceProto
 schema = {}
 
+--- Create a function tuple without including the body option. For functions created with the body option,
+--- see box.schema.func.create(func-name , {options-with-body}).
+--- This is called a “not persistent” function because functions without bodies are not persistent. This does not
+--- create the function itself – that is done with Lua – but if it is necessary to grant privileges for a function,
+--- box.schema.func.create must be done first. For explanation of how Tarantool maintains function data, see the
+--- reference for the box.space._func space.
+--- @param func_name string @name of function, which should conform to the rules for object names
+--- @param options table @if_not_exists, setuid, language, takes_raw_args.
+--- @return nil
+function schema.func.create(func_name, options) end
+
+--- Drop a function tuple. For explanation of how Tarantool maintains function data, see reference on _func space.
+--- @param func_name string @the name of the function
+--- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if the _func tuple does not exist.
+--- @return nil
+function schema.func.drop(func_name, options) end
+
+--- Return true if a function tuple exists; return false if a function tuple does not exist.
+--- @param func_name string @the name of the function
+--- @return boolean
+function schema.func.exists(func_name) end
+
+--- Reload a C module with all its functions without restarting the server.
+--- Under the hood, Tarantool loads a new copy of the module (*.so shared library) and starts routing all
+--- new request to the new version. The previous version remains active until all started calls are finished. All shared
+--- libraries are loaded with RTLD_LOCAL (see “man 3 dlopen”), therefore multiple copies can co-exist without any problems.
+--- @param name string @the name of the module to reload
+--- @return boolean
+function schema.func.reload(name) end
+
+--- Create a role. For explanation of how Tarantool maintains role data, see section Roles.
+--- @param role_name string @name of role, which should conform to the rules for object names
+--- @param options table @if_not_exists = true|false (default = false) - boolean; true means there should be no error
+---if the role already exists
+--- @return nil
+function schema.role.create(role_name, options) end
+
+--- Drop a role. For explanation of how Tarantool maintains role data, see section Roles.
+--- @param role_name string @the name of the role
+--- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if
+--- the role does not exist.
+function schema.role.drop(role_name, options) end
+
+--- Grant privileges to a role.
+--- @param role_name string @the name of the role
+--- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
+--- @param object_type string @‘space’ or ‘function’ or ‘sequence’ or ‘role’.
+--- @param object_name string @the name of a function or space or sequence or role.
+--- @param option table @if_not_exists = true|false (default = false) - boolean; true means there should be no error
+--- if the role already has the privilege.
+function schema.role.grant(role_name, privilege, object_type, object_name, option) end
+
+--- Return a description of a role’s privileges.
+--- @param role_name string @the name of the role
+function schema.role.info(role_name) end
+
+--- Return a description of a role’s privileges.
+--- @param role_name string @the name of the role
+--- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
+--- @param object_type string @‘space’ or ‘function’ or ‘sequence’ or ‘role’.
+--- @param object_name string @the name of a function or space or sequence or role.
+function schema.role.revoke(role_name, privilege, object_type, object_name) end
+
+--- Create a space.
+--- @param space_name string @name of space, which should conform to the rules for object names
+--- @param options table @see “Options for box.schema.space.create” chart, below
+function schema.space.create(space_name, options) end
+
+--- See Upgrading a Tarantool database:
+--- [https://www.tarantool.io/en/doc/latest/book/admin/upgrades/#admin-upgrades]
+function schema.upgrade() end
+
+--- Create a user. For explanation of how Tarantool maintains user data, see section Users and reference on _user space.
+---
+--- The possible options are:
+---
+--- if_not_exists = true|false (default = false) - boolean; true means there should be no error if the user already exists,
+--- password (default = ‘’) - string; the password = password specification is good because in a URI
+--- (Uniform Resource Identifier) it is usually illegal to include a user-name without a password.
+---
+--- Note
+---
+--- The maximum number of users is 32.
+--- @param user_name string @name of user, which should conform to the rules for object names
+--- @param options table @if_not_exists, password
+--- @return nil
+function schema.user.create(user_name, options) end
+
+--- Drop a user. For explanation of how Tarantool maintains user data, see section Users and reference on _user space.
+--- @param user_name @the name of the user
+--- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if
+--- the user does not exist.
+function schema.user.drop(user_name, options) end
+
+--- Return true if a user exists; return false if a user does not exist. For explanation of how Tarantool maintains
+--- user data, see section Users - [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication-users]
+--- and reference on _user space - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_user/#box-space-user].
+--- @param user_name @the name of the user
+--- @return boolean
+function schema.user.exists(user_name) end
+
+--- Grant privileges to a user or to another role.
+--- @param user_name string @the name of the user.
+--- @param privileges string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
+--- @param object_type string @‘space’ or ‘function’ or ‘sequence’ or ‘role’.
+--- @param object_name string @name of object to grant permissions for.
+--- @param role_name string @name of role to grant to user.
+--- @param option table @if_not_exists = true|false (default = false) - boolean; true means there should be no error
+function schema.user.grant(user_name, privileges, object_type, object_name, role_name, option) end
+
+--- Return a description of a user’s privileges.
+--- @param user_name string @the name of the user. This is optional; if it is not supplied, then the information will
+--- be for the user who is currently logged in.
+function schema.user.info(user_name) end
+
+--- Associate a password with the user who is currently logged in, or with the user specified by user-name. The user must exist and must not be ‘guest’.
+---
+--- Users who wish to change their own passwords should use box.schema.user.passwd(password) syntax.
+---
+--- Administrators who wish to change passwords of other users should use box.schema.user.passwd(user-name, password) syntax.
+--- @param user_name string @user-name
+--- @param password string @password
+function schema.user.passwd(user_name, password) end
+
+--- Revoke privileges from a user or from another role.
+---
+--- The user must exist, and the object must exist, but if the option setting is {if_exists=true} then it is not an
+--- error if the user does not have the privilege.
+--- @param user_name string @the name of the user
+--- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
+--- @param object_type string @‘space’ or ‘function’ or ‘sequence’.
+--- @param object_name string @the name of a function or space or sequence.
+--- @param options table @if_exists
+function schema.user.revoke(user_name, privilege, object_type, object_name, options) end
+
+
 --- @class Session
 
 session = {}
@@ -112,7 +248,7 @@ function ctl.on_schema_init(trigger_function, old_trigger_function) end
 --- @param trigger_function function
 --- @param old_trigger_function function
 --- @return nil|function_pointer
-function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
+function ctl.on_shutdown(trigger_function, old_trigger_function) end
 
 
 --- Wait, then choose new replication leader.
@@ -128,7 +264,7 @@ function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
 ---
 ---Return: nil or function pointer
 ---@return nil|function_pointer
-function box.ctl.promote() end
+function ctl.promote() end
 
 --- Wait until box.info.ro is true.
 ---
@@ -137,7 +273,7 @@ function box.ctl.promote() end
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
 --- @return nil|error|fiber_collection
-function box.ctl.wait_ro(number) end
+function ctl.wait_ro(number) end
 
 --- Wait until box.info.ro is false.
 ---
@@ -146,7 +282,7 @@ function box.ctl.wait_ro(number) end
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
 --- @return nil|error|fiber_collection
-function box.ctl.wait_rw(number) end
+function ctl.wait_rw(number) end
 
 -- box.error
 
@@ -155,7 +291,7 @@ error = {}
 ---
 --- Clear the record of errors, so functions like box.error() or box.error.last()
 --- will have no effect.
-function box.error.clear() end
+function error.clear() end
 
 -- function box.error() end
 
@@ -165,7 +301,7 @@ local errorObject = {}
 
 --- Clear the record of errors, so functions like box.error() or box.error.last()
 --- will have no effect.
-function box.error.clear() end
+function error.clear() end
 
 --- Return a description of the last error, as a Lua table with four members:
 ---
@@ -185,7 +321,7 @@ function box.error.clear() end
 --- there may be a fifth member: “errno” (number) C standard error number.
 --- @param error Error
 --- @return table
-function box.error.last() end
+function error.last() end
 
 --- Create an error object, but not throw it as box.error() does.
 --- This is useful when error information should be saved for later retrieval. Since version 2.4.1,
@@ -197,12 +333,12 @@ function box.error.last() end
 --- errtext(s) (string) – part of the message which will accompany the error
 --- @param code number
 --- @param errtext string
-function box.error.new(code, errtext) end
+function error.new(code, errtext) end
 
---- Since version 2.4.1. Set an error as the last system error explicitly.
+--- Since version 2.4.1. Set an error  as the last system error explicitly.
 --- Accepts an error object and makes it available via box.error.last().
 --- @param errorObject Error
-function box.error.set(errorObject) end
+function error.set(errorObject) end
 
 --- @class Space
 --- @field enabled boolean
@@ -768,19 +904,25 @@ function indexObj:stat() end
 -- UTILITY
 
 --- @class BoxInfo
+--- @field version string @ tarantool version
 --- @field id string @same as replication id
---- @field lsn number
---- @field pid number
 --- @field ro boolean @is readonly
+--- @field uuid string
+--- @field package string
+--- @field cluster @a table array with statistics for all instances in the replica set that the current instance belongs to
+--- @field listen string @Return a real address to which an instance was bound
+--- @field replication table @a table array with statistics for all instances in the replica set that the current instance belongs to
 --- @field signature number @is the sum of all lsn values from the vector clocks (vclock) of all instances in the replica set.
 --- @field status string @corresponds to replication.upstream.status
---- @field uuid string
---- @field vclock number[] @ ontains the vector clock, which is a table of „id, lsn“ pairs, for example vclock: {1: 3054773, 4: 8938827, 3: 285902018}. Even if an instance is removed, its values will still appear here
---- @field version string @ tarantool version
---- @field uptime number @ uptime seconds
---- @field memory BoxInfoMemory
 --- @field vinyl table @ vinyl memory statistics
-local boxinfo = {}
+--- @field uptime number @ uptime seconds
+--- @field lsn number
+--- @field sql
+--- @field gc
+--- @field pid number
+--- @field memory BoxInfoMemory
+--- @field vclock number[] @ ontains the vector clock, which is a table of „id, lsn“ pairs, for example vclock: {1: 3054773, 4: 8938827, 3: 285902018}. Even if an instance is removed, its values will still appear here
+local info = {}
 
 --- @class BoxInfoMemory
 --- @field cache number @ number of bytes used for caching user data. The memtx storage engine does not require a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine.
@@ -791,11 +933,52 @@ local boxinfo = {}
 --- @field tx number @ number of bytes in use by active transactions. For the vinyl storage engine, this is the total size of all allocated objects (struct txv, struct vy_tx, struct vy_read_interval) and tuples pinned for those objects.
 local boxinfomemory = {}
 
+--- This function gives the admin user a picture of the whole Tarantool instance.
+--- @field cache number @number of bytes used for caching user data. The memtx storage engine does not require
+--- a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine.
+--- @field data number @number of bytes used for storing user data (the tuples) with the memtx engine and with level 0
+--- of the vinyl engine, without taking memory fragmentation into account.
+--- @field index number @number of bytes used for indexing user data, including memtx and vinyl memory tree extents,
+--- the vinyl page index, and the vinyl bloom filters.
+--- @field lua number number of bytes used for Lua runtime.
+--- @field net number number of bytes used for network input/output buffers.
+--- @field tx number number of bytes in use by active transactions. For the vinyl storage engine,
+--- this is the total size of all allocated objects (struct txv, struct vy_tx, struct vy_read_interval) and tuples pinned for those objects.
 --- @return BoxInfoMemory
-function boxinfo.memory() end
+function info.memory() end
 
+-- box.info
+
+--- The gc function of box.info gives the admin user a picture of the factors that affect the Tarantool
+--- garbage collector. The garbage collector compares vclock (vector clock) values of users and checkpoints,
+--- garbage collector. The garbage collector compares vclock (vector clock) values of users and checkpoints,
+--- so a look at box.info.gc() may show why the garbage collector has not removed old WAL files,
+--- or show what it may soon remove.
+--- @field consumers @a list of users whose requests might affect the garbage collector.
+--- @field checkpoints @a list of users whose requests might affect the garbage collector.
+--- @field checkpoints.references @a list of references to a checkpoint.
+--- @field checkpoints.vclock @a checkpoint’s vclock value.
+--- @field checkpoints.signature @a sum of a checkpoint’s vclock’s components.
+--- @field checkpoint_is_in_progress @true if a checkpoint is in progress, otherwise false
+--- @field vclock @the garbage collector’s vclock.
+--- @field signature @the sum of the garbage collector’s checkpoint’s components.
+function info.gc() end
+
+--- @class Info
+--- @field election
+--- @field listen
 --- @type BoxInfo
 info = {}
+
+--123
+info.election = {}
+info.listen = {}
+
+--- List all the anonymous replicas following the instance.
+---
+--- The output is similar to the one produced by box.info.replication with an exception that anonymous replicas
+--- are indexed by their uuid strings rather than server ids, since server ids have no meaning for anonymous replicas.
+function info.replication_anon() end
 
 --- @return BoxInfo
 function info() end
