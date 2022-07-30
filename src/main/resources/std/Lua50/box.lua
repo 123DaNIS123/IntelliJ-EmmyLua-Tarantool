@@ -164,8 +164,6 @@ index = {}
 
 -- box.backup
 
-backup = {}
-
 --- Informs the server that activities related to the removal of outdated
 --- backups must be suspended.
 ---
@@ -184,33 +182,14 @@ backup = {}
 --- be copied
 --- @param n number
 --- @return table
-function backup.start() end
---- Informs the server that activities related to the removal of outdated
---- backups must be suspended.
----
---- To guarantee an opportunity
---- to copy these files, Tarantool will not delete them. But there will be no
---- read-only mode and checkpoints will continue by schedule as usual.
----
---- Param: number n: optional argument starting with Tarantool 1.10.1 that
---- indicates the checkpoint
---- to use relative to the latest checkpoint. For example ``n = 0`` means
---- “backup will be based on the latest checkpoint”, ``n = 1`` means "backup
---- will be based on the first checkpoint before the latest checkpoint (counting
---- backwards)", and so on. The default value for n is zero.
----
---- Return:  a table with the names of snapshot and vinyl files that should
---- be copied
---- @param n number
---- @return table
-function backup.start(n) end
+function backup.start(n)
+    n = 0
+end
 
 --- Informs the server that normal operations may resume.
-function backup.stop() end
+function box.backup.stop() end
 
 -- box.ctl
-
-ctl = {}
 
 --- Check whether the recovery process has finished.
 --- Until it has finished, space changes such as insert or update are not possible.
@@ -232,14 +211,14 @@ function ctl.is_recovery_finished() end
 --- Return: nil or function pointer
 --- @param trigger_function function
 --- @param old_trigger_function function
---- @return function
-function ctl.on_schema_init(trigger_function, old_trigger_function) end
+--- @return function_ptr
+function box.ctl.on_schema_init(trigger_function, old_trigger_function) end
 
 --- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
 --- or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal
 --- (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination).
 ---
----Parameters:
+--- Parameters:
 ---
 --- trigger-function (function) – function which will become the trigger function
 --- old-trigger-function (function) – existing trigger function which will be replaced by trigger-function
@@ -247,9 +226,8 @@ function ctl.on_schema_init(trigger_function, old_trigger_function) end
 --- Return: nil or function pointer
 --- @param trigger_function function
 --- @param old_trigger_function function
---- @return nil|function_pointer
-function ctl.on_shutdown(trigger_function, old_trigger_function) end
-
+--- @return nil|function_ptr
+function box.ctl.on_shutdown(trigger_function, old_trigger_function) end
 
 --- Wait, then choose new replication leader.
 ---
@@ -263,8 +241,8 @@ function ctl.on_shutdown(trigger_function, old_trigger_function) end
 ---Parameters: none
 ---
 ---Return: nil or function pointer
----@return nil|function_pointer
-function ctl.promote() end
+---@return nil|function_ptr
+function box.ctl.promote() end
 
 --- Wait until box.info.ro is true.
 ---
@@ -272,8 +250,8 @@ function ctl.promote() end
 ---
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
---- @return nil|error|fiber_collection
-function ctl.wait_ro(number) end
+--- @return nil|Error
+function box.ctl.wait_ro(number) end
 
 --- Wait until box.info.ro is false.
 ---
@@ -281,8 +259,8 @@ function ctl.wait_ro(number) end
 ---
 --- Return: nil, or error may be thrown due to timeout or fiber cancellation
 --- @param number number
---- @return nil|error|fiber_collection
-function ctl.wait_rw(number) end
+--- @return nil|Error
+function box.ctl.wait_rw(number) end
 
 -- box.error
 
@@ -963,6 +941,9 @@ function info.memory() end
 --- @field vclock @the garbage collector’s vclock.
 --- @field signature @the sum of the garbage collector’s checkpoint’s components.
 function info.gc() end
+
+--- a list of users whose requests might affect the garbage collector.
+function info.gc().consumers end
 
 --- @class Info
 --- @field election
