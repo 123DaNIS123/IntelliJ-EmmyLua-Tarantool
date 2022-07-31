@@ -9,6 +9,22 @@
 --- @field sequence SequenceProto
 schema = {}
 
+-- value types for Tarantool:
+--- @class function_ptr
+local _function_ptr = {}
+
+--- @class scalar
+local _scalar = {}
+
+--- @class scalar
+local _scalar = {}
+
+--- @class tuple
+local _tuple = {}
+
+--- @class field
+local _field = {}
+
 --- Create a function tuple without including the body option. For functions created with the body option,
 --- see box.schema.func.create(func-name , {options-with-body}).
 --- This is called a “not persistent” function because functions without bodies are not persistent. This does not
@@ -292,6 +308,10 @@ error = {}
 local errorObject = {}
 
 --- Set an error as the previous error. Accepts an error object or nil.
+--- @param err Error|nil
+function errorObject:set_prev(err) end
+
+--- Set an error as the previous error. Accepts an error object or nil.
 --- @param error_object Error
 function errorObject:set_prev(error_object) end
 
@@ -318,6 +338,11 @@ function error.clear() end
 --- @return table
 function error.last() end
 
+local errorLast = error.last()
+
+---
+function errorLast:unpack() end
+
 --- Create an error object, but not throw it as box.error() does.
 --- This is useful when error information should be saved for later retrieval. Since version 2.4.1,
 --- to set an error as the last explicitly use box.error.set().
@@ -326,8 +351,8 @@ function error.last() end
 ---
 --- code (number) – number of a pre-defined error
 --- errtext(s) (string) – part of the message which will accompany the error
---- @param code number
---- @param errtext string
+--- @param code number @number of a pre-defined error
+--- @param errtext string @part of the message which will accompany
 function error.new(code, errtext) end
 
 --- Since version 2.4.1. Set an error  as the last system error explicitly.
@@ -362,10 +387,11 @@ local sp_options = {}
 local iter = {}
 
 --- @class Index
---- @field type string @type of index (hash, tree, rtree, bitset, etc.)
---- @field unique boolean
+--- @field type string @ Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'.
+--- @field unique boolean @  True if the index is unique, false if the index is not unique. rtype: boolean
 --- @field parts table
 local indexObj = {}
+-- @field type string @type of index (hash, tree, rtree, bitset, etc.)
 
 --- @class IndexOptions
 --- @field type string @type of index (hash, tree, rtree, bitset, etc.)
@@ -467,16 +493,16 @@ function spaceObject:before_replace(trigger) end
 --- @return any
 function spaceObject:before_replace(trigger, oldTrigger) end
 
---- @return iterator
+--- @return Iterator
 function spaceObject:pairs() end
 
 --- @param key number|string|table
---- @return iterator
+--- @return Iterator
 function spaceObject:pairs(key) end
 
 --- @param key number|string|table
---- @param iterator Iterator
---- @return iterator
+--- @param Iterator Iterator
+--- @return Iterator
 function spaceObject:pairs(key, iterator) end
 
 --- @param new_name string
@@ -772,58 +798,89 @@ function session.on_auth(trigger, old_trigger) end
 --- @field offset number
 local indexSearch = {}
 
---- @param key number|string|table
---- @return iterator
-function indexObj:pairs(key) end
+-- Search for a tuple or a set of tuples via the given index, and allow iterating over one tuple at a time.
+--
+-- The key parameter specifies what must match within the index.
+-- @param key number|string|table
+-- @return iterator
+-- function indexObj:pairs(key) end
 
---- @param key number|string|table
---- @param iterator Iterator
---- @return iterator
+--- Search for a tuple or a set of tuples via the given index, and allow iterating over one tuple at a time.
+---
+--- The key parameter specifies what must match within the index.
+--- @param key scalar|table @ value to be matched against the index key, which may be multi-part
+--- @param iterator Iterator @ The default iterator type is ‘EQ’
+--- @return Iterator @ iterator which can be used in a for/end loop or with totable()
 function indexObj:pairs(key, iterator) end
 
---- @param key number|string|table
---- @param options IndexSearchOptions
---- @return table
+--- This is an alternative to box.space…select() which goes via a particular index and can make use of additional
+--- parameters that specify the iterator type, and the limit, and the offset.
+--- @param key scalar|table @ values to be matched against the index key
+--- @param options table|nil @ none, any, or all of the following parameters: iterator – type of iterator | limit – maximum number of tuples | offset – start tuple number (do not use it. See warning)
+--- @return tuple @ the tuple or tuples that match the field values.
 function indexObj:select(key, options) end
 
---- @param key number|string|table
---- @return table
+--- Search for a tuple via the given index, as described earlier.
+--- @param key scalar|table @ values to be matched against the index key
+--- @return tuple @ the tuple whose index-key fields are equal to the passed key values.
 function indexObj:get(key) end
 
---- @return table
-function indexObj:min() end
---- @param key number|string|table
---- @return table
+--- Find the minimum value in the specified index.
+--- @param key scalar|table @ values to be matched against the index key
+--- @return tuple @ the tuple for the first key in the index. If the optional key value is supplied, returns the first key that is greater than or equal to key. Starting with Tarantool 2.0.4, index_object:min(key) returns nothing if key doesn’t match any value in the index.
 function indexObj:min(key) end
 
---- @return table
-function indexObj:max() end
---- @param key number|string|table
---- @return table
+--- Find the maximum value in the specified index.
+--- @param key scalar|table @ values to be matched against the index key
+--- @return tuple @the tuple for the last key in the index. If the optional key value is supplied, returns the last key that is less than or equal to key. Starting with Tarantool 2.0.4, index_object:max(key) returns nothing if key doesn’t match any value in the index.
 function indexObj:max(key) end
 
---- Returns random tuple (vinyl engine does not support this function)
---- @param seed number
---- @return table
+--- Find a random value in the specified index. This method is useful when it’s important to get insight
+--- into data distribution in an index without having to iterate over the entire data set.
+---
+--- Complexity factors: Index size, Index type.
+---
+--- Note re storage engine: vinyl does not support random()
+--- @param seed number @ an arbitrary non-negative integer
+--- @return tuple @ the tuple for the random key in the index.
 function indexObj:random(seed) end
 
---- @return number
-function indexObj:count() end
---- @param key number|string|table
---- @return number
-function indexObj:count(key) end
---- @param key number|string|table
---- @param iterator Iterator
---- @return number
+--- Iterate over an index, counting the number of tuples which match the key-value.
+--- @param key scalar|table @ values to be matched against the index key
+--- @param iterator Iterator @ comparison method
+--- @return number @ the number of matching tuples.
 function indexObj:count(key, iterator) end
 
---- @param key number|string|table
---- @param update table
---- @return table
-function indexObj:update(key, update) end
+--- Update a tuple.
+---
+--- Same as box.space…update(), but key is searched in this index instead of primary key. This index should be unique.
+--- @param key scalar|table @ values to be matched against the index key
+--- @param operator string @ operation type represented in string
+--- @param field_identifier field|string @ what field the operation will apply to. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)
+--- @param value @ what value will be applied
+--- @return tuple|nil @ the updated tuple. nil if the key is not found
+function indexObj:update(key, operator, field_identifier, value) end
 
---- @param key number|string|table
---- @return table
+-- Users can define any functions they want, and associate them with indexes: in effect they can make their own index methods. They do this by:
+--
+-- creating a Lua function,
+-- adding the function name to a predefined global variable which has type = table, and
+-- invoking the function any time thereafter, as long as the server is up, by saying index_object:function-name([parameters]).
+-- There are three predefined global variables:
+--
+-- Adding to box_schema.index_mt makes the method available for all indexes.
+-- Adding to box_schema.memtx_index_mt makes the method available for all memtx indexes.
+-- Adding to box_schema.vinyl_index_mt makes the method available for all vinyl indexes.
+-- This index ought to be unique.
+-- @param any_name @ whatever the user defines
+-- function indexObj:user_defined(key) end
+
+--- Delete a tuple identified by a key.
+---
+--- Same as box.space…delete(), but key is searched in this index instead of in the primary-key index.
+--- This index ought to be unique.
+--- @param key scalar|table @ values to be matched against the index key
+--- @return tuple @ the deleted tuple.
 function indexObj:delete(key) end
 
 --- Alter options. Vinyl engine does not support this function.
@@ -836,10 +893,14 @@ function indexObj:delete(key) end
 function indexObj:alter(index_object, options) end
 -- was: @param options IndexOptions changed to:
 
---- Drops current index and all bound tuples.
+--- Drop an index. Dropping a primary-key index has
+--- a side effect: all tuples are delete
+--- @return nil
 function indexObj:drop() end
 
---- @param new_name string
+--- Rename an index.
+--- @param new_name string @ new name for index
+--- @return nil
 function indexObj:rename(new_name) end
 
 --- Returns number of bytes taken by this index.
@@ -923,7 +984,7 @@ function indexObj:stat() end
 --- @field pid number
 --- @field memory BoxInfoMemory
 --- @field vclock number[] @ ontains the vector clock, which is a table of „id, lsn“ pairs, for example vclock: {1: 3054773, 4: 8938827, 3: 285902018}. Even if an instance is removed, its values will still appear here
-local info = {}
+local boxinfo = {}
 
 --- @class BoxInfoMemory
 --- @field cache number @ number of bytes used for caching user data. The memtx storage engine does not require a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine.
@@ -935,57 +996,132 @@ local info = {}
 local boxinfomemory = {}
 
 --- This function gives the admin user a picture of the whole Tarantool instance.
---- @field cache number @number of bytes used for caching user data. The memtx storage engine does not require
---- a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine.
---- @field data number @number of bytes used for storing user data (the tuples) with the memtx engine and with level 0
---- of the vinyl engine, without taking memory fragmentation into account.
---- @field index number @number of bytes used for indexing user data, including memtx and vinyl memory tree extents,
---- the vinyl page index, and the vinyl bloom filters.
+--- @field cache number @number of bytes used for caching user data. The memtx storage engine does not require a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine.
+--- @field data number @number of bytes used for storing user data (the tuples) with the memtx engine and with level 0 of the vinyl engine, without taking memory fragmentation into account.
+--- @field index number @number of bytes used for indexing user data, including memtx and vinyl memory tree extents, the vinyl page index, and the vinyl bloom filters.
 --- @field lua number number of bytes used for Lua runtime.
 --- @field net number number of bytes used for network input/output buffers.
---- @field tx number number of bytes in use by active transactions. For the vinyl storage engine,
---- this is the total size of all allocated objects (struct txv, struct vy_tx, struct vy_read_interval) and tuples pinned for those objects.
+--- @field tx number number of bytes in use by active transactions. For the vinyl storage engine, this is the total size of all allocated objects (struct txv, struct vy_tx, struct vy_read_interval) and tuples pinned for those objects.
 --- @return BoxInfoMemory
 function info.memory() end
 
 -- box.info
+
+info = {}
+
+--- Since version 2.6.1. Show the current state of a replica set node in regards to leader election.
+---
+--- The following information is provided:
+---
+--- state – election state (mode) of the node. Possible values are leader, follower, or candidate. For more details, refer to description of the leader election process. When election is enabled, the node is writable only in the leader state.
+--- term – current election term.
+--- vote – ID of a node the current node votes for. If the value is 0, it means the node hasn’t voted in the current term yet.
+--- leader – leader node ID in the current term. If the value is 0, it means the node doesn’t know which node is the leader in the current term.
+--- leader_idle – time in seconds since the last interaction with the known leader. Since version 2.10.0
+---
+--- Note
+---
+--- IDs in the box.info.election output are the replica IDs visible in the box.info.id output on each node and in the _cluster space.
+info.election = {}
+
+--- Since version 2.4.1. Return a real address to which an instance was bound. For example, if box.cfg{listen} was set with a zero port, box.info.listen will show a real port. The address is stored as a string:
+---
+--- unix/:<path> for UNIX domain sockets
+---
+--- <ip>:<port> for IPv4
+---
+--- [ip]:<port> for IPv6
+---
+--- If an instance does not listen to anything, box.info.listen is nil.
+info.listen = {}
+
+--- The replication section of box.info() is a table array with statistics for all instances in the replica set that
+--- the current instance belongs to (see also “Monitoring a replica set”):
+---
+--- In the following, n is the index number of one table item, for example replication[1], which has data about server instance
+--- number 1, which may or may not be the same as the current instance (the “current instance” is what is responding to box.info).
+info.replication = {}
+
+--- @field id @ is a short numeric identifier of instance n within the replica set. This value is stored in the box.space._cluster system space.
+--- @field uuid @ is a globally unique identifier of instance n. This value is stored in the box.space._cluster system space
+--- @field lsn @ is the log sequence number (LSN) for the latest entry in instance n’s write ahead log (WAL).
+--- @field upstream @ appears (is not nil) if the current instance is following or intending to follow instance n, which ordinarily means replication[n].upstream.status = follow, replication[n].upstream.peer = url of instance n which is being followed, replication[n].lag and idle = the instance’s speed, described later. Another way to say this is: replication[n].upstream will appear when replication[n].upstream.peer is not of the current instance, and is not read-only, and was specified in box.cfg{replication={...}}, so it is shown in box.cfg.replication.
+--- @field upstream.status @ is the replication status of the connection with instance n: * auth means that authentication is happening. * connecting means that connection is happening. * disconnected means that it is not connected to the replica set (due to network problems, not replication errors). * follow means that the current instance’s role is “replica” (read-only, or not read-only but acting as a replica for this remote peer in a master-master configuration), and is receiving or able to receive data from instance n’s (upstream) master. * stopped means that replication was stopped due to a replication error (for example duplicate key). * sync means that the master and replica are synchronizing to have the same data.
+--- @field upstream.idle @ is the time (in seconds) since the last event was received. This is the primary indicator of replication health. See more in Monitoring a replica set.
+--- @field upstream.peer @ contains instance n’s URI for example 127.0.0.1:3302. See more in Monitoring a replica set.
+--- @field upstream.lag @ is the time difference between the local time of instance n, recorded when the event was received, and the local time at another master recorded when the event was written to the write ahead log on that master. See more in Monitoring a replica set.
+--- @field upstream.message @ contains an error message in case of a degraded state, otherwise it is nil.
+--- @field downstream @ appears (is not nil) with data about an instance that is following instance n or is intending to follow it, which ordinarily means replication[n].downstream.status = follow,
+--- @field downstream.vclock @ contains the vector clock, which is a table of ‘id, lsn’ pairs, for example vclock: {1: 3054773, 4: 8938827, 3: 285902018}. (Notice that the table may have multiple pairs although vclock is a singular name).
+--- @field downstream.idle @ is the time (in seconds) since the last time that instance n sent events through the downstream replication.
+--- @field downstream.status @ is the replication status for downstream replications: * stopped means that downstream replication has stopped, * follow means that downstream replication is in progress (instance n is ready to accept data from the master or is currently doing so).
+--- @field downstream.message @ will be nil unless a problem occurs with the connection. For example, if instance n goes down, then one may see status = 'stopped', message = 'unexpected EOF when reading from socket', and system_message = 'Broken pipe'. See also degraded state.
+--- @field downstream.system_message
+info.replication[n] = {}
 
 --- The gc function of box.info gives the admin user a picture of the factors that affect the Tarantool
 --- garbage collector. The garbage collector compares vclock (vector clock) values of users and checkpoints,
 --- garbage collector. The garbage collector compares vclock (vector clock) values of users and checkpoints,
 --- so a look at box.info.gc() may show why the garbage collector has not removed old WAL files,
 --- or show what it may soon remove.
---- @field consumers @a list of users whose requests might affect the garbage collector.
---- @field checkpoints @a list of users whose requests might affect the garbage collector.
---- @field checkpoints.references @a list of references to a checkpoint.
---- @field checkpoints.vclock @a checkpoint’s vclock value.
---- @field checkpoints.signature @a sum of a checkpoint’s vclock’s components.
---- @field checkpoint_is_in_progress @true if a checkpoint is in progress, otherwise false
---- @field vclock @the garbage collector’s vclock.
---- @field signature @the sum of the garbage collector’s checkpoint’s components.
+---
+--- gc().consumers @a list of users whose requests might affect the garbage collector.
+---
+--- gc().checkpoints @a list of users whose requests might affect the garbage collector.
+---
+--- gc().checkpoints[n].references @a list of references to a checkpoint.
+---
+--- gc().checkpoints[n].vclock @a checkpoint’s vclock value.
+---
+--- gc().checkpoints[n].signature @a sum of a checkpoint’s vclock’s components.
+---
+--- gc().checkpoint_is_in_progress @true if a checkpoint is in progress, otherwise false
+---
+--- gc().vclock @the garbage collector’s vclock.
+---
+--- gc().signature @the sum of the garbage collector’s checkpoint’s components.
 function info.gc() end
 
 --- a list of users whose requests might affect the garbage collector.
-function info.gc().consumers end
+info.gc().consumers = {}
 
---- @class Info
---- @field election
---- @field listen
---- @type BoxInfo
-info = {}
+--- a list of preserved checkpoints.
+info.gc().checkpoints = {}
 
---123
-info.election = {}
-info.listen = {}
+--- a list of references to a checkpoint.
+info.gc().checkpoints[n].references = {}
+
+--- a checkpoint's vclock value.
+info.gc().checkpoints[n].vclock = {}
+
+--- a sum of a checkpoint's vclock's components..
+info.gc().checkpoints[n].signature = {}
+
+--- true if a checkpoint is in progress, otherwise false
+info.gc().checkpoint_is_in_progress = {}
+
+--- the garbage collector's vclock.
+info.gc().vclock = {}
+
+--- the sum of the garbage collector's checkpoint's components.
+info.gc().signature = {}
+
+-- @class Info
+-- @field election
+-- @field listen
+-- @type BoxInfo
+--info = {}
+
+--- Since box.info contents are dynamic, it’s not possible to iterate over keys with the Lua pairs() function.
+--- For this purpose, box.info() builds and returns a Lua table with all keys and values provided in the submodule.
+--- @return table @ keys and values in the submodule
+function box.info() end
 
 --- List all the anonymous replicas following the instance.
 ---
 --- The output is similar to the one produced by box.info.replication with an exception that anonymous replicas
 --- are indexed by their uuid strings rather than server ids, since server ids have no meaning for anonymous replicas.
 function info.replication_anon() end
-
---- @return BoxInfo
-function info() end
 
 --- @class Config
 --- @field listen number
@@ -1132,7 +1268,7 @@ function rollback_to_savepoint(sp) end
 --- When called without arguments, box.error() re-throws whatever the last error was.
 --- @param code number
 --- @param errtext string
-function error(code, errtext) end
+function box.error(code, errtext) end
 
 --- Execute function as a transaction (explicit box.begin/commit, implicit box.rollback)
 --- @param func fun(...):any
