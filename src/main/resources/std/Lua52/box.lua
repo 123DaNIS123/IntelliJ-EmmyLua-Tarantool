@@ -25,6 +25,15 @@ local _tuple = {}
 --- @class field
 local _field = {}
 
+--
+
+--- @class Space
+--- @field enabled boolean
+--- @field field_count number
+--- @field id number
+--- @field index Index[] @table of indexes
+local spaceObject = {}
+
 --- Create a function tuple without including the body option. For functions created with the body option,
 --- see box.schema.func.create(func-name , {options-with-body}).
 --- This is called a “not persistent” function because functions without bodies are not persistent. This does not
@@ -48,6 +57,7 @@ function schema.func.drop(func_name, options) end
 function schema.func.exists(func_name) end
 
 --- Reload a C module with all its functions without restarting the server.
+---
 --- Under the hood, Tarantool loads a new copy of the module (*.so shared library) and starts routing all
 --- new request to the new version. The previous version remains active until all started calls are finished. All shared
 --- libraries are loaded with RTLD_LOCAL (see “man 3 dlopen”), therefore multiple copies can co-exist without any problems.
@@ -55,7 +65,7 @@ function schema.func.exists(func_name) end
 --- @return boolean
 function schema.func.reload(name) end
 
---- Create a role. For explanation of how Tarantool maintains role data, see section Roles.
+--- Create a role. For explanation of how Tarantool maintains role data, see section Roles. [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication-roles]
 --- @param role_name string @name of role, which should conform to the rules for object names
 --- @param options table @if_not_exists = true|false (default = false) - boolean; true means there should be no error
 ---if the role already exists
@@ -64,17 +74,20 @@ function schema.role.create(role_name, options) end
 
 --- Drop a role. For explanation of how Tarantool maintains role data, see section Roles.
 --- @param role_name string @the name of the role
---- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if
---- the role does not exist.
+--- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if the role does not exist.
 function schema.role.drop(role_name, options) end
+
+--- Return true if a role exists; return false if a role does not exist.
+--- @param role_name string @the name of the role
+--- @return  boolean
+function schema.role.exists(role_name) end
 
 --- Grant privileges to a role.
 --- @param role_name string @the name of the role
 --- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
 --- @param object_type string @‘space’ or ‘function’ or ‘sequence’ or ‘role’.
 --- @param object_name string @the name of a function or space or sequence or role.
---- @param option table @if_not_exists = true|false (default = false) - boolean; true means there should be no error
---- if the role already has the privilege.
+--- @param option table @if_not_exists = true|false (default = false) - boolean; true means there should be no error  if the role already has the privilege.
 function schema.role.grant(role_name, privilege, object_type, object_name, option) end
 
 --- Return a description of a role’s privileges.
@@ -91,6 +104,7 @@ function schema.role.revoke(role_name, privilege, object_type, object_name) end
 --- Create a space.
 --- @param space_name string @name of space, which should conform to the rules for object names
 --- @param options table @see “Options for box.schema.space.create” chart, below
+--- @return Space
 function schema.space.create(space_name, options) end
 
 --- See Upgrading a Tarantool database:
@@ -115,8 +129,7 @@ function schema.user.create(user_name, options) end
 
 --- Drop a user. For explanation of how Tarantool maintains user data, see section Users and reference on _user space.
 --- @param user_name @the name of the user
---- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if
---- the user does not exist.
+--- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if the user does not exist.
 function schema.user.drop(user_name, options) end
 
 --- Return true if a user exists; return false if a user does not exist. For explanation of how Tarantool maintains
@@ -136,8 +149,7 @@ function schema.user.exists(user_name) end
 function schema.user.grant(user_name, privileges, object_type, object_name, role_name, option) end
 
 --- Return a description of a user’s privileges.
---- @param user_name string @the name of the user. This is optional; if it is not supplied, then the information will
---- be for the user who is currently logged in.
+--- @param user_name string @the name of the user. This is optional; if it is not supplied, then the information will be for the user who is currently logged in.
 function schema.user.info(user_name) end
 
 --- Associate a password with the user who is currently logged in, or with the user specified by user-name. The user must exist and must not be ‘guest’.
@@ -149,16 +161,91 @@ function schema.user.info(user_name) end
 --- @param password string @password
 function schema.user.passwd(user_name, password) end
 
+--- Return a hash of a user’s password. For explanation of how Tarantool maintains passwords - [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication-passwords],
+---see section Passwords and reference on _user - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_user/#box-space-user] space.
+--- @param password string @password
+function schema.user.password(password) end
+
 --- Revoke privileges from a user or from another role.
----
---- The user must exist, and the object must exist, but if the option setting is {if_exists=true} then it is not an
---- error if the user does not have the privilege.
 --- @param user_name string @the name of the user
 --- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
 --- @param object_type string @‘space’ or ‘function’ or ‘sequence’.
 --- @param object_name string @the name of a function or space or sequence.
 --- @param options table @if_exists
 function schema.user.revoke(user_name, privilege, object_type, object_name, options) end
+
+-- Sequence
+
+--- @class Sequence
+local seqObject = {}
+
+--- The alter() function can be used to change any of the sequence’s options. Requirements and restrictions are the
+--- same as for box.schema.sequence.create().
+--- Options:
+---
+--- start – the STARTS WITH value. Type = integer, Default = 1.
+---
+--- min – the MINIMUM value. Type = integer, Default = 1.
+---
+--- max - the MAXIMUM value. Type = integer, Default = 9223372036854775807.
+---
+--- There is a rule: min <= start <= max. For example it is illegal to say {start=0} because then the specified start value (0) would be less than the default min value (1).
+---
+--- There is a rule: min <= next-value <= max. For example, if the next generated value would be 1000, but the maximum value is 999, then that would be considered “overflow”.
+---
+--- cycle – the CYCLE value. Type = bool. Default = false.
+---
+--- If the sequence generator’s next value is an overflow number, it causes an error return – unless cycle == true.
+---
+--- But if cycle == true, the count is started again, at the MINIMUM value or at the MAXIMUM value (not the STARTS WITH value).
+---
+--- cache – the CACHE value. Type = unsigned integer. Default = 0.
+---
+--- Currently Tarantool ignores this value, it is reserved for future use.
+---
+--- step – the INCREMENT BY value. Type = integer. Default = 1.
+---
+--- Ordinarily this is what is added to the previous value.
+--- @param options
+function seqObject:alter(options) end
+
+--- Create a new sequence generator.
+---
+--- Return:
+---
+--- a reference to a new sequence object.
+---
+--- Options:
+---
+--- start – the STARTS WITH value. Type = integer, Default = 1.
+---
+--- min – the MINIMUM value. Type = integer, Default = 1.
+---
+--- max - the MAXIMUM value. Type = integer, Default = 9223372036854775807.
+---
+--- There is a rule: min <= start <= max. For example it is illegal to say {start=0} because then the specified start value (0) would be less than the default min value (1).
+---
+--- There is a rule: min <= next-value <= max. For example, if the next generated value would be 1000, but the maximum value is 999, then that would be considered “overflow”.
+---
+--- There is a rule: start and min and max must all be <= 9223372036854775807 which is 2^63 - 1 (not 2^64).
+---
+--- cycle – the CYCLE value. Type = bool. Default = false.
+---
+--- If the sequence generator’s next value is an overflow number, it causes an error return – unless cycle == true.
+---
+--- But if cycle == true, the count is started again, at the MINIMUM value or at the MAXIMUM value (not the STARTS WITH value).
+---
+--- cache – the CACHE value. Type = unsigned integer. Default = 0.
+---
+--- Currently Tarantool ignores this value, it is reserved for future use.
+---
+--- step – the INCREMENT BY value. Type = integer. Default = 1.
+---
+--- Ordinarily this is what is added to the previous value.
+--- @param name string @ the name of the sequence
+--- @param options table @ see a quick overview in the “Options for box.schema.sequence.create()” chart (in the Sequences section of the “Data model” chapter), and see more details below.
+function seqObject:create(name, options) end
+
 
 
 --- @class Session
@@ -359,13 +446,6 @@ function error.new(code, errtext) end
 --- Accepts an error object and makes it available via box.error.last().
 --- @param errorObject Error
 function error.set(errorObject) end
-
---- @class Space
---- @field enabled boolean
---- @field field_count number
---- @field id number
---- @field index Index[] @table of indexes
-local spaceObject = {}
 
 -- SPACES
 
@@ -719,9 +799,6 @@ local seq = {}
 --- @field cache number @reserved for future releases
 --- @field step number @increment of the sequence
 local seqOptions = {}
-
---- @class Sequence
-local seqObject = {}
 
 --- @param name string
 --- @return Sequence
