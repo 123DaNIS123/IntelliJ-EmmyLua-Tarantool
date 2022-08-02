@@ -34,6 +34,7 @@ local _field = {}
 --- @field index Index[] @table of indexes
 local spaceObject = {}
 
+---
 --- Create a function tuple without including the body option. For functions created with the body option,
 --- see box.schema.func.create(func-name , {options-with-body}).
 --- This is called a “not persistent” function because functions without bodies are not persistent. This does not
@@ -45,17 +46,20 @@ local spaceObject = {}
 --- @return nil
 function schema.func.create(func_name, options) end
 
+---
 --- Drop a function tuple. For explanation of how Tarantool maintains function data, see reference on _func space.
 --- @param func_name string @the name of the function
 --- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if the _func tuple does not exist.
 --- @return nil
 function schema.func.drop(func_name, options) end
 
+---
 --- Return true if a function tuple exists; return false if a function tuple does not exist.
 --- @param func_name string @the name of the function
 --- @return boolean
 function schema.func.exists(func_name) end
 
+---
 --- Reload a C module with all its functions without restarting the server.
 ---
 --- Under the hood, Tarantool loads a new copy of the module (*.so shared library) and starts routing all
@@ -65,6 +69,7 @@ function schema.func.exists(func_name) end
 --- @return boolean
 function schema.func.reload(name) end
 
+---
 --- Create a role. For explanation of how Tarantool maintains role data, see section Roles. [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication-roles]
 --- @param role_name string @name of role, which should conform to the rules for object names
 --- @param options table @if_not_exists = true|false (default = false) - boolean; true means there should be no error
@@ -72,16 +77,19 @@ function schema.func.reload(name) end
 --- @return nil
 function schema.role.create(role_name, options) end
 
+---
 --- Drop a role. For explanation of how Tarantool maintains role data, see section Roles.
 --- @param role_name string @the name of the role
 --- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if the role does not exist.
 function schema.role.drop(role_name, options) end
 
+---
 --- Return true if a role exists; return false if a role does not exist.
 --- @param role_name string @the name of the role
 --- @return  boolean
 function schema.role.exists(role_name) end
 
+---
 --- Grant privileges to a role.
 --- @param role_name string @the name of the role
 --- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
@@ -90,10 +98,12 @@ function schema.role.exists(role_name) end
 --- @param option table @if_not_exists = true|false (default = false) - boolean; true means there should be no error  if the role already has the privilege.
 function schema.role.grant(role_name, privilege, object_type, object_name, option) end
 
+---
 --- Return a description of a role’s privileges.
 --- @param role_name string @the name of the role
 function schema.role.info(role_name) end
 
+---
 --- Return a description of a role’s privileges.
 --- @param role_name string @the name of the role
 --- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
@@ -101,16 +111,19 @@ function schema.role.info(role_name) end
 --- @param object_name string @the name of a function or space or sequence or role.
 function schema.role.revoke(role_name, privilege, object_type, object_name) end
 
+---
 --- Create a space.
 --- @param space_name string @name of space, which should conform to the rules for object names
 --- @param options table @see “Options for box.schema.space.create” chart, below
 --- @return Space
 function schema.space.create(space_name, options) end
 
+---
 --- See Upgrading a Tarantool database:
 --- [https://www.tarantool.io/en/doc/latest/book/admin/upgrades/#admin-upgrades]
 function schema.upgrade() end
 
+---
 --- Create a user. For explanation of how Tarantool maintains user data, see section Users and reference on _user space.
 ---
 --- The possible options are:
@@ -127,11 +140,13 @@ function schema.upgrade() end
 --- @return nil
 function schema.user.create(user_name, options) end
 
+---
 --- Drop a user. For explanation of how Tarantool maintains user data, see section Users and reference on _user space.
 --- @param user_name @the name of the user
 --- @param options table @if_exists = true|false (default = false) - boolean; true means there should be no error if the user does not exist.
 function schema.user.drop(user_name, options) end
 
+---
 --- Return true if a user exists; return false if a user does not exist. For explanation of how Tarantool maintains
 --- user data, see section Users - [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication-users]
 --- and reference on _user space - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_user/#box-space-user].
@@ -139,6 +154,7 @@ function schema.user.drop(user_name, options) end
 --- @return boolean
 function schema.user.exists(user_name) end
 
+---
 --- Grant privileges to a user or to another role.
 --- @param user_name string @the name of the user.
 --- @param privileges string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
@@ -148,10 +164,12 @@ function schema.user.exists(user_name) end
 --- @param option table @if_not_exists = true|false (default = false) - boolean; true means there should be no error
 function schema.user.grant(user_name, privileges, object_type, object_name, role_name, option) end
 
+---
 --- Return a description of a user’s privileges.
 --- @param user_name string @the name of the user. This is optional; if it is not supplied, then the information will be for the user who is currently logged in.
 function schema.user.info(user_name) end
 
+---
 --- Associate a password with the user who is currently logged in, or with the user specified by user-name. The user must exist and must not be ‘guest’.
 ---
 --- Users who wish to change their own passwords should use box.schema.user.passwd(password) syntax.
@@ -161,11 +179,13 @@ function schema.user.info(user_name) end
 --- @param password string @password
 function schema.user.passwd(user_name, password) end
 
+---
 --- Return a hash of a user’s password. For explanation of how Tarantool maintains passwords - [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication-passwords],
 ---see section Passwords and reference on _user - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_user/#box-space-user] space.
 --- @param password string @password
 function schema.user.password(password) end
 
+---
 --- Revoke privileges from a user or from another role.
 --- @param user_name string @the name of the user
 --- @param privilege string @‘read’ or ‘write’ or ‘execute’ or ‘create’ or ‘alter’ or ‘drop’ or a combination.
@@ -179,6 +199,7 @@ function schema.user.revoke(user_name, privilege, object_type, object_name, opti
 --- @class Sequence
 local seqObject = {}
 
+---
 --- The alter() function can be used to change any of the sequence’s options. Requirements and restrictions are the
 --- same as for box.schema.sequence.create().
 --- Options:
@@ -209,6 +230,47 @@ local seqObject = {}
 --- @param options
 function seqObject:alter(options) end
 
+---
+--- Since version 2.4.1. Return the last retrieved value of the specified sequence or throw an error if no value has
+--- been generated yet (next() has not been called yet, or current() is called right after reset() is called).
+function seqObject:current() end
+
+---
+--- Drop an existing sequence.
+function seqObject:drop() end
+
+---
+--- Generate the next value and return it.
+---
+--- The generation algorithm is simple:
+---
+--- If this is the first time, then return the STARTS WITH value.
+---
+--- If the previous value plus the INCREMENT value is less than the MINIMUM value or greater than the MAXIMUM value,
+--- that is “overflow”, so either raise an error (if cycle = false) or return the MAXIMUM value (if cycle = true and step
+--- < 0) or return the MINIMUM value (if cycle = true and step > 0).
+function seqObject:next() end
+
+---
+--- Set the sequence back to its original state. The effect is that a subsequent next() will return the start value.
+--- This function requires a ‘write’ privilege on the sequence.
+function seqObject:reset() end
+
+---
+--- Set the “previous value” to new-previous-value. This function requires a ‘write’ privilege on the sequence.
+function seqObject:set() end
+
+---
+--- Create an index.
+---
+--- It is mandatory to create an index for a space before trying to insert tuples into it, or select tuples from it.
+--- The first created index will be used as the primary-key index, so it must be unique.
+--- @param space_object Space @ an object reference
+--- @param index_name string @ name of index, which should conform to the rules for object names
+--- @param options table @ see “Options for space_object:create_index()”, below
+function spaceObject:create_index(space_object, index_name, options) end
+
+---
 --- Create a new sequence generator.
 ---
 --- Return:
@@ -244,12 +306,12 @@ function seqObject:alter(options) end
 --- Ordinarily this is what is added to the previous value.
 --- @param name string @ the name of the sequence
 --- @param options table @ see a quick overview in the “Options for box.schema.sequence.create()” chart (in the Sequences section of the “Data model” chapter), and see more details below.
-function seqObject:create(name, options) end
+function schema.sequence.create(name, options) end
 
 
 
 --- @class Session
-
+--- @field storage @ A Lua table that can hold arbitrary unordered session-specific names and values, which will last until the session ends. For example, this table could be useful to store current tasks when working with a Tarantool queue manager - [https://github.com/tarantool/queue]
 session = {}
 
 --- @class IndexProto
@@ -269,6 +331,7 @@ index = {}
 
 backup = {}
 
+---
 --- Informs the server that activities related to the removal of outdated
 --- backups must be suspended.
 ---
@@ -287,10 +350,9 @@ backup = {}
 --- be copied
 --- @param n number
 --- @return table
-function backup.start(n)
-    n = 0
-end
+function backup.start(n) end
 
+---
 --- Informs the server that normal operations may resume.
 function backup.stop() end
 
@@ -298,13 +360,14 @@ function backup.stop() end
 
 ctl = {}
 
+---
 --- Check whether the recovery process has finished.
 --- Until it has finished, space changes such as insert or update are not possible.
 --- Return: true if recovery has finished, otherwise false
 --- @return boolean
 function ctl.is_recovery_finished() end
 
-
+---
 --- The box.ctl submodule also contains two functions for the two server trigger definitions:
 --- on_shutdown and on_schema_init. Please, familiarize yourself with the mechanism of trigger functions before using them.
 --- Create a “schema_init trigger”. The trigger-function will be executed when box.cfg{} happens for the first time.
@@ -322,7 +385,7 @@ function ctl.is_recovery_finished() end
 --- @return function_ptr|nil
 function ctl.on_schema_init(trigger_function, old_trigger_function) end
 
-
+---
 --- Create a “shutdown trigger”. The trigger-function will be executed whenever os.exit() happens,
 --- or when the server is shut down after receiving a SIGTERM or SIGINT or SIGHUP signal
 --- (but not after SIGSEGV or SIGABORT or any signal that causes immediate program termination).
@@ -338,7 +401,7 @@ function ctl.on_schema_init(trigger_function, old_trigger_function) end
 --- @return function_ptr|nil
 function ctl.on_shutdown(trigger_function, old_trigger_function) end
 
-
+---
 --- Wait, then choose new replication leader.
 ---
 --- For synchronous transactions it is possible that a new leader will be chosen but the
@@ -354,7 +417,7 @@ function ctl.on_shutdown(trigger_function, old_trigger_function) end
 ---@return function_ptr|nil
 function ctl.promote() end
 
-
+---
 --- Wait until box.info.ro is true.
 ---
 --- Parameters: timeout (number) – maximum number of seconds to wait
@@ -364,7 +427,7 @@ function ctl.promote() end
 --- @return Error|nil
 function ctl.wait_ro(number) end
 
-
+---
 --- Wait until box.info.ro is false.
 ---
 --- Parameters: timeout (number) – maximum number of seconds to wait
@@ -382,6 +445,7 @@ error = {}
 
 -- function box.error() end
 
+---
 --- Since version 2.4.1. Errors can be organized into lists. To achieve this, a Lua table representing an error object
 --- has .prev field and e:set_prev(err) method.
 ---
@@ -394,18 +458,22 @@ error = {}
 --- @field prev
 local errorObject = {}
 
+---
 --- Set an error as the previous error. Accepts an error object or nil.
 --- @param err Error|nil
 function errorObject:set_prev(err) end
 
+---
 --- Set an error as the previous error. Accepts an error object or nil.
 --- @param error_object Error
 function errorObject:set_prev(error_object) end
 
+---
 --- Clear the record of errors, so functions like box.error() or box.error.last()
 --- will have no effect.
 function error.clear() end
 
+---
 --- Return a description of the last error, as a Lua table with four members:
 ---
 --- “code” (number) error’s number
@@ -430,6 +498,7 @@ local errorLast = error.last()
 ---
 function errorLast:unpack() end
 
+---
 --- Create an error object, but not throw it as box.error() does.
 --- This is useful when error information should be saved for later retrieval. Since version 2.4.1,
 --- to set an error as the last explicitly use box.error.set().
@@ -442,6 +511,7 @@ function errorLast:unpack() end
 --- @param errtext string @part of the message which will accompany
 function error.new(code, errtext) end
 
+---
 --- Since version 2.4.1. Set an error  as the last system error explicitly.
 --- Accepts an error object and makes it available via box.error.last().
 --- @param errorObject Error
@@ -449,6 +519,7 @@ function error.set(errorObject) end
 
 -- SPACES
 
+---
 --- Box runtime spaces table
 --- @type Space[]
 space = {}
@@ -495,6 +566,7 @@ function spaceObject.create(name, options) end
 --- @return table
 function spaceObject:select(table) end
 
+---
 --- Returns number of bytes taken by this space
 --- @return number
 function spaceObject:bsize() end
@@ -545,6 +617,7 @@ function spaceObject:get(key) end
 --- @return table
 function spaceObject:insert(tuple) end
 
+---
 --- Total amount of tuples (not that in vinyl engine this does not work)
 --- @return number
 function spaceObject:len() end
@@ -557,6 +630,7 @@ function spaceObject:on_replace(trigger) end
 --- @return any
 function spaceObject:on_replace(trigger, oldTrigger) end
 
+---
 --- This is a template of on_replace or before_replace trigger
 --- If this function returns nothing, then proceed
 --- If this function returns old one - rollback
@@ -606,6 +680,7 @@ function spaceObject:select() end
 --- @return table
 function spaceObject:select(key) end
 
+---
 --- Delete all records
 function spaceObject:truncate() end
 
@@ -747,8 +822,7 @@ function roleObject.info(role_name) end
 
 --- @class FuncOptions
 --- @field if_not_exists boolean
---- @field setuid boolean @treat function caller as function creator (e.g. if this function was defined by 'admin', anybody,
---- who called this function will be treated like 'admin' user)
+--- @field setuid boolean @treat function caller as function creator (e.g. if this function was defined by 'admin', anybody, who called this function will be treated like 'admin' user)
 --- @field language string @either LUA or C
 local funcOptions = {}
 
@@ -776,21 +850,25 @@ function funcObject.drop(name, options) end
 --- @return boolean
 function funcObject.exists(name) end
 
+---
 --- This function reloads C module dynamically.
 function funcObject.reload() end
 
+---
 --- This function reloads C module dynamically.
 --- @param name string @module name
 function funcObject.reload(name) end
 
 -- SEQUENCE
 -- box sequence table
+
 --- @type Sequence[]
 sequence = {}
 
 --- @class SequenceProto
 local seq = {}
 
+---
 --- @class SequenceOptions
 --- @field start number @sequence starts from this number
 --- @field min number
@@ -800,71 +878,151 @@ local seq = {}
 --- @field step number @increment of the sequence
 local seqOptions = {}
 
+---
 --- @param name string
 --- @return Sequence
 function seq.create(name) end
 
+---
 --- @param name string
 --- @param options SequenceOptions
 --- @return Sequence
 function seq.create(name, options) end
 
---- Increment the sequence
-function seqObject:next() end
-
---- @param options SequenceOptions
-function seqObject:alter(options) end
-
-function seqObject:reset() end
-
---- @param newValue number @previous value, from where this sequence continues
-function seqObject:set(newValue) end
-
-function seqObject:drop() end
-
 -- SESSION
 
+---
 --- Returns current session ID number
---- @return number
+--- @return number @ the unique identifier (ID) for the current session. The result can be 0 or -1 meaning there is no session.
 function session.id() end
 
+---
 --- @param id number
---- @return number @(1 - true, 0 - false)
+--- @return number @ true if the session exists, false if the session does not exist
 function session.exists(id) end
 
+---
+--- Define a trigger for reacting to user’s attempts to execute actions that are not within the user’s privileges.
+---
+--- If the parameters are (nil, old-trigger-function), then the old trigger is deleted. If both parameters are omitted,
+--- then the response is a list of existing trigger functions. Details about trigger characteristics are in the triggers section.
+--- @param trigger_function function @ function which will become the trigger function
+--- @param old_trigger_function function @ existing trigger function which will be replaced by trigger-function
+--- @return nil|function_ptr
+function session.on_access_denied() end
+
+---
+--- This function works only if there is a peer, that is, if a connection has been made to a separate Tarantool instance.
 --- @param id number
---- @return string @peer connection string
+--- @return string @ The host address and port of the session peer, for example “127.0.0.1:55457”. If the session exists but there is no connection to a separate instance, the return is null. The command is executed on the server instance, so the “local name” is the server instance’s host and port, and the “peer name” is the client’s host and port.
 function session.peer(id) end
 
---- @return number
+---
+--- Generate an out-of-band message. By “out-of-band” we mean an extra message which supplements what is passed in a
+--- network via the usual channels. Although box.session.push() can be called at any time, in practice it is used with
+--- networks that are set up with module net.box, and it is invoked by the server (on the “remote database system” to use
+--- our terminology for net.box), and the client has options for getting such messages.
+---
+--- This function returns an error if the session is disconnected.
+--- @param message @ what to send
+--- @param sync integer @ an optional argument to indicate what the session is, as taken from an earlier call to box.session.sync(). If it is omitted, the default is the current box.session.sync() value. In Tarantool version 2.4.2, sync is deprecated and its use will cause a warning. Since version 2.5.1, its use will cause an error.
+--- @return ( nil, Error| boolean) @ If the result is an error, then the first part of the return is nil and the second part is the error object. If the result is not an error, then the return is the boolean value true. When the return is true, the message has gone to the network buffer as a packet with a different header code so the client can distinguish from an ordinary Okay response.
+function session.push(id) end
+
+---
+--- This function is local for the request, i.e. not global for the session. If the connection behind the session is
+--- multiplexed, this function can be safely used inside the request processor.
+--- @return number @ the value of the sync integer constant used in the binary protocol. This value becomes invalid when the session is disconnected.
 function session.sync() end
 
---- @return string @current user name
+---
+--- @return string @ the name of the current user
 function session.user() end
 
---- Retrieves current session type (binary, console, repl, applier, background, etc..)
---- @return string
+---
+--- Possible return values are:
+---
+--- ‘binary’ if the connection was done via the binary protocol, for example to a target made with box.cfg{listen=…};
+---
+--- ‘console’ if the connection was done via the administrative console, for example to a target made with console.listen;
+---
+--- ‘repl’ if the connection was done directly, for example when using Tarantool as a client;
+---
+--- ‘applier’ if the action is due to replication, regardless of how the connection was done;
+---
+--- ‘background’ if the action is in a background fiber, regardless of whether the Tarantool server was started in the background.
+---
+--- box.session.type() is useful for an on_replace() trigger on a replica – the value will be ‘applier’ if and only if
+--- the trigger was activated because of a request that was done on the master.
+--- @return string @ the type of connection or cause of action.
 function session.type() end
 
---- Acts like SUDO
---- @param username string
---- @param func any
---- @return number @id of the current user
-function session.su(username, func) end
+---
+--- Every user has a unique name (seen with box.session.user()) and a unique ID (seen with box.session.uid()).
+--- The values are stored together in the _user space
+--- @return number @ the user ID of the current user.
+function session.uid() end
 
---- Acts like SU (switch user)
---- @param username string
+---
+--- Change Tarantool’s current user – this is analogous to the Unix command su.
+---
+--- Or, if function-to-execute is specified, change Tarantool’s current user temporarily while executing the function –
+--- this is analogous to the Unix command sudo.
+--- @param user_name string @ name of a target user
+--- @param function_to_execute any @ name of a function, or definition of a function. Additional parameters may be passed to box.session.su, they will be interpreted as parameters of function-to-execute.
 --- @return number @id of the current user
-function session.su(username) end
+function session.su(user_name, function_to_execute) end
 
---- @return string @effective ID of the current user
+---
+--- This is the same as box.session.uid(), except in two cases:
+---
+--- The first case: if the call to box.session.euid() is within a function invoked by box.session.su(user-name,
+--- function-to-execute) – in that case, box.session.euid() returns the ID of the changed user (the user who is specified
+--- by the user-name parameter of the su function) but box.session.uid() returns the ID of the original user
+--- (the user who is calling the su function).
+---
+--- The second case: if the call to box.session.euid() is within a function specified with
+--- box.schema.func.create(function-name, {setuid= true}) and the binary protocol is in use – in that case, box.session.euid()
+--- returns the ID of the user who created “function-name” but box.session.uid() returns the ID of the the user who is calling “function-name”.
+--- @return string @ the effective user ID of the current user.
 function session.euid() end
 
-function session.on_connect(trigger) end
+---
+--- Define a trigger for execution when a new session is created due to an event such as console.connect. The trigger
+--- function will be the first thing executed after a new session is created. If the trigger execution fails and raises
+--- an error, the error is sent to the client and the connection is closed.
+--- @param trigger_function function @ function which will become the trigger function
+--- @param old_trigger_function function @  existing trigger function which will be replaced by trigger-function
+--- @return nil|function_ptr
 function session.on_connect(trigger, old_trigger) end
-function session.on_disconnect(trigger) end
+
+---
+--- Define a trigger for execution after a client has disconnected. If the trigger function causes an error, the error
+--- is logged but otherwise is ignored. The trigger is invoked while the session associated with the client still exists
+--- and can access session properties, such as box.session.id().
+---
+--- Since version 1.10, the trigger function is invoked immediately after the disconnect, even if requests that were made
+--- during the session have not finished.
+--- @param trigger_function function @ function which will become the trigger function
+--- @param old_trigger_function function @ existing trigger function which will be replaced by trigger-function
+--- @return nil|function_ptr
 function session.on_disconnect(trigger, old_trigger) end
-function session.on_auth(trigger) end
+
+---
+--- Define a trigger for execution during authentication.
+---
+--- The on_auth trigger function is invoked in these circumstances:
+--- The console.connect function includes an authentication check for all users except ‘guest’. For this case, the
+--- on_auth trigger function is invoked after the on_connect trigger function, if and only if the connection has succeeded so far.
+--- The binary protocol has a separate authentication packet. For this case, connection and authentication are considered
+--- to be separate steps.
+--- Unlike other trigger types, on_auth trigger functions are invoked before the event. Therefore a trigger function
+--- like function auth_function () v = box.session.user(); end will set v to “guest”, the user name before the authentication is done. To get the user name after the authentication is done, use the special syntax: function auth_function (user_name) v = user_name; end
+---
+--- If the trigger fails by raising an error, the error is sent to the client and the connection is closed.
+--- @param trigger_function function @ function which will become the trigger function
+--- @param old_trigger_function function @ existing trigger function which will be replaced by trigger-function
+--- @return nil|function_ptr
 function session.on_auth(trigger, old_trigger) end
 
 -- INDICES
@@ -882,6 +1040,7 @@ local indexSearch = {}
 -- @return iterator
 -- function indexObj:pairs(key) end
 
+---
 --- Search for a tuple or a set of tuples via the given index, and allow iterating over one tuple at a time.
 ---
 --- The key parameter specifies what must match within the index.
@@ -890,6 +1049,7 @@ local indexSearch = {}
 --- @return Iterator @ iterator which can be used in a for/end loop or with totable()
 function indexObj:pairs(key, iterator) end
 
+---
 --- This is an alternative to box.space…select() which goes via a particular index and can make use of additional
 --- parameters that specify the iterator type, and the limit, and the offset.
 --- @param key scalar|table @ values to be matched against the index key
@@ -897,21 +1057,25 @@ function indexObj:pairs(key, iterator) end
 --- @return tuple @ the tuple or tuples that match the field values.
 function indexObj:select(key, options) end
 
+---
 --- Search for a tuple via the given index, as described earlier.
 --- @param key scalar|table @ values to be matched against the index key
 --- @return tuple @ the tuple whose index-key fields are equal to the passed key values.
 function indexObj:get(key) end
 
+---
 --- Find the minimum value in the specified index.
 --- @param key scalar|table @ values to be matched against the index key
 --- @return tuple @ the tuple for the first key in the index. If the optional key value is supplied, returns the first key that is greater than or equal to key. Starting with Tarantool 2.0.4, index_object:min(key) returns nothing if key doesn’t match any value in the index.
 function indexObj:min(key) end
 
+---
 --- Find the maximum value in the specified index.
 --- @param key scalar|table @ values to be matched against the index key
 --- @return tuple @the tuple for the last key in the index. If the optional key value is supplied, returns the last key that is less than or equal to key. Starting with Tarantool 2.0.4, index_object:max(key) returns nothing if key doesn’t match any value in the index.
 function indexObj:max(key) end
 
+---
 --- Find a random value in the specified index. This method is useful when it’s important to get insight
 --- into data distribution in an index without having to iterate over the entire data set.
 ---
@@ -922,12 +1086,14 @@ function indexObj:max(key) end
 --- @return tuple @ the tuple for the random key in the index.
 function indexObj:random(seed) end
 
+---
 --- Iterate over an index, counting the number of tuples which match the key-value.
 --- @param key scalar|table @ values to be matched against the index key
 --- @param iterator Iterator @ comparison method
 --- @return number @ the number of matching tuples.
 function indexObj:count(key, iterator) end
 
+---
 --- Update a tuple.
 ---
 --- Same as box.space…update(), but key is searched in this index instead of primary key. This index should be unique.
@@ -952,6 +1118,7 @@ function indexObj:update(key, operator, field_identifier, value) end
 -- @param any_name @ whatever the user defines
 -- function indexObj:user_defined(key) end
 
+---
 --- Delete a tuple identified by a key.
 ---
 --- Same as box.space…delete(), but key is searched in this index instead of in the primary-key index.
@@ -960,6 +1127,7 @@ function indexObj:update(key, operator, field_identifier, value) end
 --- @return tuple @ the deleted tuple.
 function indexObj:delete(key) end
 
+---
 --- Alter options. Vinyl engine does not support this function.
 ---
 --- Alter an index. It is legal in some circumstances to change one or more of the index characteristics,
@@ -970,27 +1138,32 @@ function indexObj:delete(key) end
 function indexObj:alter(index_object, options) end
 -- was: @param options IndexOptions changed to:
 
+---
 --- Drop an index. Dropping a primary-key index has
 --- a side effect: all tuples are delete
 --- @return nil
 function indexObj:drop() end
 
+---
 --- Rename an index.
 --- @param new_name string @ new name for index
 --- @return nil
 function indexObj:rename(new_name) end
 
+---
 --- Returns number of bytes taken by this index.
 --- @return number
 function indexObj:bsize() end
 
 -- << Added indexObj functions
 
+---
 --- An array describing the index fields. To learn more about the index field types,
 --- refer to this table: https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/create_index/#box-space-index-field-types
 --- @return table
 function indexObj:parts() end
 
+---
 --- Remove unused index space. For the memtx storage engine this method does nothing;
 --- index_object:compact() is only for the vinyl storage engine. For example, with vinyl,
 --- if a tuple is deleted, the space is not immediately reclaimed. There is a scheduler for
@@ -1001,6 +1174,7 @@ function indexObj:parts() end
 --- @return nil
 function indexObj:compact() end
 
+---
 --- Return statistics about actions taken that affect the index.
 ---
 --- This is for use with the vinyl engine.
@@ -1042,6 +1216,8 @@ function indexObj:stat() end
 
 -- UTILITY
 
+---
+--- Since box.info contents are dynamic, it’s not possible to iterate over keys with the Lua pairs() function. For this purpose, box.info() builds and returns a Lua table with all keys and values provided in the submodule.
 --- @class BoxInfo
 --- @field version string @ tarantool version
 --- @field id string @same as replication id
@@ -1072,6 +1248,7 @@ local boxinfo = {}
 --- @field tx number @ number of bytes in use by active transactions. For the vinyl storage engine, this is the total size of all allocated objects (struct txv, struct vy_tx, struct vy_read_interval) and tuples pinned for those objects.
 local boxinfomemory = {}
 
+---
 --- This function gives the admin user a picture of the whole Tarantool instance.
 --- @field cache number @number of bytes used for caching user data. The memtx storage engine does not require a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine.
 --- @field data number @number of bytes used for storing user data (the tuples) with the memtx engine and with level 0 of the vinyl engine, without taking memory fragmentation into account.
@@ -1086,6 +1263,7 @@ function info.memory() end
 
 info = {}
 
+---
 --- Since version 2.6.1. Show the current state of a replica set node in regards to leader election.
 ---
 --- The following information is provided:
@@ -1101,6 +1279,7 @@ info = {}
 --- IDs in the box.info.election output are the replica IDs visible in the box.info.id output on each node and in the _cluster space.
 info.election = {}
 
+---
 --- Since version 2.4.1. Return a real address to which an instance was bound. For example, if box.cfg{listen} was set with a zero port, box.info.listen will show a real port. The address is stored as a string:
 ---
 --- unix/:<path> for UNIX domain sockets
@@ -1112,30 +1291,48 @@ info.election = {}
 --- If an instance does not listen to anything, box.info.listen is nil.
 info.listen = {}
 
+-- classes
+
+---
 --- The replication section of box.info() is a table array with statistics for all instances in the replica set that
 --- the current instance belongs to (see also “Monitoring a replica set”):
 ---
 --- In the following, n is the index number of one table item, for example replication[1], which has data about server instance
 --- number 1, which may or may not be the same as the current instance (the “current instance” is what is responding to box.info).
-info.replication = {}
-
+--- @class Replication
 --- @field id @ is a short numeric identifier of instance n within the replica set. This value is stored in the box.space._cluster system space.
 --- @field uuid @ is a globally unique identifier of instance n. This value is stored in the box.space._cluster system space
 --- @field lsn @ is the log sequence number (LSN) for the latest entry in instance n’s write ahead log (WAL).
 --- @field upstream @ appears (is not nil) if the current instance is following or intending to follow instance n, which ordinarily means replication[n].upstream.status = follow, replication[n].upstream.peer = url of instance n which is being followed, replication[n].lag and idle = the instance’s speed, described later. Another way to say this is: replication[n].upstream will appear when replication[n].upstream.peer is not of the current instance, and is not read-only, and was specified in box.cfg{replication={...}}, so it is shown in box.cfg.replication.
---- @field upstream.status @ is the replication status of the connection with instance n: * auth means that authentication is happening. * connecting means that connection is happening. * disconnected means that it is not connected to the replica set (due to network problems, not replication errors). * follow means that the current instance’s role is “replica” (read-only, or not read-only but acting as a replica for this remote peer in a master-master configuration), and is receiving or able to receive data from instance n’s (upstream) master. * stopped means that replication was stopped due to a replication error (for example duplicate key). * sync means that the master and replica are synchronizing to have the same data.
---- @field upstream.idle @ is the time (in seconds) since the last event was received. This is the primary indicator of replication health. See more in Monitoring a replica set.
---- @field upstream.peer @ contains instance n’s URI for example 127.0.0.1:3302. See more in Monitoring a replica set.
---- @field upstream.lag @ is the time difference between the local time of instance n, recorded when the event was received, and the local time at another master recorded when the event was written to the write ahead log on that master. See more in Monitoring a replica set.
---- @field upstream.message @ contains an error message in case of a degraded state, otherwise it is nil.
 --- @field downstream @ appears (is not nil) with data about an instance that is following instance n or is intending to follow it, which ordinarily means replication[n].downstream.status = follow,
---- @field downstream.vclock @ contains the vector clock, which is a table of ‘id, lsn’ pairs, for example vclock: {1: 3054773, 4: 8938827, 3: 285902018}. (Notice that the table may have multiple pairs although vclock is a singular name).
---- @field downstream.idle @ is the time (in seconds) since the last time that instance n sent events through the downstream replication.
---- @field downstream.status @ is the replication status for downstream replications: * stopped means that downstream replication has stopped, * follow means that downstream replication is in progress (instance n is ready to accept data from the master or is currently doing so).
---- @field downstream.message @ will be nil unless a problem occurs with the connection. For example, if instance n goes down, then one may see status = 'stopped', message = 'unexpected EOF when reading from socket', and system_message = 'Broken pipe'. See also degraded state.
---- @field downstream.system_message
-info.replication[n] = {}
+local replicationObj = {}
 
+--- @type Replication[]
+info.replication = {}
+
+--- @class Replication_Downstream
+--- @field vclock @ contains the vector clock, which is a table of ‘id, lsn’ pairs, for example vclock: {1: 3054773, 4: 8938827, 3: 285902018}. (Notice that the table may have multiple pairs although vclock is a singular name).
+--- @field idle @ is the time (in seconds) since the last time that instance n sent events through the downstream replication.
+--- @field status @ is the replication status for downstream replications: * stopped means that downstream replication has stopped, * follow means that downstream replication is in progress (instance n is ready to accept data from the master or is currently doing so).
+--- @field message @ will be nil unless a problem occurs with the connection. For example, if instance n goes down, then one may see status = 'stopped', message = 'unexpected EOF when reading from socket', and system_message = 'Broken pipe'. See also degraded state.
+--- @field system_message
+local repObj_downstream = {}
+
+--- @type Replication_Downstream
+info.replication[number].downstream = {}
+
+--- @class Replication_Upstream
+--- @field status @ is the replication status of the connection with instance n: * auth means that authentication is happening. * connecting means that connection is happening. * disconnected means that it is not connected to the replica set (due to network problems, not replication errors). * follow means that the current instance’s role is “replica” (read-only, or not read-only but acting as a replica for this remote peer in a master-master configuration), and is receiving or able to receive data from instance n’s (upstream) master. * stopped means that replication was stopped due to a replication error (for example duplicate key). * sync means that the master and replica are synchronizing to have the same data.
+--- @field idle @ is the time (in seconds) since the last event was received. This is the primary indicator of replication health. See more in Monitoring a replica set.
+--- @field peer @ contains instance n’s URI for example 127.0.0.1:3302. See more in Monitoring a replica set.
+--- @field lag @ is the time difference between the local time of instance n, recorded when the event was received, and the local time at another master recorded when the event was written to the write ahead log on that master. See more in Monitoring a replica set.
+--- @field message @ contains an error message in case of a degraded state, otherwise it is nil.
+local repObj_upstream = {}
+
+--- @type Replication_Upstream
+info.replication[number].upstream = {}
+
+---
 --- The gc function of box.info gives the admin user a picture of the factors that affect the Tarantool
 --- garbage collector. The garbage collector compares vclock (vector clock) values of users and checkpoints,
 --- garbage collector. The garbage collector compares vclock (vector clock) values of users and checkpoints,
@@ -1159,27 +1356,35 @@ info.replication[n] = {}
 --- gc().signature @the sum of the garbage collector’s checkpoint’s components.
 function info.gc() end
 
+---
 --- a list of users whose requests might affect the garbage collector.
 info.gc().consumers = {}
 
+---
 --- a list of preserved checkpoints.
 info.gc().checkpoints = {}
 
+---
 --- a list of references to a checkpoint.
 info.gc().checkpoints[n].references = {}
 
+---
 --- a checkpoint's vclock value.
 info.gc().checkpoints[n].vclock = {}
 
+---
 --- a sum of a checkpoint's vclock's components..
 info.gc().checkpoints[n].signature = {}
 
+---
 --- true if a checkpoint is in progress, otherwise false
 info.gc().checkpoint_is_in_progress = {}
 
+---
 --- the garbage collector's vclock.
 info.gc().vclock = {}
 
+---
 --- the sum of the garbage collector's checkpoint's components.
 info.gc().signature = {}
 
@@ -1189,11 +1394,13 @@ info.gc().signature = {}
 -- @type BoxInfo
 --info = {}
 
+---
 --- Since box.info contents are dynamic, it’s not possible to iterate over keys with the Lua pairs() function.
 --- For this purpose, box.info() builds and returns a Lua table with all keys and values provided in the submodule.
 --- @return table @ keys and values in the submodule
 function box.info() end
 
+---
 --- List all the anonymous replicas following the instance.
 ---
 --- The output is similar to the one produced by box.info.replication with an exception that anonymous replicas
@@ -1247,8 +1454,16 @@ function info.replication_anon() end
 --- @field too_long_threshold number
 --- @field log_format string @plain or json
 
+---
+---The box.cfg submodule is used for specifying server configuration parameters.
+---
+---To view the current configuration, say box.cfg without braces:
 cfg = {}
 
+---
+---The box.cfg submodule is used for specifying server configuration parameters.
+---
+---To view the current configuration, say box.cfg without braces:
 --- @param newConfig Config
 function cfg(newConfig) end
 
@@ -1328,10 +1543,26 @@ function savepoint() end
 --- @param sp table @savepoint
 function rollback_to_savepoint(sp) end
 
+-- box.runtime [
+
+runtime = {}
+
+---
+--- Show runtime memory usage report in bytes.
+---
+--- The runtime memory encompasses internal Lua memory as well as the runtime arena. The Lua memory stores Lua objects.
+--- The runtime arena stores Tarantool-specific objects – for example, runtime tuples, network buffers and other objects
+--- associated with the application server subsystem.
+--- @return table @ {lua - is the size of the Lua heap that is controlled by the Lua garbage collector , maxalloc - is the maximum size of the runtime memory , used - is the current number of bytes used by the runtime memory}
+function runtime.info() end
+
+-- ]
+
 -- added functions:
 
 -- from error:
 
+---
 --- Throw an error. This method emulates a request error, with text based on one of
 --- the pre-defined Tarantool errors defined in the file errcode.h in the source tree. Lua
 --- constants which correspond to those Tarantool errors are defined as members of box.error,
@@ -1347,6 +1578,7 @@ function rollback_to_savepoint(sp) end
 --- @param errtext string
 function box.error(code, errtext) end
 
+---
 --- Execute function as a transaction (explicit box.begin/commit, implicit box.rollback)
 --- @param func fun(...):any
 --- @param ... any
