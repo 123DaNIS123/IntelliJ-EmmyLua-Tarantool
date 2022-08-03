@@ -526,6 +526,8 @@ local spacesTable = {}
 
 -- box_space [
 
+space = {}
+
 ---
 --- _ck_constraint is a system space where check constraints are stored.
 ---
