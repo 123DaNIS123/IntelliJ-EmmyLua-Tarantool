@@ -305,6 +305,10 @@ function schema.sequence.create(name, options) end
 --- @field storage @ A Lua table that can hold arbitrary unordered session-specific names and values, which will last until the session ends. For example, this table could be useful to store current tasks when working with a Tarantool queue manager - [https://github.com/tarantool/queue]
 session = {}
 
+---
+--- The box.index submodule provides read-only access for index definitions and index keys. Indexes are contained
+--- in box.space.space-name.index array within each space object. They provide an API for ordered iteration over tuples.
+--- This API is a direct binding to corresponding methods of index objects of type box.index in the storage engine.
 --- @class IndexProto
 --- @field EQ string
 --- @field REQ string
@@ -431,6 +435,10 @@ function ctl.wait_rw(number) end
 
 -- box.error
 
+---
+--- The box.error function is for raising an error. The difference between this function and Lua’s built-in error
+--- function is that when the error reaches the client, its error code is preserved. In contrast, a Lua error would
+--- always be presented to the client as ER_PROC_LUA.
 error = {}
 
 
@@ -1588,7 +1596,11 @@ function info.memory() end
 
 -- box.info
 
+--- @field election
+--- @field listen
+--- @type BoxInfo
 info = {}
+
 
 ---
 --- Since version 2.6.1. Show the current state of a replica set node in regards to leader election.
@@ -1659,6 +1671,15 @@ local repObj_upstream = {}
 --- @type Replication_Upstream
 info.replication[number].upstream = {}
 
+--- @class ClusterUUID
+--- @field uuid
+--- is the UUID of the replica set. Every instance in a replica set will have the same cluster.uuid value.
+---This value is also stored in box.space._schema system space.
+local boxinfo_clusteruuid = {}
+
+--- @type ClusterUUID
+info.cluster = {}
+
 ---
 --- The gc function of box.info gives the admin user a picture of the factors that affect the Tarantool
 --- garbage collector. The garbage collector compares vclock (vector clock) values of users and checkpoints,
@@ -1714,12 +1735,6 @@ info.gc().vclock = {}
 ---
 --- the sum of the garbage collector's checkpoint's components.
 info.gc().signature = {}
-
--- @class Info
--- @field election
--- @field listen
--- @type BoxInfo
---info = {}
 
 ---
 --- Since box.info contents are dynamic, it’s not possible to iterate over keys with the Lua pairs() function.
@@ -1785,7 +1800,7 @@ function info.replication_anon() end
 ---The box.cfg submodule is used for specifying server configuration parameters.
 ---
 ---To view the current configuration, say box.cfg without braces:
-cfg = {}
+box.cfg = {}
 
 ---
 ---The box.cfg submodule is used for specifying server configuration parameters.
@@ -1799,75 +1814,212 @@ function cfg(newConfig) end
 --- @class Tuple
 tuple = {}
 
---- @param value table
+---
+--- Construct a new tuple from either a scalar or a Lua table. Alternatively, one can get new tuples from Tarantool’s
+--- select or insert or replace or update requests, which can be regarded as statements that do new() implicitly.
+--- @param value @ the value that will become the tuple contents.
 --- @return TupleObject
 function tuple.new(value) end
+
+---
+--- Since versions 2.2.3, 2.3.2, and 2.4.1. A function to check whether a given object is a tuple cdata object. Never raises nor returns an error.
+--- @param object
+--- @return boolean @ true or false
+function tuple.is(object) end
 
 --- @class TupleObject
 local tupleObject = {}
 
+---
+--- If t is a tuple instance, t:bsize() will return the number of bytes in the tuple. With both the memtx storage engine
+--- and the vinyl storage engine the default maximum is one megabyte (memtx_max_tuple_size or vinyl_max_tuple_size).
+--- Every field has one or more “length” bytes preceding the actual contents, so bsize() returns a value which is slightly
+--- greater than the sum of the lengths of the contents.
+---
+--- The value does not include the size of “struct tuple” (for the current size of this structure look in the tuple.h file in Tarantool’s source code).
 --- @return number
 function tupleObject:bsize() end
 
---- @param searchValue table
---- @param ... table
+---
+--- If t is a tuple instance, t:find(search-value) will return the number of the first field in t that matches the
+--- search value, and t:findall(search-value [, search-value ...]) will return numbers of all fields in t that match
+--- the search value. Optionally one can put a numeric argument field-number before the search-value to indicate “start
+--- searching at field number field-number.”
+--- @param field_number number
+--- @param search_value
 --- @return number
-function tupleObject:find(searchValue, ...) end
+function tupleObject:find(field_number, search_value) end
 
---- @param fieldOffset number
---- @param searchValue table
+---
+--- If t is a tuple instance, t:find(search-value) will return the number of the first field in t that matches the
+--- search value, and t:findall(search-value [, search-value ...]) will return numbers of all fields in t that match the
+--- search value. Optionally one can put a numeric argument field-number before the search-value to indicate “start
+--- searching at field number field-number.”
+--- @param field_number number
+--- @param search_value
 --- @return number
-function tupleObject:find(fieldOffset, searchValue, ...) end
---- @param searchValue table
---- @param ... table
---- @return number
-function tupleObject:findall(searchValue, ...) end
---- @param fieldOffset number
---- @param searchValue table
---- @return number
-function tupleObject:findall(fieldOffset, searchValue, ...) end
+function tupleObject:findall(field_number, search_value) end
 
---- @param startno number
---- @param endno number
---- @return any
-function tupleObject:unpack(startno, endno) end
+---
+--- If t is a tuple instance, t:unpack() will return all fields, t:unpack(1) will return all fields starting with field
+--- number 1, t:unpack(1,5) will return all fields between field number 1 and field number 5.
+--- @param start_field_number
+--- @param end_field_number
+--- @return lua_value @ field(s) from the tuple.
+function tupleObject:unpack(start_field_number, end_field_number) end
 
---- @param startno number
---- @return any
-function tupleObject:unpack(startno) end
+---
+--- If t is a tuple instance, t:totable() will return all fields, t:totable(1) will return all fields starting with
+--- field number 1, t:totable(1,5) will return all fields between field number 1 and field number 5.
+---
+--- It is preferable to use t:totable() rather than t:unpack().
+--- @param start_field_number
+--- @param end_field_number
+--- @return table @ field(s) from the tuple
+function tupleObject:totable(start_field_number, end_field_number) end
 
---- @return any
-function tupleObject:unpack() end
+---
+--- A Lua table can have indexed values, also called key:value pairs. For example, here:
+---
+--- a = {}; a['field1'] = 10; a['field2'] = 20
+---
+--- a is a table with “field1: 10” and “field2: 20”.
+---
+--- The tuple_object:totable() function only returns a table containing the values. But the tuple_object:tomap() function returns a table containing not only the values, but also the key:value pairs.
+---
+--- This only works if the tuple comes from a space that has been formatted with a format clause.
+--- @param options
+--- @return table @ field-number:value pair(s) and key:value pair(s) from the tuple
+function tupleObject:tomap(options) end
 
---- @param startno number
---- @param endno number
---- @return table
-function tupleObject:totable(startno, endno) end
+---@class lua_value
 
---- @param startno number
---- @return table
-function tupleObject:totable(startno) end
-
---- @return table
-function tupleObject:totable() end
-
---- @return table
-function tupleObject:tomap() end
-
---- @return iterator
+---
+--- In Lua, lua-table-value:pairs() is a method which returns: function, lua-table-value, nil. Tarantool has extended
+--- this so that tuple-value:pairs() returns: function, tuple-value, nil. It is useful for Lua iterators, because Lua
+--- iterators traverse a value’s components until an end marker is reached.
+---
+--- tuple_object:ipairs() is the same as pairs(), because tuple fields are always integers.
+--- @return function, lua_value, nil
 function tupleObject:pairs() end
 
---- @param updates table
-function tupleObject:update(updates) end
+---
+--- In Lua, lua-table-value:pairs() is a method which returns: function, lua-table-value, nil. Tarantool has extended
+--- this so that tuple-value:pairs() returns: function, tuple-value, nil. It is useful for Lua iterators, because Lua
+--- iterators traverse a value’s components until an end marker is reached.
+---
+--- tuple_object:ipairs() is the same as pairs(), because tuple fields are always integers.
+--- @return function, lua_value, nil
+function tupleObject:ipairs() end
 
+---
+--- Update a tuple.
+---
+--- This function updates a tuple which is not in a space. Compare the function
+--- box.space.space-name:update(key, {{format, field_no, value}, ...}) which updates a tuple in a space.
+---
+--- For details: see the description for operator, field_no, and value in the section
+--- box.space.space-name:update{key, format, {field_number, value}…).
+---
+--- If the original tuple comes from a space that has been formatted with a format clause, the formatting will be preserved for the result tuple.
+--- @param operator string @ operation type represented in string (e.g. ‘=’ for ‘assign new value’)
+--- @param field_no number @  what field the operation will apply to. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)
+--- @param value lua_value
+--- @return tuple @ new tuple
+function tupleObject:update(operator, filed_no, value) end
+
+--- @class field_type
+
+---
+--- An analogue of the Lua next() function, but for a tuple object. When called without arguments, tuple:next() returns
+--- the first field from a tuple. Otherwise, it returns the field next to the indicated position.
+---
+--- However tuple:next() is not really efficient, and it is better to use tuple:pairs()/ipairs().
+--- @param tuple
+--- @param pos
+--- @return number, field_type @ field number and field value
+function tupleObject:next(tuple, pos) end
+
+---
+--- If t is a tuple instance, t:transform(start-field-number,fields-to-remove) will return a tuple where, starting from
+--- field start-field-number, a number of fields (fields-to-remove) are removed. Optionally one can add more arguments
+--- after fields-to-remove to indicate new values that will replace what was removed.
+---
+--- If the original tuple comes from a space that has been formatted with a format clause, the formatting will not be
+--- preserved for the result tuple.
+--- @param start_field_number integer @ base 1, may be negative
+--- @param fields_to_remove integer
+--- @param field_value
+--- @return tuple
+function tupleObject:transform(start_field_number, fields_to_remove, field_value) end
+
+---
+--- The same as tuple_object:update(), but ignores errors. In case of an error the tuple is left intact, but an error
+--- message is printed. Only client errors are ignored, such as a bad field type, or wrong field index/name.
+--- System errors, such as OOM, are not ignored and raised just like with a normal update(). Note that only bad
+--- operations are ignored. All correct operations are applied.
+--- @param operator string @ operation type represented in string (e.g. ‘=’ for ‘assign new value’)
+--- @param field_no number @ what field the operation will apply to. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)
+--- @param value lua_value
+--- @return tuple @ new tuple
+function tupleObject:upsert(operator, filed_no, value) end
 -- FUNCTIONS
 
-function begin() end
+---
+--- Begin the transaction. Disable implicit yields until the transaction ends. Signal that writes to the write-ahead
+--- log will be deferred until the transaction ends. In effect the fiber which executes box.begin() is starting an
+--- “active multi-request transaction”, blocking all other fibers.
+--- @param txn_isolation @ transaction isolation level
+function begin(txn_isolation) end
+
+---
+--- End the transaction, and make all its data-change operations permanent.
 function commit() end
+
+---
+--- If a transaction is in progress (for example the user has called box.begin() and has not yet called either
+--- box.commit() or box.rollback(), return true. Otherwise return false.
+function is_in_txn() end
+
+---
+--- Define a trigger for execution when a transaction ends due to an event such as box.commit().
+---
+--- The trigger function may take an iterator parameter, as described in an example for this section.
+---
+--- The trigger function should not access any database spaces.
+---
+--- If the trigger execution fails and raises an error, the effect is severe and should be avoided – use Lua’s pcall() mechanism around code that might fail.
+---
+--- box.on_commit() must be invoked within a transaction, and the trigger ceases to exist when the transaction ends.
+--- @param trigger_function function @ function which will become the trigger function
+--- @param old_trigger_function function @ existing trigger function which will be replaced by trigger-function
+--- @return nil|function_ptr
+function on_commit(trigger_function, old_trigger_function) end
+
+
+---
+--- End the transaction, but cancel all its data-change operations. An explicit call to functions outside box.space
+--- that always yield, such as fiber.sleep() or fiber.yield(), will have the same effect.
 function rollback() end
---- @return table
+
+---
+--- Define a trigger for execution when a transaction ends due to an event such as box.rollback().
+---
+--- The parameters and warnings are exactly the same as for box.on_commit().
+--- @param trigger_function function
+--- @param old_trigger_function function
+function on_rollback(trigger_function, old_trigger_function) end
+
+---
+--- Return a descriptor of a savepoint (type = table), which can be used later by box.rollback_to_savepoint(savepoint).
+--- Savepoints can only be created while a transaction is active, and they are destroyed when a transaction ends.
+--- @return table|Error @ savepoint table; error if the savepoint cannot be set in absence of active transactio
 function savepoint() end
---- @param sp table @savepoint
+
+---
+--- Do not end the transaction, but cancel all its data-change and box.savepoint() operations that were done after the specified savepoint.
+--- @param savepoint table @savepoint
+--- @return Error @ error if the savepoint cannot be set in absence of active transaction.
 function rollback_to_savepoint(sp) end
 
 -- box_slab box.runtime [
@@ -1938,14 +2090,15 @@ function slab.stats() end
 --- When called without arguments, box.error() re-throws whatever the last error was.
 --- @param code number
 --- @param errtext string
-function box.error(code, errtext) end
+function error(code, errtext) end
 
 ---
---- Execute function as a transaction (explicit box.begin/commit, implicit box.rollback)
---- @param func fun(...):any
---- @param ... any
---- @return any
-function atomic(func, ...) end
+--- Execute a function, acting as if the function starts with an implicit box.begin() and ends with an implicit
+--- box.commit() if successful, or ends with an implicit box.rollback() if there is an error.
+--- @param tx_function function
+--- @param function_arguments any
+--- @return any @ the result of the function passed to atomic() as an argument.
+function atomic(tx_function, function_arguments) end
 
 -- SQL
 
