@@ -522,7 +522,231 @@ function error.set(errorObject) end
 ---
 --- Box runtime spaces table
 --- @type Space[]
-space = {}
+local spacesTable = {}
+
+-- box_space [
+
+---
+--- _ck_constraint is a system space where check constraints are stored.
+---
+--- Tuples in this space contain the following fields:
+---
+--- * the numeric id of the space (“space_id”),
+---
+--- * the name,
+---
+--- * whether the check is deferred (“is_deferred”),
+---
+--- * the language of the expression, such as ‘SQL’,
+---
+--- * the expression (“code”)
+--- @type Space
+space._ck_constraint = {}
+
+---
+--- _cluster is a system space for support of the replication feature.
+--- @type Space
+space._cluster = {}
+
+---
+--- _collation is a system space with a list of collations. There are over 270 built-in collations and users may add more.
+--- @type Space
+space._collation = {}
+
+---
+--- _func is a system space with function tuples made by box.schema.func.create() or box.schema.func.create(func-name [, {options-with-body}]).
+---
+--- Tuples in this space contain the following fields:
+---
+--- * id (integer identifier)
+---
+--- * owner (integer identifier)
+---
+--- * the function name
+---
+--- * the setuid flag
+---
+--- * a language name (optional): ‘LUA’ (default) or ‘C’
+---
+--- * the body
+---
+--- * the is_deterministic flag
+---
+--- * the is_sandboxed flag
+---
+--- * options.
+--- @type Space
+space._func = {}
+
+---
+--- _index is a system space.
+---
+--- Tuples in this space contain the following fields:
+---
+--- * id (= id of space),
+---
+--- * iid (= index number within space),
+---
+--- * name,
+---
+--- * type,
+---
+--- opts (e.g. unique option), [tuple-field-no, tuple-field-type …].
+--- @type Space
+space._index = {}
+
+---
+--- _priv is a system space where privileges are stored.
+---
+--- Tuples in this space contain the following fields:
+---
+--- * the numeric id of the user who gave the privilege (“grantor_id”),
+---
+--- * the numeric id of the user who received the privilege (“grantee_id”),
+---
+--- * the type of object: ‘space’, ‘index’, ‘function’, ‘sequence’, ‘user’, ‘role’, or ‘universe’,
+---
+--- * the numeric id of the object,
+---
+--- * the type of operation: “read” = 1, “write” = 2, “execute” = 4, “create” = 32, “drop” = 64, “alter” = 128, or a combination such as “read,write,execute”.
+---
+--- See Access control for details about user privileges. [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication]
+---
+--- The system space view for _priv is _vpriv. [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/system_views/#box-space-sysviews]
+--- @type Space
+space._priv = {}
+
+---
+--- _schema is a system space.
+---
+--- This space contains the following tuples:
+---
+--- * version tuple with version information for this Tarantool instance,
+---
+--- * cluster tuple with the instance’s replica set ID,
+---
+--- * max_id tuple with the maximal space ID,
+---
+--- * once... tuples that correspond to specific box.once() blocks from the instance’s initialization file. The first field in these tuples contains the key value from the corresponding box.once() block prefixed with ‘once’ (e.g. oncehello), so you can easily find a tuple that corresponds to a specific box.once() block.
+--- @type Space
+space._schema = {}
+
+---
+--- _sequence is a system space for support of the sequence feature (sequence feature - [https://www.tarantool.io/en/doc/latest/book/box/data_model/#index-box-sequence]). It contains persistent information that was
+--- established by box.schema.sequence.create() or sequence_object:alter().
+---
+--- The system space view for _sequence is _vsequence. - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/system_views/#box-space-sysviews]
+--- @type Space
+space._sequence = {}
+
+---
+--- _sequence_data is a system space for support of the sequence feature.
+---
+--- Each tuple in _sequence_data contains two fields:
+---
+--- the id of the sequence, and
+--- the last value that the sequence generator returned (non-persistent information).
+--- There is no guarantee that this space will be updated immediately after every data-change request.
+--- @type Space
+space._sequence_data = {}
+
+---
+--- _session_settings is a temporary system space with a list of settings that may affect behavior,
+--- particularly SQL behavior, for the current session. It uses a special engine named ‘service’. Every ‘service’ tuple
+--- is created on the fly, that is, new tuples are made every time _session_settings is accessed. Every settings tuple
+--- has two fields: name (the primary key) and value. The tuples’ names and default values are:
+---
+--- error_marshaling_enabled: whether error objects have a special structure. Default = false.
+---
+--- sql_default_engine: default storage engine for new SQL tables. Default = ‘memtx’.
+---
+--- sql_defer_foreign_keys: whether foreign-key checks can wait till commit. Default = false.
+---
+--- sql_full_column_names: no effect at this time. Default = false.
+---
+--- sql_full_metadata: whether SQL result set metadata will have more than just name and type. Default = false.
+---
+--- sql_parser_debug: whether to show parser steps for following statements. Default = false.
+---
+--- sql_recursive_triggers: whether a triggered statement can activate a trigger. Default = true.
+---
+--- sql_reverse_unordered_selects: whether result rows are usually in reverse order if there is no ORDER BY clause. Default = false.
+---
+--- sql_select_debug: whether to show execution steps during SELECT. Default = false.
+---
+--- sql_vdbe_debug: for use by Tarantool’s developers. Default = false.
+---
+--- Three requests are possible: select and get and update. For example, after s = box.space._session_settings,
+--- s:select('sql_default_engine') probably returns {'sql_default_engine', 'memtx'}, and s:update('sql_default_engine',
+--- {{'=', 'value', 'vinyl'}}) changes the default engine to ‘vinyl’.
+---
+--- Updating sql_parser_debug or sql_select_debug or sql_vdbe_debug has no effect unless Tarantool was built with -DCMAKE_BUILD_TYPE=Debug. To check if this is so, look at require('tarantool').build.target.
+--- @type Space
+space._session_settings = {}
+
+--- _space is a system space. It contains all spaces hosted on the current Tarantool instance, both system ones and created by users.
+---
+--- Tuples in this space contain the following fields:
+---
+--- id,
+---
+--- owner (= id of user who owns the space),
+---
+--- name, engine, field_count,
+---
+--- flags (e.g. temporary),
+---
+--- format (as made by a format clause).
+---
+--- These fields are established by box.schema.space.create().
+--- @type Space
+space._space = {}
+
+---
+--- _user is a system space where user-names and password hashes are stored.
+---
+--- Tuples in this space contain the following fields:
+---
+--- the numeric id of the tuple (“id”),
+---
+--- the numeric id of the tuple’s creator,
+---
+--- the name,
+---
+--- the type: ‘user’ or ‘role’,
+---
+--- optional password.
+---
+--- There are five special tuples in the _user space: ‘guest’, ‘admin’, ‘public’, ‘replication’, and ‘super’.
+--- @type Space
+space._user = {}
+
+---
+--- _vcollation is the system space view for _collation.
+--- @type Space
+space._vcollation = {}
+
+---
+--- _vindex is the system space view for _index.
+--- @type Space
+space._vindex = {}
+
+---
+--- _vpriv is the system space view for _priv.
+--- @type Space
+space._vpriv = {}
+
+---
+--- _vspace is the system space view for _space.
+--- @type Space
+space._vspace = {}
+
+---
+--- _vuser is the system space view for _user.
+--- @type Space
+space._vuser = {}
+
+-- ]
 
 --- @class SpaceOptions
 --- @field temporary boolean
@@ -1543,7 +1767,7 @@ function savepoint() end
 --- @param sp table @savepoint
 function rollback_to_savepoint(sp) end
 
--- box.runtime [
+-- box_slab box.runtime [
 
 runtime = {}
 
@@ -1555,6 +1779,41 @@ runtime = {}
 --- associated with the application server subsystem.
 --- @return table @ {lua - is the size of the Lua heap that is controlled by the Lua garbage collector , maxalloc - is the maximum size of the runtime memory , used - is the current number of bytes used by the runtime memory}
 function runtime.info() end
+
+-- ]
+
+-- box_slab box.slab [
+
+slab = {}
+
+--- Show an aggregated memory usage report (in bytes) for the slab allocator. This report is useful for assessing out-of-memory risks.
+---
+--- box.slab.info gives a few ratios:
+---
+--- items_used_ratio
+---
+--- arena_used_ratio
+---
+--- quota_used_ratio
+function slab.info() end
+
+--- Show a detailed memory usage report (in bytes) for the slab allocator. The report is broken down into groups by data item size as well as by slab size (64-byte, 136-byte, etc). The report includes the memory allocated for storing both tuples and indexes.
+---
+--- return:
+---
+--- mem_free is the allocated, but currently unused memory;
+---
+--- mem_used is the memory used for storing data items (tuples and indexes);
+---
+--- item_count is the number of stored items;
+---
+--- item_size is the size of each data item;
+---
+--- slab_count is the number of slabs allocated;
+---
+--- slab_size is the size of each allocated slab.
+--- @return table
+function slab.stats() end
 
 -- ]
 
