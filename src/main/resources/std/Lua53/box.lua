@@ -29,9 +29,10 @@ local _field = {}
 
 --- @class Space
 --- @field enabled boolean
---- @field field_count number
---- @field id number
---- @field index Index[] @table of indexes
+--- @field field_count number @ The required field count for all tuples in this space. The default value is 0, which means there is no required field count.
+--- @field id number @ Ordinal space number. Spaces can be referenced by either name or number. Thus, if space tester has id = 800, then box.space.tester:insert{0} and box.space[800]:insert{0} are equivalent requests.
+--- @field index Index[] @ A container for all defined indexes. There is a Lua object of type box.index with methods to search tuples and iterate over them in predefined order. To reset, use box.stat.reset().
+--- @field enabled boolean @ Whether or not this space is enabled. The value is false if the space has no index.
 local spaceObject = {}
 
 ---
@@ -512,7 +513,6 @@ function error.set(errorObject) end
 ---
 --- Box runtime spaces table
 --- @type Space[]
---- @field some_field
 space = {}
 
 -- box_space [
@@ -737,6 +737,17 @@ space._vspace = {}
 --- @type Space
 space._vuser = {}
 
+--- @class checkConstraintObject
+
+---
+--- Create a check constraint. A check constraint is a requirement that must be met when a tuple is inserted or updated
+--- in a space. Check constraints created with space_object:create_check_constraint have the same effect as check constraints created with an SQL CHECK() clause in a CREATE TABLE statement.
+--- @param space_object Space @ an object reference
+--- @param check_constraint_name string @ name of check constraint, which should conform to the rules for object names
+--- @param expression string @ SQL code of an expression which must return a boolean result
+--- @return checkConstraintObject
+function space.create_check_constraint() end
+
 -- ]
 
 --- @class SpaceOptions
@@ -768,6 +779,22 @@ local indexObj = {}
 --- @field sequence string|number
 local indexOpts = {}
 
+---
+--- Since version 2.5.2. Alter an existing space. This method changes certain space parameters.
+--- @param options string @ (table) – field_count, user, format, temporary, is_sync, and name – the meaning of these parameters is the same as in box.schema.space.create()
+--- @return nil|Error @ nothing in case of success; an error when fails
+function spaceObject:alter(options) end
+
+---
+--- Insert a new tuple using an auto-increment primary key. The space specified by space_object must have an ‘unsigned’
+--- or ‘integer’ or ‘number’ primary key index of type TREE. The primary-key field will be incremented before the insert.
+---
+--- Since version 1.7.5 this method is deprecated – it is better to use a sequence.
+--- @param space_object Space @ an object reference
+--- @param tuple table|tuple @ tuple’s fields, other than the primary-key field
+--- @return tuple @ the inserted tuple.
+function spaceObject:auto_increment(options) end
+
 --- @param name string
 --- @return Space
 function spaceObject.create(name) end
@@ -783,17 +810,17 @@ function spaceObject:select(table) end
 
 ---
 --- Returns number of bytes taken by this space
---- @return number
+--- @param space_object Space @ an object reference
+--- @return number @ Number of bytes in the space. This number, which is stored in Tarantool’s internal memory, represents the total number of bytes in all tuples, not including index keys. For a measure of index size, see index_object:bsize(). - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_index/bsize/]
 function spaceObject:bsize() end
 
---- @param key number|string|table
---- @param iterator Iterator
---- @return number
-function spaceObject:count(key, iterator) end
-
---- @param key number|string|table
---- @return number
-function spaceObject:count(key) end
+---
+--- Return the number of tuples. If compared with len(), this method works slower because count() scans the entire space to count the tuples.
+--- @param space_object Space @ an object reference
+--- @param key scalar|table @  primary-key field values, must be passed as a Lua table if key is multi-part
+--- @param iterator @ comparison method
+--- @return number @ number of tuples
+function spaceObject:count(space_object, key, iterator) end
 
 ---
 --- Create an index.
@@ -805,10 +832,15 @@ function spaceObject:count(key) end
 --- @param options table @ see “Options for space_object:create_index()”, below
 function spaceObject:create_index(space_object, index_name, options) end
 
---- @param key number|string|table
---- @return table
+---
+--- Delete a tuple identified by a primary key.
+--- @param key scalar|table @ primary-key field values, must be passed as a Lua table if key is multi-part
+--- @return tuple
 function spaceObject:delete(key) end
 
+---
+--- Drop a space. The method is performed in background and doesn’t block consequent requests.
+--- @return nil
 function spaceObject:drop() end
 
 --- @class Format
@@ -816,35 +848,47 @@ function spaceObject:drop() end
 --- @field type string @one of (boolean, string, unsigned, etc.)
 local format = {}
 
---- @return Format[]
-function spaceObject:format() end
+---
+--- Declare field names and types.
+--- @param format_clause table @ a list of field names and types
+--- @return nil
+function spaceObject:format(format_clause) end
 
---- @overload
---- @param description Format[]
-function spaceObject:format(description) end
+--- @class field_value_pairs
 
+---
+--- Convert a map to a tuple instance or to a table. The map must consist of “field name = value” pairs.
+--- The field names and the value types must match names and types stated previously for the space, via space_object:format().
+--- @param map field_value_pairs @ a series of “field = value” pairs, in any order.
+--- @param option boolean @ the only legal option is {table = true|false};  if the option is omitted or if {table = false}, then return type will be ‘cdata’ (i.e. tuple);  if {table = true}, then return type will be ‘table’.
+--- @return tuple|table @ a tuple instance or table
+function spaceObject:frommap() end
 
-
---- @param key number|string|table
---- @return table
+---
+--- Search for a tuple in the given space.
+--- @param key scalar|table @ value to be matched against the index key, which may be multi-part.
+--- @return tuple @ the tuple whose index key matches key, or nil.
 function spaceObject:get(key) end
 
---- @param tuple table
---- @return table
+---
+--- Insert a tuple into a space.
+--- @param tuple tuple|table @ tuple to be inserted.
+--- @return table @ the inserted table
 function spaceObject:insert(tuple) end
 
 ---
---- Total amount of tuples (not that in vinyl engine this does not work)
---- @return number
+--- Return the number of tuples in the space. If compared with count(), this method works faster because len() does not
+--- scan the entire space to count the tuples.
+--- @return number @ Number of tuples in the space.
 function spaceObject:len() end
 
---- @param trigger any
+---
+--- Create a “replace trigger”. The trigger-function will be executed whenever a replace() or insert() or update() or
+--- upsert() or delete() happens to a tuple in <space-name>.
+--- @param trigger_function function @ function which will become the trigger function; see Example 2 below for details about trigger function parameters
+--- @param old_trigger_function function @ existing trigger function which will be replaced by trigger-function
+--- @return nil|function_ptr
 function spaceObject:on_replace(trigger) end
-
---- @param trigger any
---- @param oldTrigger any
---- @return any
-function spaceObject:on_replace(trigger, oldTrigger) end
 
 ---
 --- This is a template of on_replace or before_replace trigger
@@ -855,57 +899,124 @@ function spaceObject:on_replace(trigger, oldTrigger) end
 --- @param new table @new tuple
 function REPLACE_TRIGGER (old, new) end
 
---- @param trigger any
-function spaceObject:before_replace(trigger) end
-
---- @param trigger any
---- @param oldTrigger any
---- @return any
+---
+--- Create a “replace trigger”. The trigger-function will be executed whenever a replace() or insert() or update() or
+--- upsert() or delete() happens to a tuple in <space-name>.
+---
+--- @param trigger_function function @ function which will become the trigger function; for the trigger function’s optional parameters see the description of on_replace.
+--- @param old_trigger_function function @ existing trigger function which will be replaced by trigger-function
+--- @return nil|function_ptr
 function spaceObject:before_replace(trigger, oldTrigger) end
 
---- @return Iterator
-function spaceObject:pairs() end
-
---- @param key number|string|table
---- @return Iterator
+---
+--- Search for a tuple or a set of tuples in the given space, and allow iterating over one tuple at a time.
+--- @param key scalar|table @ value to be matched against the index key, which may be multi-part
+--- @param iterator @ see index_object:pairs() - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_index/pairs/]
+--- @return Iterator @ iterator which can be used in a for/end loop or with totable()
 function spaceObject:pairs(key) end
 
---- @param key number|string|table
---- @param Iterator Iterator
---- @return Iterator
-function spaceObject:pairs(key, iterator) end
+---
+--- Rename a space.
+--- @param space_name string @ new name for space
+--- @return nil
+function spaceObject:rename(space_name) end
 
---- @param new_name string
-function spaceObject:rename(new_name) end
-
---- @param tuple table
---- @return table
+---
+--- Insert a tuple into a space. If a tuple with the same primary key already exists, box.space...:replace() replaces
+--- the existing tuple with a new one. The syntax variants box.space...:replace() and box.space...:put() have the same
+--- effect; the latter is sometimes used to show that the effect is the converse of box.space...:get().
+--- @param tuple table|tuple @ tuple to be inserted
+--- @return tuple @ the inserted tuple.
 function spaceObject:replace(tuple) end
 
---- @param tuple table
---- @return table
+---
+--- Insert a tuple into a space. If a tuple with the same primary key already exists, box.space...:replace() replaces
+--- the existing tuple with a new one. The syntax variants box.space...:replace() and box.space...:put() have the same
+--- effect; the latter is sometimes used to show that the effect is the converse of box.space...:get().
+--- @param tuple table|tuple @ tuple to be inserted
+--- @return tuple @ the inserted tuple.
 function spaceObject:put(tuple) end
 
+---
+--- At the time that a trigger is defined, it is automatically enabled - that is, it will be executed. Replace triggers
+--- can be disabled with box.space.space-name:run_triggers(false) and re-enabled with box.space.space-name:run_triggers(true).
 --- @param run boolean
+--- @return nil
 function spaceObject:run_triggers(run) end
 
---- @return table
-function spaceObject:select() end
+--- @class array
+
+---
+--- Search for a tuple or a set of tuples in the given space. This method doesn’t yield (for details see Cooperative multitasking).
+--- @param key scalar|table @ Search for a tuple or a set of tuples in the given space. This method doesn’t yield (for details see Cooperative multitasking).
+--- @param options table|nil @ none, any or all of the same options that index_object:select() allows: * options.iterator (type of iterator) | * options.limit (maximum number of tuples) | * options.offset (number of tuples to skip)
+--- @return array @ the tuples whose primary-key fields are equal to the fields of the passed key. If the number of passed fields is less than the number of fields in the primary key, then only the passed fields are compared, so select{1,2} will match a tuple whose primary key is {1,2,3}.
+function spaceObject:select(key, options) end
 
 --- @param key number|string|table
 --- @return table
 function spaceObject:select(key) end
 
 ---
---- Delete all records
+--- Deletes all tuples. The method is performed in background and doesn’t block consequent requests.
+---
+--- The truncate method can only be called by the user who created the space, or from within a setuid function created
+--- by the user who created the space. Read more about setuid functions in the reference for box.schema.func.create().
+---
+--- The truncate method cannot be called from within a transaction.
+--- @return nil
 function spaceObject:truncate() end
 
---- @param key number|string|table
---- @param updates table @update format: {param (+,-,= ...), field_no, new_value}
-function spaceObject:update(key, updates) end
+---
+--- Update a tuple.
+---
+--- The update function supports operations on fields — assignment, arithmetic (if the field is numeric), cutting and pasting fragments of a field, deleting or inserting a field. Multiple operations can be combined in a single update request, and in this case they are performed atomically and sequentially. Each operation requires specification of a field identifier, which is usually a number. When multiple operations are present, the field number for each operation is assumed to be relative to the most recent state of the tuple, that is, as if all previous operations in a multi-operation update have already been applied. In other words, it is always safe to merge multiple update invocations into a single invocation, with no change in semantics.
+---
+--- Possible operators are:
+---
+--- "+" for addition. values must be numeric, e.g. unsigned or decimal
+---
+--- "-" for subtraction. values must be numeric
+---
+--- "&" for bitwise AND. values must be unsigned numeric
+---
+--- "|" for bitwise OR. values must be unsigned numeric
+---
+--- "^" for bitwise XOR. values must be unsigned numeric
+---
+--- ":" for string splice.
+---
+--- "!" for insertion of a new field.
+---
+--- "#" for deletion.
+---
+--- "=" for assignment.
+---
+--- Possible field_identifiers are:
+---
+--- * Positive field number. The first field is 1, the second field is 2, and so on.
+--- * Negative field number. The last field is -1, the second-last field is -2, and so on. In other words: (#tuple + negative field number + 1).
+--- * Name. If the space was formatted with space_object:format(), then this can be a string for the field ‘name’.
+--- @param key scalar|table
+--- @param operator string @ operation type represented in string
+--- @param field_identifier number|string @ what field the operation will apply to.
+--- @param value @ (lua_value) - what value will be applied
+--- @return tuple|nil @ the updated tuple; nil if the key is not found
+function spaceObject:update(key, operator, field_identifier, value) end
 
---- @param default table @default value to be inserted if not found
---- @param updates table @update format: {param (+,-,= ...), field_no, new_value}
+---
+--- Update or insert a tuple.
+---
+--- If there is an existing tuple which matches the key fields of tuple, then the request has the same effect as
+--- space_object:update() and the {{operator, field_identifier, value}, ...} parameter is used. If there is no existing
+--- tuple which matches the key fields of tuple, then the request has the same effect as space_object:insert() and the
+--- {tuple} parameter is used. However, unlike insert or update, upsert will not read a tuple and perform error checks
+--- before returning – this is a design feature which enhances throughput but requires more caution on the part of the user.
+--- @param tuple table|tuple @ default tuple to be inserted, if analogue isn’t found
+--- @param operator string @ operation type represented in string
+--- @param field_identifier number @ what field the operation will apply to
+--- @param value @ what value will be applied
+--- @return nil
 function spaceObject:upsert(default, updates) end
 
 
@@ -1838,8 +1949,132 @@ function atomic(func, ...) end
 
 -- SQL
 
-sql = {}
+--sql = {}
 
---- @param statement string
-function sql.execute(statement) end
-function sql.debug() end
+-- @param statement string
+--function sql.execute(statement) end
+--function sql.debug() end
+
+---
+--- Execute the SQL statement contained in the sql-statement parameter.
+--- @param sql_statement string @ statement, which should conform to the rules for SQL grammar
+--- @param extra_parameters table @ optional table for placeholders in the statement
+function execute(sql_statement, extra_parameters) end
+
+---
+--- Prepare the SQL statement contained in the sql-statement parameter. The syntax and requirements for box.prepare are the same as for box.execute().
+---
+---box.prepare compiles an SQL statement into byte code and saves the byte code in a cache. Since compiling takes a significant amount of time, preparing a statement will enhance performance if the statement is executed many times.
+---
+---If box.prepare succeeds, prepared_table contains:
+---
+--- stmt_id: integer – an identifier generated by a hash of the statement string
+--- execute: function
+--- params: map [name : string, type : string] – parameter descriptions
+--- unprepare: function
+--- metadata: map [name : string, type : string] (This is present only for SELECT or PRAGMA statements and has the same contents as the result set metadata for box.execute)
+--- param_count: integer – number of parameters
+--- This can be used by prepared_table:execute() and by prepared_table:unprepare().
+---
+--- The prepared statement cache (which is also called the prepared statement holder) is “shared”, that is, there is one cache for all sessions. However, session X cannot execute a statement prepared by session Y.
+--- For monitoring the cache, see box.info().sql.
+--- For changing the cache, see (Configuration reference) sql_cache_size.
+---
+--- Prepared statements will “expire” (become invalid) if any database object is dropped or created or altered – even if the object is not mentioned in the SQL statement, even if the create or drop or alter is rolled back, even if the create or drop or alter is done in a different session.
+--- @param sql_statement string @ statement, which should conform to the rules for SQL grammar [https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_statements_and_clauses/#sql-statements-and-clauses]
+--- @return table @ prepared_table, with id and methods and metadata
+function prepare(sql_statement) end
+
+--- @class preparedTable
+local preparedTable = {}
+
+---
+--- Execute a statement that has been prepared with box.prepare().
+---
+--- Parameter prepared_table should be the result from box.prepare().
+---
+--- Parameter extra-parameters should be an optional table to match placeholders or named parameters in the statement.
+---
+--- There are two ways to execute: with the method or with the statement id. That is, prepared_table:execute() and
+--- box.execute(prepared_table.stmt_id) do the same thing.
+---
+--- Take note of the elapsed time. Now change the line with the loop to:
+--- for i=1,1000000 do box.execute([[INSERT INTO t VALUES (?);]], {i}) end
+--- Run the function again, and take note of the elapsed time again. The function which executes the prepared statement will be about 15% faster, though of course this will vary depending on Tarantool version and environment.
+--- @param extra_parameters
+function preparedTable:execute(extra_parameters) end
+
+---
+--- Undo the result of an earlier box.prepare() request. This is equivalent to standard-SQL DEALLOCATE PREPARE.
+---
+--- Parameter prepared_table should be the result from box.prepare().
+---
+--- There are two ways to unprepare: with the method or with the statement id. That is, prepared_table:unprepare() and
+---box.unprepare(prepared_table.stmt_id) do the same thing.
+---
+--- Tarantool strongly recommends using unprepare as soon as the immediate objective (executing a prepared statement
+---multiple times) is done, or whenever a prepared statement expires. There is no automatic eviction policy, although
+---automatic unprepare will happen when the session disconnects (the session’s prepared statements will be removed from the prepared-statement cache).
+function preparedTable:unprepare() end
+
+stat = {}
+
+---
+--- Shows network activity: the number of bytes sent and received, the number of connections, streams, and requests (current, average, and total).
+---
+--- Return:
+---
+--- in the tables that box.stat.net() returns:
+---
+--- SENT.rps and RECEIVED.rps – average number of bytes sent/received per second in the last 5 seconds
+---
+--- SENT.total and RECEIVED.total – total number of bytes sent/received since the server started
+---
+--- CONNECTIONS.current – number of open connections
+---
+--- CONNECTIONS.rps – average number of connections opened per second in the last 5 seconds
+---
+--- CONNECTIONS.total – total number of connections opened since the server started
+---
+--- REQUESTS.current – number of requests in progress, which can be limited by box.cfg.net_msg_max
+---
+--- REQUESTS.rps – average number of requests processed per second in the last 5 seconds
+---
+--- REQUESTS.total – total number of requests processed since the server started
+---
+--- REQUESTS_IN_PROGRESS.current – number of requests being currently processed by the TX thread
+---
+--- REQUESTS_IN_PROGRESS.rps – average number of requests processed by the TX thread per second in the last 5 seconds
+---
+--- REQUESTS_IN_PROGRESS.total – total number of requests processed by the TX thread since the server started
+---
+--- STREAMS.current – number of active streams
+---
+--- STREAMS.rps – average number of streams opened per second in the last 5 seconds
+---
+--- STREAMS.total – total number of streams opened since the server started
+---
+--- REQUESTS_IN_STREAM_QUEUE.current – number of requests waiting in stream queues
+---
+--- REQUESTS_IN_STREAM_QUEUE.rps – average number of requests in stream queues per second in the last 5 seconds
+---
+--- REQUESTS_IN_STREAM_QUEUE.total – total number of requests placed in stream queues since the server started
+function stat.net() end
+
+---
+--- Resets the statistics of box.stat(), box.stat.net(), box.stat.vinyl(), and box.space.index.
+function stat.reset() end
+
+---
+--- @field regulator @ The vinyl regulator decides when to take or delay actions for disk IO, grouping activity in batches so that it is consistent and efficient. The regulator is invoked by the vinyl scheduler, once per second, and updates related variables whenever it is invoked.
+--- @field disk @ Since vinyl is an on-disk storage engine (unlike memtx which is an in-memory storage engine), it can handle large databases – but if a database is larger than the amount of memory that is allocated for vinyl, then there will be more disk activity.
+--- @field memory @ Although the vinyl storage engine is not “in-memory”, Tarantool does need to have memory for write buffers and for caches
+--- @field tx @ This is about requests that affect transactional activity (“tx” is used here as an abbreviation for “transaction”)
+--- @field scheduler @ This primarily has counters related to tasks that the scheduler has arranged for dumping or compaction: (most of these items are reset to 0 when the server restarts or when box.stat.reset() occurs)
+local statVinyl = {}
+
+statVinyl = stat.vinyl()
+
+---
+--- Shows vinyl-storage-engine activity, for example box.stat.vinyl().tx has the number of commits and rollbacks.
+function stat.vinyl() end
