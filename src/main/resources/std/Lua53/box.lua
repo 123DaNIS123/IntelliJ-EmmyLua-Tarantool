@@ -261,16 +261,6 @@ function seqObject:reset() end
 function seqObject:set() end
 
 ---
---- Create an index.
----
---- It is mandatory to create an index for a space before trying to insert tuples into it, or select tuples from it.
---- The first created index will be used as the primary-key index, so it must be unique.
---- @param space_object Space @ an object reference
---- @param index_name string @ name of index, which should conform to the rules for object names
---- @param options table @ see “Options for space_object:create_index()”, below
-function spaceObject:create_index(space_object, index_name, options) end
-
----
 --- Create a new sequence generator.
 ---
 --- Return:
@@ -522,11 +512,10 @@ function error.set(errorObject) end
 ---
 --- Box runtime spaces table
 --- @type Space[]
-local spacesTable = {}
+--- @field some_field
+space = {}
 
 -- box_space [
-
-space = {}
 
 ---
 --- _ck_constraint is a system space where check constraints are stored.
@@ -806,14 +795,15 @@ function spaceObject:count(key, iterator) end
 --- @return number
 function spaceObject:count(key) end
 
---- @param name string
---- @return Index
-function spaceObject:create_index(name) end
-
---- @param name string
---- @param options IndexOptions
---- @return Index
-function spaceObject:create_index(name, options) end
+---
+--- Create an index.
+---
+--- It is mandatory to create an index for a space before trying to insert tuples into it, or select tuples from it.
+--- The first created index will be used as the primary-key index, so it must be unique.
+--- @param space_object Space @ an object reference
+--- @param index_name string @ name of index, which should conform to the rules for object names
+--- @param options table @ see “Options for space_object:create_index()”, below
+function spaceObject:create_index(space_object, index_name, options) end
 
 --- @param key number|string|table
 --- @return table
