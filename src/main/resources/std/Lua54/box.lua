@@ -1554,25 +1554,26 @@ function indexObj:stat() end
 ---
 --- Since box.info contents are dynamic, it’s not possible to iterate over keys with the Lua pairs() function. For this purpose, box.info() builds and returns a Lua table with all keys and values provided in the submodule.
 --- @class BoxInfo
---- @field version string @ tarantool version
---- @field id string @same as replication id
---- @field ro boolean @is readonly
---- @field uuid string
+--- @field version string @ is the Tarantool version. This value is also shown by tarantool -V [https://www.tarantool.io/en/doc/latest/reference/configuration/#index-tarantool-version]
+--- @field id string @ corresponds to replication[n].id (see here - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_info/replication/]).
+--- @field ro boolean @ is true if the instance is in “read-only” mode (same as read_only in box.cfg{}), or if status is ‘orphan’.
+--- @field uuid string @ corresponds to replication[n].uuid (see here - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_info/replication/]).
 --- @field package string
 --- @field cluster @a table array with statistics for all instances in the replica set that the current instance belongs to
---- @field listen string @Return a real address to which an instance was bound
 --- @field replication table @a table array with statistics for all instances in the replica set that the current instance belongs to
 --- @field signature number @is the sum of all lsn values from the vector clocks (vclock) of all instances in the replica set.
---- @field status string @corresponds to replication.upstream.status
+--- @field status string @ is the current state of the instance. It can be: running – the instance is loaded, loading – the instance is either recovering xlogs/snapshots or bootstrapping, orphan – the instance has not (yet) succeeded in joining the required number of masters (see orphan status), hot_standby – the instance is standing by another instance.
 --- @field vinyl table @ vinyl memory statistics
---- @field uptime number @ uptime seconds
---- @field lsn number
+--- @field uptime number @ is the number of seconds since the instance started. This value can also be retrieved with tarantool.uptime().
+--- @field lsn number @ corresponds to replication[n].lsn (see here - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_info/replication/])
 --- @field sql
 --- @field gc
---- @field pid number
---- @field memory BoxInfoMemory
---- @field vclock number[] @ ontains the vector clock, which is a table of „id, lsn“ pairs, for example vclock: {1: 3054773, 4: 8938827, 3: 285902018}. Even if an instance is removed, its values will still appear here
+--- @field pid number @  is the process ID. This value is also shown by tarantool module and by the Linux command ps -A.
+--- @field vclock number[] @ is a table with the vclock values of all instances in a replica set which have made data changes.
 local boxinfo = {}
+
+-- @field listen string @Return a real address to which an instance was bound (see here - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_info/listen/]).
+-- @field election @shows the current state of a replica set node regarding leader election (see here - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_info/election/]).
 
 --- @class BoxInfoMemory
 --- @field cache number @ number of bytes used for caching user data. The memtx storage engine does not require a cache, so in fact this is the number of bytes in the cache for the tuples stored for the vinyl storage engine.
@@ -1594,10 +1595,12 @@ local boxinfomemory = {}
 --- @return BoxInfoMemory
 function info.memory() end
 
+---
+--- returns runtime statistics for the vinyl storage engine. This function is deprecated, use box.stat.vinyl() instead.
+function info.vinyl() end
+
 -- box.info
 
---- @field election
---- @field listen
 --- @type BoxInfo
 info = {}
 
@@ -1672,7 +1675,7 @@ local repObj_upstream = {}
 info.replication[number].upstream = {}
 
 --- @class ClusterUUID
---- @field uuid
+--- @field uuid @ is the UUID of the replica set. Every instance in a replica set will have the same cluster.uuid value. This value is also stored in box.space._schema system space.
 --- is the UUID of the replica set. Every instance in a replica set will have the same cluster.uuid value.
 ---This value is also stored in box.space._schema system space.
 local boxinfo_clusteruuid = {}
@@ -2226,7 +2229,7 @@ function stat.reset() end
 --- @field scheduler @ This primarily has counters related to tasks that the scheduler has arranged for dumping or compaction: (most of these items are reset to 0 when the server restarts or when box.stat.reset() occurs)
 local statVinyl = {}
 
-statVinyl = stat.vinyl()
+---  statVinyl = stat.vinyl()
 
 ---
 --- Shows vinyl-storage-engine activity, for example box.stat.vinyl().tx has the number of commits and rollbacks.
