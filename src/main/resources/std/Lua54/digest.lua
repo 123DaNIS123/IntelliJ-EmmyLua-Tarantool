@@ -102,4 +102,47 @@ function digest.base64_decode(message) end
 --- @return string
 function digest.urandom(size) end
 
+--
+
+---
+--- Returns 32-bit checksum made with CRC32.
+---
+--- The crc32 and crc32_update functions use the Cyclic Redundancy Check polynomial value: 0x1EDC6F41 / 4812730177.
+--- (Other settings are: input = reflected, output = reflected, initial value = 0xFFFFFFFF, final xor value = 0x0.)
+--- If it is necessary to be compatible with other checksum functions in other programming languages, ensure that the
+--- other functions use the same polynomial value.
+--- @param string
+--- @return string
+function digest.crc32(string) end
+
+---
+--- Initiates incremental crc32. See incremental methods notes.
+function digest.crc32.new() end
+
+---
+--- Returns a number made with consistent hash.
+---
+--- The guava function uses the Consistent Hashing algorithm of the Google guava library. The first parameter should
+--- be a hash code; the second parameter should be the number of buckets; the returned value will be an integer between
+--- 0 and the number of buckets. For example,
+--- @param state
+--- @param bucket
+--- @return string
+function digest.guava(state, bucket) end
+
+
+---
+--- Returns 32-bit binary string = digest made with MurmurHash.
+--- @param string
+--- @return string
+function digest.murmur(string) end
+
+---
+--- Initiates incremental MurmurHash. See incremental methods notes. For example:
+--- @param opts
+--- @return string
+function murmur.new(opts) end
+
+
 return digest;
+

@@ -1,5 +1,5 @@
 ---
---- @class Datetime
+--- @class DatetimeObject
 local datetimeObject = {}
 
 ---
@@ -61,3 +61,25 @@ function datetimeObject:set(units) end
 --- @param tzoffset number @ time zone offset from UTC, in minutes.
 --- @return cdata @ a datetime_object
 function datetimeObject:parse(input_string, format, tzoffset) end
+
+---
+--- The datetime module provides support for the datetime and interval data types. It allows creating the date
+--- and time values either via the object interface or via parsing string values conforming to the ISO-8601 standard.
+--- @module datetime
+
+---
+--- The datetime module provides support for the datetime and interval data types. It allows creating the date and
+--- time values either via the object interface or via parsing string values conforming to the ISO-8601 standard.
+---
+--- Possible input time units for ``datetime.new() - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/datetime/new/]
+--- @param units table @ Table of time units. If an empty table or no arguments are passed, the datetime object with the default values corresponding to Unix Epoch is created: 1970-01-01T00:00:00Z.
+--- @return cdata @ datetime object
+function new(units) end
+
+---
+--- Create an object of the interval type from a table of time units. See description of units and examples below.
+---
+--- Possible input time units for ``datetime.interval.new() - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/datetime/interval_new/]
+--- @param units table @ Table of time units. For all possible time units, the values are not restricted. If an empty table or no arguments are passed, the interval object with the default value 0 seconds is created.
+--- @return cdata @ doc: interval object
+function interval.new() end

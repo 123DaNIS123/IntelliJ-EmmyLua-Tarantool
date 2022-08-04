@@ -1,5 +1,6 @@
 
 --- @module fio
+--- @field c @ Table with constants which are the same as POSIX flag values on the target platform (see man 2 stat).
 local fio = {}
 
 --- @param str string
@@ -229,3 +230,14 @@ function fio.open(path, flags) end
 --- @param mode number
 --- @return FileHandle
 function fio.open(path, flags, mode) end
+
+--
+
+---
+--- Change the access time and possibly also change the update time of a file. For details type man 2 utime. Times
+--- should be expressed as number of seconds since the epoch.
+--- @param file_name string @ name.
+--- @param accesstime number @ time of last access. default current time.
+--- @param updatetime number @ time of last update. defaul = access time.
+--- @return boolean @ (If no error) true. | (If error) two return values: false, error message.
+function fio.utime() end

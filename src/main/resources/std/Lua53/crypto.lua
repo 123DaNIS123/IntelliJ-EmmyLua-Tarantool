@@ -105,5 +105,20 @@ function digestInterface:update(messagePart) end
 --- @return string
 function digestInterface:result() end
 
+---
+function digestInterface:free() end
 
-return crypto;
+--- @class Hmac
+--- @field md4 DigestInterface
+--- @field md5 DigestInterface
+--- @field ripemd160 DigestInterface
+--- @field sha1 DigestInterface
+--- @field sha224 DigestInterface
+--- @field sha256 DigestInterface
+--- @field sha384 DigestInterface
+--- @field sha512 DigestInterface
+local hmacAlgo = {}
+
+crypto.hmac = hmacAlgo;
+
+--return crypto;
