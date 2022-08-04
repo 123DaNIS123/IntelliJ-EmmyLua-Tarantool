@@ -25,14 +25,17 @@ debug = {}
 --- function, and so have no direct access to local variables.
 function debug.debug() end
 
----
---- Returns the current hook settings of the thread, as three values: the
---- current hook function, the current hook mask, and the current hook count
---- (as set by the `debug.sethook` function).
----@overload fun():thread
----@param thread thread
----@return thread
-function debug.gethook(thread) end
+--- Returns the environment of object `o`.
+function debug.getfenv(o) end
+
+--
+-- Returns the current hook settings of the thread, as three values: the
+-- current hook function, the current hook mask, and the current hook count
+-- (as set by the `debug.sethook` function).
+--@overload fun():thread
+--@param thread thread
+--@return thread
+--function debug.gethook(thread) end
 
 ---@class DebugInfo
 ---@field linedefined number
@@ -102,18 +105,6 @@ function debug.getinfo(thread, f, what) end
 function debug.getlocal(thread, f, var) end
 
 ---
---- Returns the metatable of the given `value` or **nil** if it does not have
---- a metatable.
----@param value table
----@return table
-function debug.getmetatable(value) end
-
----
---- Returns the registry table.
----@return table
-function debug.getregistry() end
-
----
 --- This function returns the name and the value of the upvalue with index
 --- `up` of the function `f`. The function returns **nil** if there is no
 --- upvalue with the given index.
@@ -125,41 +116,33 @@ function debug.getregistry() end
 ---@return table
 function debug.getupvalue(f, up) end
 
----
---- Returns the `n`-th user value associated to the userdata `u` plus a boolean,
---- **false** if the userdata does not have that value.
----@param u userdata
----@param n number
----@return boolean
-function debug.getuservalue(u, n) end
-
----
---- Sets the given function as a hook. The string `mask` and the number `count`
---- describe when the hook will be called. The string mask may have any
---- combination of the following characters, with the given meaning:
----
---- * `"c"`: the hook is called every time Lua calls a function;
---- * `"r"`: the hook is called every time Lua returns from a function;
---- * `"l"`: the hook is called every time Lua enters a new line of code.
----
---- Moreover, with a `count` different from zero, the hook is called after every
---- `count` instructions.
----
---- When called without arguments, `debug.sethook` turns off the hook.
----
---- When the hook is called, its first parameter is a string describing
---- the event that has triggered its call: `"call"`, (or `"tail
---- call"`), `"return"`, `"line"`, and `"count"`. For line events, the hook also
---- gets the new line number as its second parameter. Inside a hook, you can
---- call `getinfo` with level 2 to get more information about the running
---- function (level 0 is the `getinfo` function, and level 1 is the hook
---- function)
----@overload fun(hook:(fun():any), mask:any)
----@param thread thread
----@param hook fun():any
----@param mask string
----@param count number
-function debug.sethook(thread, hook, mask, count) end
+--
+-- Sets the given function as a hook. The string `mask` and the number `count`
+-- describe when the hook will be called. The string mask may have any
+-- combination of the following characters, with the given meaning:
+--
+-- * `"c"`: the hook is called every time Lua calls a function;
+-- * `"r"`: the hook is called every time Lua returns from a function;
+-- * `"l"`: the hook is called every time Lua enters a new line of code.
+--
+-- Moreover, with a `count` different from zero, the hook is called after every
+-- `count` instructions.
+--
+-- When called without arguments, `debug.sethook` turns off the hook.
+--
+-- When the hook is called, its first parameter is a string describing
+-- the event that has triggered its call: `"call"`, (or `"tail
+-- call"`), `"return"`, `"line"`, and `"count"`. For line events, the hook also
+-- gets the new line number as its second parameter. Inside a hook, you can
+-- call `getinfo` with level 2 to get more information about the running
+-- function (level 0 is the `getinfo` function, and level 1 is the hook
+-- function)
+--@overload fun(hook:(fun():any), mask:any):void
+--@param thread thread
+--@param hook fun():any
+--@param mask string
+--@param count number
+--function debug.sethook(thread, hook, mask, count) end
 
 ---
 --- This function assigns the value `value` to the local variable with
@@ -177,14 +160,6 @@ function debug.sethook(thread, hook, mask, count) end
 function debug.setlocal(thread, level, var, value) end
 
 ---
---- Sets the metatable for the given `object` to the given `table` (which
---- can be **nil**). Returns value.
----@param value any
----@param table table
----@return boolean
-function debug.setmetatable(value, table) end
-
----
 --- This function assigns the value `value` to the upvalue with index `up`
 --- of the function `f`. The function returns **nil** if there is no upvalue
 --- with the given index. Otherwise, it returns the name of the upvalue.
@@ -193,16 +168,6 @@ function debug.setmetatable(value, table) end
 ---@param value any
 ---@return string
 function debug.setupvalue(f, up, value) end
-
---- Sets the given `value` as the `n`-th associated to the given `udata`.
---- `udata` must be a full userdata.
----
---- Returns `udata`, or **nil** if the userdata does not have that value.
----@param udata userdata
----@param value any
----@param n number
----@return userdata
-function debug.setuservalue(udata, value, n) end
 
 --- If `message` is present but is neither a string nor **nil**, this function
 --- returns `message` without further processing. Otherwise, it returns a string
@@ -217,23 +182,64 @@ function debug.setuservalue(udata, value, n) end
 ---@return string
 function debug.traceback(thread, message, level) end
 
---- Returns a unique identifier (as a light userdata) for the upvalue numbered
---- `n` from the given function.
----
---- These unique identifiers allow a program to check whether different
---- closures share upvalues. Lua closures that share an upvalue (that is, that
---- access a same external local variable) will return identical ids for those
---- upvalue indices.
----@param f fun():number
----@param n number
----@return number
-function debug.upvalueid(f, n) end
+--
+
+--- @class Metatable
 
 ---
---- Make the `n1`-th upvalue of the Lua closure f1 refer to the `n2`-th upvalue
---- of the Lua closure f2.
----@param f1 fun():any
----@param n1 number
----@param f2 fun():any
----@param n2 number
-function debug.upvaluejoin(f1, n1, f2, n2) end
+--- @param object @ object to get the metatable of
+--- @return Metatable|nil @ a metatable of the object or nil if it does not have a metatable
+function debug.getmetatable(object) end
+
+---
+--- @return table @ the registry table
+function debug.getregistry() end
+
+---
+--- @param func function @ function to get the upvalue of
+--- @param up number @ index of the function upvalue
+--- @return string, lua_value @ the name and the value of the upvalue with the index up of the function func or nil if there is no upvalue with the given index
+function debug.getupvalue(func, up) end
+
+---
+--- Sets the environment of the object to the table.
+--- @param object @ object to change the environment of
+--- @param table table @ table to set the object environment to
+--- @return object
+function debug.setfenv(object, table) end
+
+--- Sets the environment of the object to the table.
+--- @param hook function @ function to set as a hook
+--- @param mask string @ describes when the hook will be called; may have the following values: * c - the hook is called every time Lua calls a function; * r - the hook is called every time Lua returns from a function; * l - the hook is called every time Lua enters a new line of code
+--- @param count number @ describes when the hook will be called; when different from zero, the hook is called after every count instructions.
+function debug.sethook(thread, hook, mask, count) end
+
+---
+--- Sets the metatable of the object to the table
+--- @param object @ object to get the metatable of
+--- @param table table @ table to set the object metatable to
+--- @return Metatable|nil @ a metatable of the object or nil if it does not have a metatable
+function debug.setmetatable(object, table) end
+
+---
+--- Instead of debug.sourcedir() one can say debug.__dir__ which means the same thing.
+---
+--- Determining the real path to a directory is only possible if the function was defined in a Lua file (this restriction may not apply for loadstring() since Lua will store the entire string in debug info).
+---
+--- If debug.sourcedir() is part of a return argument, then it should be inside parentheses: return (debug.sourcedir()).
+--- @param level number @ the level of the call stack which should contain the path (default is 2)
+--- @return Metatable|nil @ a string with the relative path to the source file directory
+function debug.sourcedir(level) end
+
+---
+--- Instead of debug.sourcefile() one can say debug.__file__ which means the same thing.
+---
+--- Determining the real path to a file is only possible if the function was defined in a Lua file (this restriction may
+--- not apply to loadstring() since Lua will store the entire string in debug info).
+---
+--- If debug.sourcefile() is part of a return argument, then it should be inside parentheses: return (debug.sourcefile()).
+--- @param level number @ the level of the call stack which should contain the path (default is 2)
+--- @return string @ a string with the relative path to the source file
+function debug.sourcefile(level) end
+
+

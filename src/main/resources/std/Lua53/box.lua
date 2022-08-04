@@ -1,11 +1,11 @@
 --- @module box
---- @field NULL userdata  @ msgpack null value
+--- @field NULL userdata  @ box.NULL is a value of the cdata type representing a NULL pointer. It is similar to msgpack.NULL, json.NULL and yaml.NULL. So it is some not nil value, even if it is a pointer to NULL. Use box.NULL only with capitalized NULL (box.null is incorrect). Note Technically speaking, box.NULL equals to ffi.cast('void *', 0)
 
 --- @class Schema
 --- @field space Space
 --- @field user User
 --- @field role Role
---- @field func Function
+--- @field func Functio n
 --- @field sequence SequenceProto
 schema = {}
 
@@ -182,7 +182,7 @@ function schema.user.passwd(user_name, password) end
 
 ---
 --- Return a hash of a user’s password. For explanation of how Tarantool maintains passwords - [https://www.tarantool.io/en/doc/latest/book/box/authentication/#authentication-passwords],
----see section Passwords and reference on _user - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_user/#box-space-user] space.
+--- see section Passwords and reference on _user - [https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/_user/#box-space-user] space.
 --- @param password string @password
 function schema.user.password(password) end
 
@@ -959,11 +959,7 @@ function spaceObject:run_triggers(run) end
 --- @param key scalar|table @ Search for a tuple or a set of tuples in the given space. This method doesn’t yield (for details see Cooperative multitasking).
 --- @param options table|nil @ none, any or all of the same options that index_object:select() allows: * options.iterator (type of iterator) | * options.limit (maximum number of tuples) | * options.offset (number of tuples to skip)
 --- @return array @ the tuples whose primary-key fields are equal to the fields of the passed key. If the number of passed fields is less than the number of fields in the primary key, then only the passed fields are compared, so select{1,2} will match a tuple whose primary key is {1,2,3}.
-function spaceObject:select(key, options) end
-
---- @param key number|string|table
---- @return table
-function spaceObject:select(key) end
+function spaceObject:select(key, options) end d
 
 ---
 --- Deletes all tuples. The method is performed in background and doesn’t block consequent requests.
@@ -1830,9 +1826,6 @@ function tuple.new(value) end
 --- @return boolean @ true or false
 function tuple.is(object) end
 
---- @class TupleObject
-local tupleObject = {}
-
 ---
 --- If t is a tuple instance, t:bsize() will return the number of bytes in the tuple. With both the memtx storage engine
 --- and the vinyl storage engine the default maximum is one megabyte (memtx_max_tuple_size or vinyl_max_tuple_size).
@@ -1841,7 +1834,10 @@ local tupleObject = {}
 ---
 --- The value does not include the size of “struct tuple” (for the current size of this structure look in the tuple.h file in Tarantool’s source code).
 --- @return number
-function tupleObject:bsize() end
+function tuple.bsize() end
+
+--- @class TupleObject
+local tupleObject = {}
 
 ---
 --- If t is a tuple instance, t:find(search-value) will return the number of the first field in t that matches the
@@ -1967,6 +1963,47 @@ function tupleObject:transform(start_field_number, fields_to_remove, field_value
 --- @return tuple @ new tuple
 function tupleObject:upsert(operator, filed_no, value) end
 -- FUNCTIONS
+
+---
+--- Execute a function, provided it has not been executed before. A passed value is checked to see whether the function
+--- has already been executed. If it has been executed before, nothing happens. If it has not been executed before, the function is invoked.
+---
+--- See an example of using box.once() while bootstrapping a replica set.
+---
+--- Warning: If an error occurs inside box.once() when initializing a database, you can re-execute the failed box.once()
+--- block without stopping the database. The solution is to delete the once object from the system space _schema.
+--- Say box.space._schema:select{}, find your once object there and delete it.
+---
+--- Note
+---
+--- The parameter key will be stored in the _schema system space after box.once() is called in order to prevent a
+--- double run. These keys are global per replica set. So a simultaneous call of box.once() with the same key on two
+--- instances of the same replica set may succeed on both of them, but it’ll lead to a transaction conflict.
+--- @param key string @ a value that will be checked
+--- @param func function @ a function
+--- @param ... @ arguments that must be passed to function
+function once(key, func, ...) end
+
+---
+--- Memtx
+---
+--- Take a snapshot of all data and store it in memtx_dir/<latest-lsn>.snap. To take a snapshot, Tarantool first enters
+--- the delayed garbage collection mode for all data. In this mode, the Tarantool garbage collector will not remove files
+--- which were created before the snapshot started, it will not remove them until the snapshot has finished. To preserve
+--- consistency of the primary key, used to iterate over tuples, a copy-on-write technique is employed. If the master
+--- process changes part of a primary key, the corresponding process page is split, and the snapshot process obtains an
+--- old copy of the page. In effect, the snapshot process uses multi-version concurrency control in order to avoid
+--- copying changes which are superseded while it is running.
+---
+--- Vinyl
+---
+--- In vinyl, inserted data is stacked in memory until the limit, set in the vinyl_memory parameter, is reached.
+--- Then vinyl automatically dumps it to the disc. box.snapshot() forces this dump in order to have the ability to
+--- recover from this checkpoint. The snapshot files are stored in space_id/index_id/*.run. Thus, strictly all the
+--- data that was written at the time of LSN of the checkpoint is in the *.run files on the disk, and all operations
+--- that happened after the checkpoint will be written in the *.xlog. All dump files created by box.snapshot() are
+--- consistent and have the same LSN as checkpoint.
+function snapshot() end
 
 ---
 --- Begin the transaction. Disable implicit yields until the transaction ends. Signal that writes to the write-ahead
@@ -2105,9 +2142,9 @@ function atomic(tx_function, function_arguments) end
 
 -- SQL
 
---sql = {}
+-- sql = {}
 
--- @param statement string
+--@param statement string
 --function sql.execute(statement) end
 --function sql.debug() end
 
@@ -2174,6 +2211,12 @@ function preparedTable:execute(extra_parameters) end
 function preparedTable:unprepare() end
 
 stat = {}
+
+---
+--- The box.stat submodule provides access to request and network statistics.
+---
+--- Below is a list of all box.stat functions.
+function stat() end
 
 ---
 --- Shows network activity: the number of bytes sent and received, the number of connections, streams, and requests (current, average, and total).
