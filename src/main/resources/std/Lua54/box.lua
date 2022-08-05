@@ -5,7 +5,7 @@
 --- @field space Space
 --- @field user User
 --- @field role Role
---- @field func Functio n
+--- @field func Function
 --- @field sequence SequenceProto
 schema = {}
 
