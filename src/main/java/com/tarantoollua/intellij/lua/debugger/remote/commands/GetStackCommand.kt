@@ -76,7 +76,13 @@ class GetStackCommand : DefaultCommand("STACK --{maxlevel=0}", 1) {
                 val funcName = stackInfo.get(1)
                 val fileName = stackInfo.get(2)
                 val line = stackInfo.get(4)
-                val position = debugProcess.findSourcePosition(fileName.toString(), line.toint())
+                var fileNameString = fileName.toString()
+                var position = debugProcess.findSourcePosition(fileNameString, line.toint())
+                if (position == null && fileNameString.contains("builtin/"))
+                {
+                    fileNameString = fileNameString.replace("builtin/", "/home/bonbaton/tarantool/src/lua/")
+                    position = debugProcess.findSourcePosition(fileNameString, line.toint())
+                }
                 var functionName = funcName.toString()
                 if (funcName.isnil())
                     functionName = "main"
