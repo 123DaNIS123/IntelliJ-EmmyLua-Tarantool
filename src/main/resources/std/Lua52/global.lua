@@ -96,6 +96,21 @@ _G = {}
 ---@return any
 function getmetatable(object) end
 
+--- Returns the current environment in use by the function. `f` can be a Lua
+--- function or a number that specifies the function at that stack level:
+--- Level 1 is the function calling `getfenv`. If the given function is not a
+--- Lua function, or if `f` is 0, `getfenv` returns the global environment. The
+--- default for `f` is 1.
+---@overload fun():function
+---@param f function|number
+---@return any
+function getfenv(f) end
+
+--- Returns two results: the number of Kbytes of dynamic memory that Lua is
+--- using and the current garbage collector threshold (also in Kbytes).
+---@return number, number
+function gcinfo() end
+
 ---
 --- Returns three values (an iterator function, the table `t`, and 0) so that
 --- the construction
@@ -107,41 +122,17 @@ function getmetatable(object) end
 ---@return fun(tbl: table<number, V>):number, V
 function ipairs(t) end
 
+---Similar to `load`, but gets the chunk from the given string.
 ---
---- Loads a chunk.
---- If `chunk` is a string, the chunk is this string. If `chunk` is a function,
---- `load` calls it repeatedly to get the chunk pieces. Each call to `chunk`
---- must return a string that concatenates with previous results. A return of
---- an empty string, **nil**, or no value signals the end of the chunk.
+--- To load and run a given string, use the idiom
 ---
---- If there are no syntactic errors, returns the compiled chunk as a function;
---- otherwise, returns **nil** plus the error message.
----
---- If the resulting function has upvalues, the first upvalue is set to the
---- value of `env`, if that parameter is given, or to the value of the global
---- environment. Other upvalues are initialized with **nil**. (When you load a
---- main chunk, the resulting function will always have exactly one upvalue, the
---- _ENV variable. However, when you load a binary chunk created from a
---- function (see string.dump), the resulting function can have an arbitrary
---- number of upvalues.) All upvalues are fresh, that is, they are not shared
---- with any other function.
----
---- `chunkname` is used as the name of the chunk for error messages and debug
---- information. When absent, it defaults to `chunk`, if `chunk` is a string,
---- or to "=(`load`)" otherwise.
----
---- The string `mode` controls whether the chunk can be text or binary (that is,
---- a precompiled chunk). It may be the string "b" (only binary chunks), "t"
---- (only text chunks), or "bt" (both binary and text). The default is "bt".
----
---- Lua does not check the consistency of binary chunks. Maliciously crafted
---- binary chunks can crash the interpreter.
----@overload fun(chunk:fun():string):any
----@param chunk fun():string
+---      `assert(loadstring(s))()`
+--- When absent, `chunkname` defaults to the given string.
+---@overload fun(string:string):any
+---@param string string
 ---@param chunkname string
----@param mode string
----@param env any
-function load(chunk, chunkname, mode, env) end
+---@return any
+function loadstring(string, chunkname) end
 
 ---
 --- Similar to `load`, but gets the chunk from file `filename` or from the
@@ -151,6 +142,20 @@ function load(chunk, chunkname, mode, env) end
 ---@param mode string
 ---@param env any
 function loadfile(filename, mode, env) end
+
+--- Links the program with the dynamic C library `libname`. Inside this library,
+--- looks for a function `funcname` and returns this function as a C function.
+---
+--- `libname` must be the complete file name of the C library, including any
+--- eventual path and extension.
+---
+--- This function is not supported by ANSI C. As such, it is only available on
+--- some platforms (Windows, Linux, Solaris, BSD, plus other Unix systems that
+--- support the `dlfcn` standard).
+---
+---@param libname string
+---@param funcname string
+function loadlib(libname, funcname) end
 
 ---
 --- Allows a program to traverse all fields of a table. Its first argument is
@@ -228,12 +233,6 @@ function rawequal(v1, v2) end
 ---@return any
 function rawget(table, index) end
 
---- Returns the length of the object `v`, which must be a table or a string, without
---- invoking any metamethod. Returns an integer number.
----@param v string|table
----@return number
-function rawlen(v) end
-
 ---
 --- Sets the real value of `table[index]` to `value`, without invoking the
 --- `__newindex` metamethod. `table` must be a table, `index` any value
@@ -277,16 +276,14 @@ function rawset(table, index, value) end
 ---@return any
 function require(modname) end
 
+--- Sets the environment to be used by the given function. f can be a Lua
+--- function or a number that specifies the function at that stack level:
+--- Level 1 is the function calling `setfenv`. `setfenv` returns the given function.
 ---
---- If `index` is a number, returns all arguments after argument number
---- `index`. a negative number indexes from the end (-1 is the last argument).
---- Otherwise, `index` must be the string "#", and `select` returns
---- the total number of extra arguments it received.
----@generic T
----@param index number|string
----@vararg T
----@return T
-function select(index, ...) end
+---@param f function|number
+---@param table any
+---@return function
+function setfenv(f, table) end
 
 ---
 --- Sets the metatable for the given table. (To change the metatable of other
@@ -343,10 +340,20 @@ function tostring(v) end
 ---@return string
 function type(v) end
 
+--- Returns the elements from the given table. This function is equivalent to
+---     `return list[i], list[i+1], ···, list[j]`
+--- except that the above code can be written only for a fixed number of elements.
+--- By default, `i` is 1 and `j` is the length of the list, as defined by the length
+--- operator (see §2.5.5).
+---@overload fun(list:table, i:number):any
+---@overload fun(list:table, i:number, j:number):any
+---@return any
+function unpack(list, i, j)end
+
 ---
 --- A global variable (not a function) that holds a string containing the
---- running Lua version. The current value of this variable is "`Lua 5.2`".
-_VERSION = "Lua 5.2"
+--- running Lua version. The current value of this variable is "`Lua 5.0`".
+_VERSION = "Lua 5.0"
 
 ---
 --- This function is similar to `pcall`, except that it sets a new message
