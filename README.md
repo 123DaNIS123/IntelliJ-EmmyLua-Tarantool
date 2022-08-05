@@ -1,4 +1,4 @@
-![logo](/snapshot/logo.png)
+git config --global user.name ![logo](/snapshot/logo.png)
 # EmmyLua for IntelliJ IDEA
 
 [![Build status](https://github.com/EmmyLua/IntelliJ-EmmyLua/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/EmmyLua/IntelliJ-EmmyLua/actions/workflows/build.yml)
