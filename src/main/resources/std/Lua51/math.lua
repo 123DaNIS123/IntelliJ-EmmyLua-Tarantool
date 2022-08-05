@@ -62,12 +62,6 @@ function math.ceil(x) return 0 end
 function math.cos(x) return 0 end
 
 ---
---- Returns the hyperbolic cosine of `x`.
----@param x number
----@return number
-function math.cosh(x) return 0 end
-
----
 --- Converts the angle `x` from radians to degrees.
 ---@param x number
 ---@return number
@@ -86,28 +80,9 @@ function math.exp(x) end
 function math.floor(x) end
 
 ---
---- Returns the remainder of the division of `x` by `y` that rounds the
---- quotient towards zero. (integer/float)
+--- Returns the natural logarithm of x
 ---@param x number
----@param y number
----@return number
-function math.fmod(x, y) end
-
----
---- Returns `m` and `e` such that *x = m2^e*, `e` is an integer and the
---- absolute value of `m` is in the range *[0.5, 1)* (or zero when `x` is zero).
----@param x number
----@return number
-function math.frexp(x) end
-
----
---- The float value `HUGE_VAL`, a value larger than any other numeric value.
----@type number
-math.huge = nil
-
----
---- Returns the natural logarithm of `x`.
----@param x number
+---@param base number
 ---@return number
 function math.log(x) end
 
@@ -135,11 +110,7 @@ function math.min(x, ...) end
 --- result is always a float.
 ---@param x number
 ---@return number
-function math.modf(x) end
-
----
---- The value of π.
-math.pi = 3.1415
+function math.mod(x) end
 
 ---
 --- The value of *pi*.
@@ -184,12 +155,6 @@ function math.randomseed(x) end
 function math.sin(x) return 0 end
 
 ---
---- Returns the hyperbolic sine of `x`.
----@param x number
----@return number
-function math.sinh(x) return 0 end
-
----
 --- Returns the square root of `x`. (You can also use the expression `x^0.5` to
 --- compute this value.)
 ---@param x number
@@ -203,9 +168,12 @@ function math.sqrt(x) return 0 end
 function math.tan(x) return 0 end
 
 ---
---- Returns the hyperbolic tarantoolluaent of `x`.
+--- Returns `m` and `e` such that *x = m2^e*, `e` is an integer and the
+--- absolute value of `m` is in the range *[0.5, 1)* (or zero when `x` is zero).
 ---@param x number
 ---@return number
-function math.tanh(x) return 0 end
+function math.frexp(x) end
+
+
 
 return math

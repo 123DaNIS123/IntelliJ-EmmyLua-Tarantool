@@ -22,14 +22,6 @@ coroutine = {}
 function coroutine.create(f) end
 
 ---
---- Returns true when the running coroutine can yield.
----
---- A running coroutine is yieldable if it is not the main thread and it is not
---- inside a non-yieldable C function.
----@return boolean
-function coroutine.isyieldable() end
-
----
 --- Starts or continues the execution of coroutine `co`. The first time you
 --- resume a coroutine, it starts running its body. The values `val1`, ...
 --- are passed as the arguments to the body function. If the coroutine has
@@ -45,12 +37,6 @@ function coroutine.isyieldable() end
 ---@param val1 string
 ---@return thread|any
 function coroutine.resume(co, val1, ...) end
-
----
---- Returns the running coroutine plus a boolean, true when the running
---- coroutine is the main one.
----@return thread|boolean
-function coroutine.running() end
 
 ---
 --- Returns the status of coroutine `co`, as a string: "`running`", if the

@@ -21,18 +21,16 @@
 string = {}
 
 ---
---- Returns the internal numerical codes of the characters `s[i]`, `s[i+1]`,
---- ..., `s[j]`. The default value for `i` is 1; the default value for `j`
---- is `i`. These indices are corrected following the same rules of function
---- `string.sub`.
+--- Returns the internal numerical code of the `i`-th character of `s`, or **nil**
+--- if the index is out of range. If i is absent, then it is assumed to be 1.
+--- i may be negative.
 ---
 --- Note that numerical codes are not necessarily portable across platforms.
 ---@overload fun(s:string):number
 ---@param s string
 ---@param i number
----@param j number
 ---@return number
-function string.byte(s, i, j) end
+function string.byte(s, i) end
 
 ---
 --- Receives zero or more integers. Returns a string with length equal to
@@ -44,21 +42,12 @@ function string.byte(s, i, j) end
 function string.char(...) end
 
 ---
---- Returns a string containing a binary representation (*a binary chunk*) of
---- the given function, so that a later `load` on this string returns a
---- copy of the function (but with new upvalues). If strip is a true value, the
---- binary representation may not include all debug information about the
---- function, to save space.
----
---- Functions with upvalues have only their number of upvalues saved. When (re)
---- loaded, those upvalues receive fresh instances containing **nil**. (You can
---- use the debug library to serialize and reload the upvalues of a function in
---- a way adequate to your needs.)
----@overload fun(func:fun()):string
----@param func fun()
----@param strip boolean
+--- Returns a binary representation of the given function, so that a later
+--- `loadstring` on that string returns a copy of the function. `function` must be a
+--- Lua function without upvalues.
+---@param func function
 ---@return string
-function string.dump(func, strip) end
+function string.dump(func) end
 
 ---
 --- Looks for the first match of `pattern` in the string `s`. If it finds a
@@ -114,34 +103,26 @@ function string.find(s, pattern, init, plain) end
 ---@return string
 function string.format(formatstring, ...) end
 
+--- Returns an iterator function that, each time it is called, returns the next
+--- captures from pattern pat over string s.
 ---
---- Returns an iterator function that, each time it is called, returns the
---- next captures from `pattern` over the string `s`. If `pattern` specifies no
---- captures, then the whole match is produced in each call.
+--- If pat specifies no captures, then the whole match is produced in each call.
 ---
---- As an example, the following loop will iterate over all the words from
---- string `s`, printing one per line:
+--- As an example, the following loop
 ---
---- `s = "hello world from Lua"`
---- `for w in string.gmatch(s, "%a+") do`
----  > `print(w)`
---- `end`
+--- >  s = "hello world from Lua"
+--- >  for w in string.gfind(s, "%a+") do
+--- >    print(w)
+--- >  end
+--- will iterate over all the words from string s, printing one per line. The next
+--- example collects all pairs key=value from the given string into a table:
+--- >  t = {}
+--- >  s = "from=world, to=Lua"
+--- >  for k, v in string.gfind(s, "(%w+)=(%w+)") do
+--- >    t[k] = v
+--- > end
 ---
---- The next example collects all pairs `key=value` from the given string into a
---- table:
----
---- `t = {}`
----  s = "from=world, to=Lua"`
---- `for k, v in string.gmatch(s, "(%w+)=(%w+)") do`
----  > `t[k] = v`
---- `end`
----
---- For this function, a caret '`^`' at the start of a pattern does not work as
---- an anchor, as this would prevent the iteration.
----@param s string
----@param pattern string
----@return fun():string, table
-function string.gmatch(s, pattern) end
+function string.gfind(s, pat) end
 
 ---
 --- Returns a copy of `s` in which all (or the first `n`, if given)
@@ -183,9 +164,9 @@ function string.gmatch(s, pattern) end
 ---  >> return loadstring(s)()
 ---  > end)
 --- `-- > x="4+5 = 9"`
---- `local t = {name="lua", version="5.1"}`
+--- `local t = {name="lua", version="5.0"}`
 --- `x = string.gsub("$name-$version.tar.gz", "%$(%w+)", t)`
---- > x="lua-5.1.tar.gz"
+--- > x="lua-5.0.tar.gz"
 ---@overload fun(s:string, pattern:string, repl:string|fun()):string, number
 ---@param s string
 ---@param pattern string
@@ -210,19 +191,6 @@ function string.len(s) end
 function string.lower(s) end
 
 ---
---- Looks for the first *match* of `pattern` in the string `s`. If it
---- finds one, then `match` returns the captures from the pattern; otherwise
---- it returns **nil**. If `pattern` specifies no captures, then the whole match
---- is returned. A third, optional numerical argument `init` specifies where
---- to start the search; its default value is 1 and can be negative.
----@overload fun(s:string, pattern:string):any
----@param s string
----@param pattern string
----@param init number
----@return any
-function string.match(s, pattern, init) end
-
----
 --- Returns a string that is the concatenation of `n` copies of the string
 --- `s` separated by the string `sep`. The default value for `sep` is the empty
 --- string (that is, no separator). Returns the empty string if n is not
@@ -236,12 +204,6 @@ function string.match(s, pattern, init) end
 ---@param sep string
 ---@return string
 function string.rep(s, n, sep) end
-
----
---- Returns a string that is the string `s` reversed.
----@param s string
----@return string
-function string.reverse(s) end
 
 ---
 --- Returns the substring of `s` that starts at `i` and continues until
@@ -269,3 +231,86 @@ function string.sub(s, i, j) end
 ---@param s string
 ---@return string
 function string.upper(s) end
+
+--
+
+---
+--- Return the string left-justified in a string of length width.
+--- @param input_string string @ the string to left-justify
+--- @param width integer @ the width of the string after left-justifying
+--- @param pad_character string @ a single character, default = 1 space
+--- @return string @ left-justified string (unchanged if width <= string length)
+function string.ljust(input_string, width, pad_character) end
+
+---
+--- Return the string right-justified in a string of length width.
+--- @param input_string string @ the string to right-justify
+--- @param width integer @ the width of the string after right-justifying
+--- @param pad_character string @ a single character, default = 1 space
+--- @return string @ right-justified string (unchanged if width <= string length)
+function string.rjust(input_string, width, pad_character) end
+
+---
+--- Return the hexadecimal value of the input string.
+--- @param input_string string @ the string to process
+--- @return string @ hexadecimal, 2 hex-digit characters for each input character
+function string.hex(input_string) end
+
+---
+--- Given a string containing pairs of hexadecimal digits, return a string with one byte for each pair. This is
+--- the reverse of string.hex(). The hexadecimal-input-string must contain an even number of hexadecimal digits.
+--- @param hexadecimal_input_string string @ string with pairs of hexadecimal digits
+--- @return string @ string with one byte for each pair of hexadecimal digits
+function string.fromhex(hexadecimal_input_string) end
+
+---
+--- Return True if input-string starts with start-string, otherwise return False.
+--- @param input_string string @ the string where start-string should be looked for
+--- @param start_string string @ the string to look for
+--- @param start_pos integer @ position: where to start looking within input-string
+--- @param end_pos integer @ position: where to end looking within input-string
+--- @return boolean @ true or false
+function string.startswith(input_string, start_string, start_pos, end_pos) end
+
+---
+--- Return True if input-string ends with end-string, otherwise return False.
+--- @param input_string string @  the string where end-string should be looked for
+--- @param start_string string @ the string to look for
+--- @param start_pos integer @ position: where to start looking within input-string
+--- @param end_pos integer @ position: where to end looking within input-string
+--- @return boolean @ true or false
+function string.startswith(input_string, start_string, start_pos, end_pos) end
+
+---
+--- Return the value of the input string, after removing characters on the left. The optional list-of-characters
+--- parameter is a set not a sequence, so string.lstrip(...,'ABC') does not mean strip 'ABC', it means strip 'A' or 'B' or 'C'.
+--- @param input_string string @ the string to process
+--- @param list_of_characters string @ what characters can be stripped. Default = space.
+--- @return string @ result after stripping characters from input string
+function string.lstrip(input_string, list_of_characters) end
+
+---
+--- Return the value of the input string, after removing characters on the right. The optional
+--- list-of-characters parameter is a set not a sequence, so string.rstrip(...,'ABC') does not mean strip 'ABC',
+--- it means strip 'A' or 'B' or 'C'.
+--- @param input_string string @ the string to process
+--- @param list_of_characters string @ what characters can be stripped. Default = space.
+--- @return string @ result after stripping characters from input string
+function string.rstrip(input_string, list_of_characters) end
+
+---
+--- Split input-string into one or more output strings in a table. The places to split are the places where split-string occurs.
+--- @param input_string string @ the string to split
+--- @param split_string integer @ the string to find within input-string. Default = space.
+--- @param max integer @ maximum number of delimiters to process counting from the beginning of the input string. Result will contain max + 1 parts maximum.
+--- @return table @ table of strings that were split from input-string
+function string.split(input_string, split_string, max) end
+
+---
+--- Return the value of the input string, after removing characters on the left and the right. The optional
+--- list-of-characters parameter is a set not a sequence, so string.strip(...,'ABC') does not mean strip 'ABC',
+--- it means strip 'A' or 'B' or 'C'.
+--- @param input_string string @ the string to process
+--- @param list_of_characters string @ what characters can be stripped. Default = space.
+--- @return string @ result after stripping characters from input string
+function string.strip(input_string, list_of_characters) end
