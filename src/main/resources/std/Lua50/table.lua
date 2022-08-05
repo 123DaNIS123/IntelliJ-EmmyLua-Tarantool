@@ -115,4 +115,13 @@ function table.sort(list, comp) end
 ---@param n number
 function table.setn(table, n) end
 
+--
+
+---
+--- Return a “deep” copy of the table – a copy which follows nested structures to any depth and does not depend on
+--- pointers, it copies the contents.
+--- @param input_table table @ the table to copy
+--- @return table @ the copy of the table
+function table.deepcopy(input_table) end
+
 return table
