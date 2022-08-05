@@ -33,6 +33,8 @@ class GetStackCommand : DefaultCommand("STACK --{maxlevel=0}", 1) {
 
     private var hasError: Boolean = false
     private var errorDataLen: Int = 0
+    private val tarantoolSources = arrayOf("/home/bonbaton/tarantool/src/lua/",
+            "/home/bonbaton/tarantool/src/box/lua/")
 
     override fun isFinished(): Boolean {
         return !hasError && super.isFinished()
@@ -80,8 +82,13 @@ class GetStackCommand : DefaultCommand("STACK --{maxlevel=0}", 1) {
                 var position = debugProcess.findSourcePosition(fileNameString, line.toint())
                 if (position == null && fileNameString.contains("builtin/"))
                 {
-                    fileNameString = fileNameString.replace("builtin/", "/home/bonbaton/tarantool/src/lua/")
-                    position = debugProcess.findSourcePosition(fileNameString, line.toint())
+                    fileNameString = fileNameString.replace("builtin/", "")
+                    fileNameString = fileNameString.replace("box/", "")
+                    for (j in 0..1) {
+                        position = debugProcess.findSourcePosition(tarantoolSources[j] + fileNameString, line.toint())
+                        if (position != null)
+                            break
+                    }
                 }
                 var functionName = funcName.toString()
                 if (funcName.isnil())

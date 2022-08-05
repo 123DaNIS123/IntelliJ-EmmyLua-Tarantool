@@ -1,4 +1,4 @@
-![logo](/snapshot/logo.png)
+git config --global user.name ![logo](/snapshot/logo.png)
 # EmmyLua for IntelliJ IDEA
 
 [![Build status](https://ci.appveyor.com/api/projects/status/m25uajpqa2fft8ah?svg=true)](https://ci.appveyor.com/project/EmmyLua/intellij-emmylua)
