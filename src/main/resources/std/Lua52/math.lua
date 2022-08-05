@@ -38,13 +38,16 @@ function math.asin(x) return 0 end
 ---@return number
 function math.atan(x) return 0 end
 
----Returns the arc tarantoolluaent of `y/x` (in radians), but uses the signs of both
----parameters to find the quadrant of the result. (It also handles correctly the
----case of `x` being zero.)
+--- Returns the arc tarantoolluaent of `y/x` (in radians), but uses the signs of both
+--- parameters to find the quadrant of the result. (It also handles correctly
+--- the case of `x` being zero.)
+---
+--- The default value for `x` is 1, so that the call `math.atan(y)`` returns the
+--- arc tarantoolluaent of `y`.
 ---@param y number
 ---@param x number
 ---@return number
-function math.atan2(y, x) end
+function math.atan2(y, x)end
 
 ---
 --- Returns the smallest integer larger than or equal to `x`.
@@ -57,11 +60,6 @@ function math.ceil(x) return 0 end
 ---@param x number
 ---@return number
 function math.cos(x) return 0 end
-
---- Returns the hyperbolic cosine of `x`.
----@param x number
----@return number
-function math.cosh(x) end
 
 ---
 --- Converts the angle `x` from radians to degrees.
@@ -82,38 +80,16 @@ function math.exp(x) end
 function math.floor(x) end
 
 ---
---- Returns the remainder of the division of `x` by `y` that rounds the
---- quotient towards zero. (integer/float)
----@param x number
----@param y number
----@return number
-function math.fmod(x, y) end
-
---- Returns `m` and `e` such that x = m2^e, e is an integer and the absolute
---- value of `m` is in the range [0.5, 1) (or zero when `x` is zero).
----@param x number
----@return number, number
-function math.frexp(x) end
-
----
---- The float value `HUGE_VAL`, a value larger than any other numeric value.
----@type number
-math.huge = nil
-
---- Returns `m2^e` (`e` should be an integer).
----@param m number
----@param e number
----@return number
-function math.ldexp(m, e)end
-
----
---- Returns the logarithm of `x` in the given base. The default for `base` is
---- *e* (so that the function returns the natural logarithm of `x`).
----@overload fun(x:number):number
+--- Returns the natural logarithm of x
 ---@param x number
 ---@param base number
 ---@return number
-function math.log(x, base) end
+function math.log(x) end
+
+--- Returns the base-10 logarithm of `x`.
+---@param x number
+---@return number
+function math.log10(x) end
 
 ---
 --- Returns the argument with the maximum value, according to the Lua operator
@@ -134,14 +110,15 @@ function math.min(x, ...) end
 --- result is always a float.
 ---@param x number
 ---@return number
-function math.modf(x) end
+function math.mod(x) end
 
 ---
---- The value of π.
-math.pi = 3.1415
-
+--- The value of *pi*.
+--- function math.pi end
+--- * `math.pi`: math.pi
 ---
----Returns `x^y`. (You can also use the expression x^y to compute this value.)
+--- Returns *x^y*. (You can also use the expression `x^y` to compute this
+--- value.)
 ---@param x number
 ---@param y number
 ---@return number
@@ -177,11 +154,6 @@ function math.randomseed(x) end
 ---@return number
 function math.sin(x) return 0 end
 
---- Returns the hyperbolic sine of `x`.
----@param x number
----@return number
-function math.sinh(x) end
-
 ---
 --- Returns the square root of `x`. (You can also use the expression `x^0.5` to
 --- compute this value.)
@@ -196,9 +168,12 @@ function math.sqrt(x) return 0 end
 function math.tan(x) return 0 end
 
 ---
----Returns the hyperbolic tarantoolluaent of x.
+--- Returns `m` and `e` such that *x = m2^e*, `e` is an integer and the
+--- absolute value of `m` is in the range *[0.5, 1)* (or zero when `x` is zero).
 ---@param x number
 ---@return number
-function math.tanh(x) end
+function math.frexp(x) end
+
+
 
 return math

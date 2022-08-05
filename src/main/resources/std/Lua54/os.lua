@@ -189,4 +189,22 @@ function os.time(table) end
 ---@return string
 function os.tmpname() end
 
+--
+
+---
+--- Return a table containing all environment variables.
+function os.environ() end
+
+---
+--- Set an environment variable.
+function os.setenv(variable_name, variable_value) end
+
+---
+--- Change the locale. If new-locale-string is not specified, return the current locale.
+function os.setlocale(new_locale_string) end
+
+---
+--- Return the number of seconds between two times.
+function os.difftime(time1, time2) end
+
 return os

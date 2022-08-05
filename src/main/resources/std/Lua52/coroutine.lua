@@ -39,12 +39,6 @@ function coroutine.create(f) end
 function coroutine.resume(co, val1, ...) end
 
 ---
---- Returns the running coroutine plus a boolean, true when the running
---- coroutine is the main one.
----@return thread|boolean
-function coroutine.running() end
-
----
 --- Returns the status of coroutine `co`, as a string: "`running`", if the
 --- coroutine is running (that is, it called `status`); "`suspended`", if the
 --- coroutine is suspended in a call to `yield`, or if it has not started

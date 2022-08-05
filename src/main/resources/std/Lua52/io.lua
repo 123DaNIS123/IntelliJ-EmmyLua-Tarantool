@@ -79,22 +79,10 @@ function io.open(filename, mode) return file end
 
 ---
 --- Similar to `io.input`, but operates over the default output file.
----@overload fun():file
+---@overload fun(): file
 ---@param file file | string
 ---@return file
 function io.output(file) end
-
----
---- This function is system dependent and is not available on all platforms.
----
---- Starts program `prog` in a separated process and returns a file handle that
---- you can use to read data from this program (if `mode` is "`r`", the default)
---- or to write data to this program (if `mode` is "`w`").
----@overload fun(prog:string):file
----@param prog string
----@param mode string | '"r"' | '"w"'
----@return file
-function io.popen(prog, mode) end
 
 ---
 --- Equivalent to `io.input():read(···)`.
@@ -197,38 +185,9 @@ function file:read(...) end
 function file:seek(whence, offset) end
 
 ---
---- Sets the buffering mode for an output file. There are three available
---- modes:
---- **"no"**: no buffering; the result of any output operation appears
---- immediately.
---- **"full"**: full buffering; output operation is performed only when the
---- buffer is full (or when you explicitly `flush` the file (see `io.flush`)).
---- **"line"**: line buffering; output is buffered until a newline is output or
---- there is any input from some special files (such as a terminal device).
----
---- For the last two cases, `size` specifies the size of the buffer, in
---- bytes. The default is an appropriate size.
----@overload fun(mode:string)
----@param mode string | '"no"' | '"full"' | '"line"'
----@param size number
-function file:setvbuf(mode, size) end
-
----
 --- Writes the value of each of its arguments to the `file`. The arguments
 --- must be strings or numbers.
 ---
 --- In case of success, this function returns `file`. Otherwise it returns
 --- **nil** plus a string describing the error.
 function file:write(...) end
-
---- * `io.stderr`: Standard error.
----@type file
-stderr = nil
-
---- * `io.stdin`: Standard in.
----@type file
-stdin = nil
-
---- * `io.stdout`: Standard out.
----@type file
-stdout = nil

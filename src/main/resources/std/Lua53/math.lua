@@ -33,17 +33,21 @@ function math.acos(x) return 0 end
 function math.asin(x) return 0 end
 
 ---
+--- Returns the arc tarantoolluaent of `x` (in radians).
+---@param x number
+---@return number
+function math.atan(x) return 0 end
+
 --- Returns the arc tarantoolluaent of `y/x` (in radians), but uses the signs of both
 --- parameters to find the quadrant of the result. (It also handles correctly
 --- the case of `x` being zero.)
 ---
 --- The default value for `x` is 1, so that the call `math.atan(y)`` returns the
 --- arc tarantoolluaent of `y`.
----@overload fun(y:number):number
 ---@param y number
 ---@param x number
 ---@return number
-function math.atan(y, x) return 0 end
+function math.atan2(y, x)end
 
 ---
 --- Returns the smallest integer larger than or equal to `x`.
@@ -76,26 +80,16 @@ function math.exp(x) end
 function math.floor(x) end
 
 ---
---- Returns the remainder of the division of `x` by `y` that rounds the
---- quotient towards zero. (integer/float)
----@param x number
----@param y number
----@return number
-function math.fmod(x, y) end
-
----
---- The float value `HUGE_VAL`, a value larger than any other numeric value.
----@type number
-math.huge = nil
-
----
---- Returns the logarithm of `x` in the given base. The default for `base` is
---- *e* (so that the function returns the natural logarithm of `x`).
----@overload fun(x:number):number
+--- Returns the natural logarithm of x
 ---@param x number
 ---@param base number
 ---@return number
-function math.log(x, base) end
+function math.log(x) end
+
+--- Returns the base-10 logarithm of `x`.
+---@param x number
+---@return number
+function math.log10(x) end
 
 ---
 --- Returns the argument with the maximum value, according to the Lua operator
@@ -105,11 +99,6 @@ function math.log(x, base) end
 function math.max(x, ...) end
 
 ---
---- An integer with the maximum value for an integer.
----@type number
-math.maxinteger = nil
-
----
 --- Returns the argument with the minimum value, according to the Lua operator
 --- `<`. (integer/float)
 ---@param x number
@@ -117,20 +106,23 @@ math.maxinteger = nil
 function math.min(x, ...) end
 
 ---
---- An integer with the minimum value for an integer.
----@type number
-math.mininteger = nil
-
----
 --- Returns the integral part of `x` and the fractional part of `x`. Its second
 --- result is always a float.
 ---@param x number
 ---@return number
-function math.modf(x) end
+function math.mod(x) end
 
 ---
---- The value of π.
-math.pi = 3.1415
+--- The value of *pi*.
+--- function math.pi end
+--- * `math.pi`: math.pi
+---
+--- Returns *x^y*. (You can also use the expression `x^y` to compute this
+--- value.)
+---@param x number
+---@param y number
+---@return number
+function math.pow(x, y) end
 
 ---
 --- Converts the angle `x` from degrees to radians.
@@ -176,25 +168,12 @@ function math.sqrt(x) return 0 end
 function math.tan(x) return 0 end
 
 ---
---- If the value `x` is convertible to an integer, returns that integer.
---- Otherwise, returns `nil`.
+--- Returns `m` and `e` such that *x = m2^e*, `e` is an integer and the
+--- absolute value of `m` is in the range *[0.5, 1)* (or zero when `x` is zero).
 ---@param x number
 ---@return number
-function math.tointeger(x) end
+function math.frexp(x) end
 
----
---- Returns "`integer`" if `x` is an integer, "`float`" if it is a float, or
---- **nil** if `x` is not a number.
----@param x number
----@return number
-function math.type(x) end
 
----
---- Returns a boolean, true if and only if integer `m` is below integer `n` when
---- they are compared as unsigned integers.
----@param m number
----@param n number
----@return boolean
-function math.ult(m, n) end
 
 return math

@@ -29,6 +29,34 @@ table = {}
 ---@return string
 function table.concat(list, sep, i, j) end
 
+--- Executes the given f over all elements of `table`. For each element, `f` is
+--- called with the index and respective value as arguments. If `f` returns a
+--- non-nil value, then the loop is broken, and this value is returned as the
+--- final value of `foreach`.
+--- See the `next` function for extra information about table traversals.
+---
+---@param table table
+---@param f fun(key:any, value:any):any
+function table.foreach (table, f) end
+
+--- Executes the given `f` over the numerical indices of `table`. For each index,
+--- `f` is called with the index and respective value as arguments. Indices are
+--- visited in sequential order, from 1 to `n`, where `n` is the size of the `table`
+--- (see 5.4). If `f` returns a non-nil value, then the loop is broken and this
+--- value is returned as the result of `foreachi`.
+---
+---@param table table
+---@param f fun(index:number, value:any):any
+function table.foreachi(table, f) end
+
+--- Returns the size of a table, when seen as a list. If the table has an n field
+--- with a numeric value, this value is the size of the table. Otherwise, if there
+--- was a previous call to table.setn over this table, the respective value is
+--- returned. Otherwise, the size is one less the first integer index with a nil value.
+---@param table table
+---@return number
+function table.getn(table) end
+
 ---
 --- Inserts element `value` at position `pos` in `list`, shifting up the
 --- elements to `list[pos]`, `list[pos+1]`, `···`, `list[#list]`. The default
@@ -40,13 +68,6 @@ function table.concat(list, sep, i, j) end
 ---@param value any
 ---@return number
 function table.insert(list, pos, value) end
-
----
---- Returns a new table with all arguments stored into keys 1, 2, etc. and
---- with a field "`n`" with the total number of arguments. Note that the
---- resulting table may not be a sequence, if some arguments are **nil**.
----@return table
-function table.pack(...) end
 
 ---
 --- Removes from `list` the element at position `pos`, returning the value of
@@ -86,15 +107,21 @@ function table.remove(list, pos) end
 ---@return number
 function table.sort(list, comp) end
 
+--- Updates the size of a `table`. If the `table` has a field "n" with a numerical
+--- value, that value is changed to the given `n`. Otherwise, it updates an internal
+--- state so that subsequent calls to `table.getn(table)` return `n`.
 ---
---- Returns the elements from the given list. This function is equivalent to
---- return `list[i]`, `list[i+1]`, `···`, `list[j]`
---- By default, i is 1 and j is #list.
----@overload fun(list:table):any
----@param list table
----@param i number
----@param j number
----@return any
-function table.unpack(list, i, j) end
+---@param table table
+---@param n number
+function table.setn(table, n) end
+
+--
+
+---
+--- Return a “deep” copy of the table – a copy which follows nested structures to any depth and does not depend on
+--- pointers, it copies the contents.
+--- @param input_table table @ the table to copy
+--- @return table @ the copy of the table
+function table.deepcopy(input_table) end
 
 return table

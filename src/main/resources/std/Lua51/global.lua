@@ -106,6 +106,11 @@ function getmetatable(object) end
 ---@return any
 function getfenv(f) end
 
+--- Returns two results: the number of Kbytes of dynamic memory that Lua is
+--- using and the current garbage collector threshold (also in Kbytes).
+---@return number, number
+function gcinfo() end
+
 ---
 --- Returns three values (an iterator function, the table `t`, and 0) so that
 --- the construction
@@ -116,42 +121,6 @@ function getfenv(f) end
 ---@param t table<number, V>|V[]
 ---@return fun(tbl: table<number, V>):number, V
 function ipairs(t) end
-
----
---- Loads a chunk.
---- If `chunk` is a string, the chunk is this string. If `chunk` is a function,
---- `load` calls it repeatedly to get the chunk pieces. Each call to `chunk`
---- must return a string that concatenates with previous results. A return of
---- an empty string, **nil**, or no value signals the end of the chunk.
----
---- If there are no syntactic errors, returns the compiled chunk as a function;
---- otherwise, returns **nil** plus the error message.
----
---- If the resulting function has upvalues, the first upvalue is set to the
---- value of `env`, if that parameter is given, or to the value of the global
---- environment. Other upvalues are initialized with **nil**. (When you load a
---- main chunk, the resulting function will always have exactly one upvalue, the
---- _ENV variable. However, when you load a binary chunk created from a
---- function (see string.dump), the resulting function can have an arbitrary
---- number of upvalues.) All upvalues are fresh, that is, they are not shared
---- with any other function.
----
---- `chunkname` is used as the name of the chunk for error messages and debug
---- information. When absent, it defaults to `chunk`, if `chunk` is a string,
---- or to "=(`load`)" otherwise.
----
---- The string `mode` controls whether the chunk can be text or binary (that is,
---- a precompiled chunk). It may be the string "b" (only binary chunks), "t"
---- (only text chunks), or "bt" (both binary and text). The default is "bt".
----
---- Lua does not check the consistency of binary chunks. Maliciously crafted
---- binary chunks can crash the interpreter.
----@overload fun(chunk:fun():string):any
----@param chunk fun():string
----@param chunkname string
----@param mode string
----@param env any
-function load(chunk, chunkname, mode, env) end
 
 ---Similar to `load`, but gets the chunk from the given string.
 ---
@@ -174,24 +143,19 @@ function loadstring(string, chunkname) end
 ---@param env any
 function loadfile(filename, mode, env) end
 
---- Creates a module. If there is a table in `package.loaded[name]`, this table
---- is the module. Otherwise, if there is a global table `t` with the given name,
---- this table is the module. Otherwise creates a new table `t` and sets it as the
---- value of the global `name` and the value of `package.loaded[name]`. This function
---- also initializes `t._NAME` with the given `name`, `t._M` with the module (`t` itself),
---- and `t._PACKAGE` with the package name (the full module name minus last component;
---- see below). Finally, module sets t as the new environment of the current function
---- and the new value of `package.loaded[name]`, so that require returns `t`.
---- If `name` is a compound name (that is, one with components separated by dots),
---- `module` creates (or reuses, if they already exist) tables for each component.
---- For instance, if `name` is `a.b.c`, then `module` stores the module table in field `c`
---- of field `b` of global `a`.
+--- Links the program with the dynamic C library `libname`. Inside this library,
+--- looks for a function `funcname` and returns this function as a C function.
 ---
---- This function can receive optional options after the module name, where each
---- option is a function to be applied over the module.
----@param name string
----@return any
-function module(name, ...) end
+--- `libname` must be the complete file name of the C library, including any
+--- eventual path and extension.
+---
+--- This function is not supported by ANSI C. As such, it is only available on
+--- some platforms (Windows, Linux, Solaris, BSD, plus other Unix systems that
+--- support the `dlfcn` standard).
+---
+---@param libname string
+---@param funcname string
+function loadlib(libname, funcname) end
 
 ---
 --- Allows a program to traverse all fields of a table. Its first argument is
@@ -312,17 +276,6 @@ function rawset(table, index, value) end
 ---@return any
 function require(modname) end
 
----
---- If `index` is a number, returns all arguments after argument number
---- `index`. a negative number indexes from the end (-1 is the last argument).
---- Otherwise, `index` must be the string "#", and `select` returns
---- the total number of extra arguments it received.
----@generic T
----@param index number|string
----@vararg T
----@return T
-function select(index, ...) end
-
 --- Sets the environment to be used by the given function. f can be a Lua
 --- function or a number that specifies the function at that stack level:
 --- Level 1 is the function calling `setfenv`. `setfenv` returns the given function.
@@ -399,8 +352,8 @@ function unpack(list, i, j)end
 
 ---
 --- A global variable (not a function) that holds a string containing the
---- running Lua version. The current value of this variable is "`Lua 5.1`".
-_VERSION = "Lua 5.1"
+--- running Lua version. The current value of this variable is "`Lua 5.0`".
+_VERSION = "Lua 5.0"
 
 ---
 --- This function is similar to `pcall`, except that it sets a new message
