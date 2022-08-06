@@ -75,7 +75,7 @@ class LuaSettings : PersistentStateComponent<LuaSettings> {
     /**
      * Lua language level
      */
-    var languageLevel = LuaLanguageLevel.LUA53
+    var languageLevel = LuaLanguageLevel.LUA51
 
     override fun getState(): LuaSettings? {
         return this
