@@ -18,6 +18,7 @@ package com.tarantoollua.intellij.lua.debugger.remote.commands
 
 import com.intellij.xdebugger.frame.XStackFrame
 import com.tarantoollua.intellij.lua.debugger.LuaExecutionStack
+import com.tarantoollua.intellij.lua.debugger.app.LuaAppRunConfiguration
 import com.tarantoollua.intellij.lua.debugger.remote.LuaMobStackFrame
 import com.tarantoollua.intellij.lua.debugger.remote.value.LuaRValue
 import org.luaj.vm2.LuaTable
@@ -33,8 +34,6 @@ class GetStackCommand : DefaultCommand("STACK --{maxlevel=0}", 1) {
 
     private var hasError: Boolean = false
     private var errorDataLen: Int = 0
-    private val tarantoolSources = arrayOf("/home/bonbaton/tarantool/src/lua/",
-            "/home/bonbaton/tarantool/src/box/lua/")
 
     override fun isFinished(): Boolean {
         return !hasError && super.isFinished()
@@ -79,17 +78,17 @@ class GetStackCommand : DefaultCommand("STACK --{maxlevel=0}", 1) {
                 val fileName = stackInfo.get(2)
                 val line = stackInfo.get(4)
                 var fileNameString = fileName.toString()
-                var position = debugProcess.findSourcePosition(fileNameString, line.toint())
-                if (position == null && fileNameString.contains("builtin/"))
-                {
-                    fileNameString = fileNameString.replace("builtin/", "")
-                    fileNameString = fileNameString.replace("box/", "")
-                    for (j in 0..1) {
-                        position = debugProcess.findSourcePosition(tarantoolSources[j] + fileNameString, line.toint())
-                        if (position != null)
-                            break
-                    }
-                }
+                var position = debugProcess.findSourcePosition(fileName.toString(), line.toint())
+//                if (position == null && fileNameString.contains("builtin/"))
+//                {
+//                    fileNameString = fileNameString.replace("builtin/", "")
+//                    fileNameString = fileNameString.replace("box/", "")
+//                    for (j in 0..1) {
+//                        position = debugProcess.findSourcePosition(tarantoolSources[j] + fileNameString, line.toint())
+//                        if (position != null)
+//                            break
+//                    }
+//                }
                 var functionName = funcName.toString()
                 if (funcName.isnil())
                     functionName = "main"

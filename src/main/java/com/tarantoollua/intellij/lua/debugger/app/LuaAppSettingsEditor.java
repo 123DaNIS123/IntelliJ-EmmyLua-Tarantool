@@ -60,12 +60,15 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
     private EnvironmentVariablesTextFieldWithBrowseButton myEnvironments;
     private ComboBox<String> outputCharset;
     private JCheckBox showConsoleWindowCheckBox;
+    private TextFieldWithBrowseButton myTarantoolSrc;
     private Project project;
 
     LuaAppSettingsEditor(Project project) {
         this.project = project;
         FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor();
         myProgram.addBrowseFolderListener("Choose Program", "Choose program file", project, descriptor);
+        descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+        myTarantoolSrc.addBrowseFolderListener("Specify Tarantool Source", "Specify ../tarantool/src directory", project, descriptor);
         descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
         myWorkingDir.addBrowseFolderListener("Choose Working Dir", "Choose working dir", project, descriptor);
 
@@ -100,6 +103,7 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
     @Override
     protected void resetEditorFrom(@NotNull LuaAppRunConfiguration luaAppRunConfiguration) {
         myProgram.setText(luaAppRunConfiguration.getProgram());
+        myTarantoolSrc.setText(luaAppRunConfiguration.getTarantoolSrc());
         myWorkingDir.setText(luaAppRunConfiguration.getWorkingDir());
         myFile.setText(luaAppRunConfiguration.getFile());
         myDebugger.setSelectedItem(luaAppRunConfiguration.getDebuggerType());
@@ -113,6 +117,7 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
     @Override
     protected void applyEditorTo(@NotNull LuaAppRunConfiguration luaAppRunConfiguration) {
         luaAppRunConfiguration.setProgram(myProgram.getText());
+        luaAppRunConfiguration.setTarantoolSrc(myTarantoolSrc.getText());
         luaAppRunConfiguration.setWorkingDir(myWorkingDir.getText());
         luaAppRunConfiguration.setFile(myFile.getText());
         luaAppRunConfiguration.setDebuggerType((DebuggerType) Objects.requireNonNull(myDebugger.getSelectedItem()));
