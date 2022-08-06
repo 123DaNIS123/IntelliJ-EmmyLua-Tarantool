@@ -49,8 +49,8 @@ import java.util.*
 class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
     : LuaRunConfiguration(project, factory), IRemoteConfiguration {
 
-    var program = PathEnvironmentVariableUtil.findInPath("lua")?.absolutePath
-            ?: if (SystemInfoRt.isWindows) "lua.exe" else "lua"
+    var program = PathEnvironmentVariableUtil.findInPath("tarantool")?.absolutePath
+            ?: if (SystemInfoRt.isWindows) "tarantool.exe" else "tarantool"
     var file: String? = null
     var parameters: String? = null
     var charset: String = "UTF-8"
@@ -81,9 +81,11 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
     @Throws(WriteExternalException::class)
     override fun writeExternal(element: Element) {
         super.writeExternal(element)
+        // writeField
         JDOMExternalizerUtil.writeField(element, "program", program)
         JDOMExternalizerUtil.writeField(element, "file", file)
         JDOMExternalizerUtil.writeField(element, "workingDir", workingDir)
+        JDOMExternalizerUtil.writeField(element, "tarantoolSrc", tarantoolSrc)
         JDOMExternalizerUtil.writeField(element, "debuggerType", debuggerType.value().toString())
         JDOMExternalizerUtil.writeField(element, "params", parameters)
         JDOMExternalizerUtil.writeField(element, "charset", charset)
@@ -96,6 +98,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         JDOMExternalizerUtil.readField(element, "program")?.let { program = it }
         file = JDOMExternalizerUtil.readField(element, "file")
         workingDir = JDOMExternalizerUtil.readField(element, "workingDir")
+        tarantoolSrc = JDOMExternalizerUtil.readField(element, "tarantoolSrc")
 
         JDOMExternalizerUtil.readField(element, "debuggerType")
                 ?.let { debuggerType = DebuggerType.valueOf(Integer.parseInt(it)) }
@@ -124,6 +127,16 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
             return list.toTypedArray()
         }
 
+    var tarantoolSrc: String? = null
+        get() {
+            val ts = field
+            if (ts == null || ts.isEmpty()) {
+                field = defaultTarantoolSrc
+                return defaultTarantoolSrc
+            }
+            return ts
+        }
+
     var workingDir: String? = null
         get() {
             val wd = field
@@ -132,6 +145,10 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
                 return defaultWorkingDir
             }
             return wd
+        }
+    private val defaultTarantoolSrc: String?
+        get() {
+            return "path/to/tarantool/src"
         }
 
     private val defaultWorkingDir: String?
@@ -163,6 +180,11 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         val workingDir = workingDir
         if (workingDir == null || !File(workingDir).exists()) {
             throw RuntimeConfigurationError("Working dir doesn't exist.")
+        }
+
+        val tarantoolSrc = tarantoolSrc
+        if (tarantoolSrc == null || !File(workingDir).exists()) {
+            throw RuntimeConfigurationError("Tarantool Source doesn't exist.")
         }
     }
 

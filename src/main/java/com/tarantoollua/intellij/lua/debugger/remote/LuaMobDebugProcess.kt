@@ -29,6 +29,7 @@ import com.tarantoollua.intellij.lua.debugger.IRemoteConfiguration
 import com.tarantoollua.intellij.lua.debugger.LogConsoleType
 import com.tarantoollua.intellij.lua.debugger.LuaDebugProcess
 import com.tarantoollua.intellij.lua.debugger.LuaDebuggerEditorsProvider
+import com.tarantoollua.intellij.lua.debugger.app.LuaAppRunConfiguration
 import com.tarantoollua.intellij.lua.debugger.remote.commands.DebugCommand
 import com.tarantoollua.intellij.lua.debugger.remote.commands.GetStackCommand
 import com.tarantoollua.intellij.lua.psi.LuaFileUtil
@@ -39,6 +40,11 @@ import java.net.BindException
  * Created by tarantoolluaZX on 2016/12/30.
  */
 open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session), MobServerListener {
+
+    private val configuration: LuaAppRunConfiguration = session.runProfile as LuaAppRunConfiguration
+
+    private val tarantoolSources = arrayOf("/lua/",
+            "/box/lua/")
 
     private val runProfile: IRemoteConfiguration = session.runProfile as IRemoteConfiguration
     private val editorsProvider: LuaDebuggerEditorsProvider = LuaDebuggerEditorsProvider()
@@ -132,12 +138,24 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
     }
 
     fun findSourcePosition(chunkName: String, line: Int): XSourcePosition? {
+        var chunkNameTemp = chunkName
         var position: XSourcePositionImpl? = null
-        val virtualFile = LuaFileUtil.findFile(session.project, chunkName)
+        var virtualFile = LuaFileUtil.findFile(session.project, chunkNameTemp)
+        if (virtualFile == null && chunkNameTemp.contains("builtin/"))
+        {
+            chunkNameTemp = chunkNameTemp.replace("builtin/", "")
+            chunkNameTemp = chunkNameTemp.replace("box/", "")
+            for (i in 0..1) {
+                virtualFile = LuaFileUtil.findFile(session.project, configuration.tarantoolSrc + tarantoolSources[i] + chunkNameTemp)
+                if (virtualFile != null)
+                    break
+            }
+        }
         if (virtualFile != null) {
-            recognizeBaseDir(virtualFile, chunkName)
+            recognizeBaseDir(virtualFile, chunkNameTemp)
             position = XSourcePositionImpl.create(virtualFile, line - 1)
         }
+
         return position
     }
 
