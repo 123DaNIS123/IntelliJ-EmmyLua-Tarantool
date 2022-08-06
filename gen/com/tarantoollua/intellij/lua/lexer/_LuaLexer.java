@@ -996,7 +996,7 @@ public class _LuaLexer implements FlexLexer {
             // fall through
           case 124: break;
           case 56: 
-            { if (level.getVersion() < LuaLanguageLevel.LUA52.getVersion()) return ID; else return GOTO;
+            { if (level.getVersion() < LuaLanguageLevel.LUA51.getVersion()) return ID; else return GOTO;
             } 
             // fall through
           case 125: break;
