@@ -12,7 +12,7 @@ import static com.tarantoollua.intellij.lua.psi.LuaTypes.*;
 %%
 
 %{
-    private LuaLanguageLevel level = LuaLanguageLevel.LUA54;
+    private LuaLanguageLevel level = LuaLanguageLevel.LUA51;
     public _LuaLexer(LuaLanguageLevel level) {
         this((Reader) null);
         this.level = level;
@@ -140,7 +140,7 @@ LONG_STRING=\[=*\[[\s\S]*\]=*\]
   "true"                      { return TRUE; }
   "until"                     { return UNTIL; }
   "while"                     { return WHILE; }
-  "goto"                      { if (level.getVersion() < LuaLanguageLevel.LUA52.getVersion()) return ID; else return GOTO; } //lua5.3
+  "goto"                      { if (level.getVersion() < LuaLanguageLevel.LUA51.getVersion()) return ID; else return GOTO; } //lua5.3
   "#!"                        { yybegin(xSHEBANG); return SHEBANG; }
   "..."                       { return ELLIPSIS; }
   ".."                        { return CONCAT; }
