@@ -45,17 +45,21 @@ class LanguageLevelInspection : LocalInspectionTool() {
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return object : LuaVisitor() {
             override fun visitBinaryOp(o: LuaBinaryOp) {
-                if (o.languageLevel < LuaLanguageLevel.LUA52 && LuaParserDefinition.LUA52_BIN_OP_SET.contains(o.node.firstChildNode.elementType)) {
-                    val desc = "The binary operator '${o.text}' only available in Lua 5.2 or above"
-                    registerOperatorProblem(o, desc, holder)
-                }
+                val desc = "The binary operator '${o.text}' only available in Lua 5.2 or above"
+                registerOperatorProblem(o, desc, holder)
+//                if (o.languageLevel < LuaLanguageLevel.LUA52 && LuaParserDefinition.LUA52_BIN_OP_SET.contains(o.node.firstChildNode.elementType)) {
+//                    val desc = "The binary operator '${o.text}' only available in Lua 5.2 or above"
+//                    registerOperatorProblem(o, desc, holder)
+//                }
             }
 
             override fun visitUnaryOp(o: LuaUnaryOp) {
-                if (o.languageLevel < LuaLanguageLevel.LUA52 && LuaParserDefinition.LUA52_UNARY_OP_SET.contains(o.node.firstChildNode.elementType)) {
-                    val desc = "The unary operator '${o.text}' only available in Lua 5.2 or above"
-                    registerOperatorProblem(o, desc, holder)
-                }
+                val desc = "The unary operator '${o.text}' only available in Lua 5.2 or above"
+                registerOperatorProblem(o, desc, holder)
+//                if (o.languageLevel < LuaLanguageLevel.LUA52 && LuaParserDefinition.LUA52_UNARY_OP_SET.contains(o.node.firstChildNode.elementType)) {
+//                    val desc = "The unary operator '${o.text}' only available in Lua 5.2 or above"
+//                    registerOperatorProblem(o, desc, holder)
+//                }
             }
         }
     }
