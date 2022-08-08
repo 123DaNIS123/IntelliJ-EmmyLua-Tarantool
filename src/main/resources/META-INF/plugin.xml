@@ -17,7 +17,7 @@
 <idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <id>com.tarantoollua</id>
     <name>Tarantool-EmmyLua</name>
-    <version>1.1</version>
+    <version>1.4</version>
     <vendor email="love.tarantoolluazx@qq.com">tarantoollua</vendor>
     <category>Custom Languages</category>
     <description><![CDATA[
