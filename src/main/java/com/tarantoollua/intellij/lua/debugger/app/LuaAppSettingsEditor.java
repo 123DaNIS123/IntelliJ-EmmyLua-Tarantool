@@ -61,6 +61,7 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
     private ComboBox<String> outputCharset;
     private JCheckBox showConsoleWindowCheckBox;
     private TextFieldWithBrowseButton myTarantoolSrc;
+    private LuaRemappingSourcesPanel remappingPanel;
     private Project project;
 
     LuaAppSettingsEditor(Project project) {

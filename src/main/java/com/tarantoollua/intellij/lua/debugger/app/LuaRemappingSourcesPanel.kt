@@ -1,0 +1,91 @@
+/*
+ * Copyright (c) 2017. tarantoolluazx(love.tarantoolluazx@qq.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.tarantoollua.intellij.lua.debugger.app
+
+import com.intellij.openapi.fileChooser.FileChooser
+import com.intellij.openapi.fileChooser.FileChooserDescriptor
+import com.intellij.ui.IdeBorderFactory
+import com.intellij.ui.ToolbarDecorator
+import com.intellij.ui.components.JBList
+import com.intellij.ui.table.JBTable
+import com.tarantoollua.intellij.lua.LuaBundle
+import java.awt.BorderLayout
+import javax.swing.DefaultListModel
+import javax.swing.JPanel
+import javax.swing.ListSelectionModel
+import javax.swing.table.DefaultTableModel
+
+class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
+//    private val dataModel = DefaultListModel<String>()
+//    private val pathList = JBList(dataModel)
+
+    private val dataTableModel = DefaultTableModel(0, 2)
+    private val pathTable = JBTable(dataTableModel)
+    init {
+//        pathList.selectionMode = ListSelectionModel.SINGLE_SELECTION
+
+//        add(ToolbarDecorator.createDecorator(pathList)
+//                .setAddAction { addPath() }
+//                .setEditAction { editPath() }
+//                .setRemoveAction { removePath() }
+//                .createPanel(), BorderLayout.CENTER)
+//        border = IdeBorderFactory.createTitledBorder(LuaBundle.message("ui.settings.additional_root"), false)
+
+        pathTable.tableHeader.columnModel.getColumn(0).headerValue = "@builtin"
+        pathTable.tableHeader.columnModel.getColumn(1).headerValue = "Remapped"
+
+        add(ToolbarDecorator.createDecorator(pathTable)
+                .setAddAction { addPath() }
+                .setEditAction { editPath() }
+                .setRemoveAction { removePath() }
+                .createPanel(), BorderLayout.CENTER)
+        border = IdeBorderFactory.createTitledBorder("Debugger remapping sources", false)
+    }
+
+//    var roots: Array<String> get() {
+//        val list = mutableListOf<String>()
+//        for (i in 0 until dataModel.size) {
+//            list.add(dataModel.get(i))
+//        }
+//        return list.toTypedArray()
+//    } set(value) {
+//        dataModel.clear()
+//        for (s in value) dataModel.addElement(s)
+//    }
+
+    private fun addPath() {
+        val desc = FileChooserDescriptor(false, true, false, false, false, false)
+        val dir = FileChooser.chooseFile(desc, null, null)
+        if (dir != null) {
+//            dataModel.addElement(dir.canonicalPath)
+        }
+    }
+
+    private fun editPath() {
+        // val index = pathList.selectedIndex
+        val desc = FileChooserDescriptor(false, true, false, false, false, false)
+        val dir = FileChooser.chooseFile(desc, null, null)
+        if (dir != null) {
+            // dataModel.set(index, dir.canonicalPath)
+        }
+    }
+
+    private fun removePath() {
+        // val index = pathList.selectedIndex
+        // dataModel.removeElementAt(index)
+    }
+}
