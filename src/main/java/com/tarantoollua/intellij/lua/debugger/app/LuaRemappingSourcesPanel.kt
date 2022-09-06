@@ -20,13 +20,9 @@ import com.intellij.openapi.fileChooser.FileChooser
 import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.ui.IdeBorderFactory
 import com.intellij.ui.ToolbarDecorator
-import com.intellij.ui.components.JBList
 import com.intellij.ui.table.JBTable
-import com.tarantoollua.intellij.lua.LuaBundle
 import java.awt.BorderLayout
-import javax.swing.DefaultListModel
 import javax.swing.JPanel
-import javax.swing.ListSelectionModel
 import javax.swing.table.DefaultTableModel
 
 class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
@@ -34,7 +30,9 @@ class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
 //    private val pathList = JBList(dataModel)
 
     private val dataTableModel = DefaultTableModel(0, 2)
+
     private val pathTable = JBTable(dataTableModel)
+
     init {
 //        pathList.selectionMode = ListSelectionModel.SINGLE_SELECTION
 
@@ -66,26 +64,71 @@ class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
 //        dataModel.clear()
 //        for (s in value) dataModel.addElement(s)
 //    }
+@Override
+fun isCellEditable(row: Int, column: Int): Boolean {
+    return column == 0
+}
+
+    var srcs: ArrayList<Pair<String, String>> get() {
+        val tempSrcs = ArrayList<Pair<String, String>>()
+        var tempPair: Pair<String, String>
+        for (i in 0 until dataTableModel.rowCount) {
+            tempPair = Pair(dataTableModel.getValueAt(i, 0) as String, dataTableModel.getValueAt(i, 1) as String)
+            tempSrcs.add(tempPair)
+        }
+        // val tempStr = tempSrcs.toString()
+        return tempSrcs
+    } set(value) {
+        for (i in 0 until dataTableModel.rowCount) {
+            dataTableModel.removeRow(0)
+        }
+        for (s:Pair<String, String> in value) {
+            dataTableModel.addRow(arrayOf(s.first, s.second))
+        }
+    }
+//    var srcs: ArrayList<String> get() {
+//        val tempSrcs = ArrayList<String>()
+//        var temp = ""
+//        for (i in 0 until dataTableModel.rowCount) {
+//            temp = dataTableModel.getValueAt(i, 0) as String + "\t" + dataTableModel.getValueAt(i, 1) as String
+//            tempSrcs.add(temp)
+//        }
+//        return tempSrcs
+//    } set(value) {
+//        for (i in 0 until dataTableModel.rowCount) {
+//            dataTableModel.removeRow(0)
+//        }
+//        for (s in value) {
+//            dataTableModel.addRow(arrayOf(s[0:s.find], "22"))
+//        }
+//    }
+
+
+
 
     private fun addPath() {
-        val desc = FileChooserDescriptor(false, true, false, false, false, false)
-        val dir = FileChooser.chooseFile(desc, null, null)
-        if (dir != null) {
+    val desc = FileChooserDescriptor(false, true, false, false, false, false)
+    // val dir = FileChooser.chooseFile(desc, null, null)
+   // if (dir != null) {
 //            dataModel.addElement(dir.canonicalPath)
-        }
-    }
+        dataTableModel.addRow(arrayOf("/builtin/lua", "path/to/tarantool/src/lua"))
+   // }
+}
 
-    private fun editPath() {
-        // val index = pathList.selectedIndex
-        val desc = FileChooserDescriptor(false, true, false, false, false, false)
-        val dir = FileChooser.chooseFile(desc, null, null)
-        if (dir != null) {
-            // dataModel.set(index, dir.canonicalPath)
-        }
+private fun editPath() {
+    val index = pathTable.selectedRow
+    val desc = FileChooserDescriptor(false, true, false, false, false, false)
+    val dir = FileChooser.chooseFile(desc, null, null)
+    if (dir != null) {
+        // dataModel.set(index, dir.canonicalPath)
+        dataTableModel.setValueAt(dir.canonicalPath, index, 1)
     }
+}
 
-    private fun removePath() {
-        // val index = pathList.selectedIndex
-        // dataModel.removeElementAt(index)
-    }
+private fun removePath() {
+    // val index = pathList.selectedIndex
+    // dataModel.removeElementAt(index)
+    val index = pathTable.selectedRow
+    dataTableModel.removeRow(index)
+}
 }

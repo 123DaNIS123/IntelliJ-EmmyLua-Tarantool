@@ -32,6 +32,7 @@ import com.intellij.openapi.util.SystemInfoRt
 import com.intellij.openapi.util.WriteExternalException
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.util.execution.ParametersListUtil
+import com.sun.jna.platform.win32.WinDef.BOOL
 import com.tarantoollua.intellij.lua.debugger.DebuggerType
 import com.tarantoollua.intellij.lua.debugger.IRemoteConfiguration
 import com.tarantoollua.intellij.lua.debugger.LuaCommandLineState
@@ -41,6 +42,7 @@ import org.jdom.Element
 import java.io.File
 import java.nio.charset.Charset
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  *
@@ -55,6 +57,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
     var parameters: String? = null
     var charset: String = "UTF-8"
     var showConsole = true
+    var remappingSrcs: String? = null
 
     var debuggerType: DebuggerType = DebuggerType.Attach
         get() {
@@ -90,6 +93,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         JDOMExternalizerUtil.writeField(element, "params", parameters)
         JDOMExternalizerUtil.writeField(element, "charset", charset)
         JDOMExternalizerUtil.writeField(element, "showConsole", if (showConsole) "true" else "false")
+        JDOMExternalizerUtil.writeField(element, "remappingSrcs", remappingSrcs)
     }
 
     @Throws(InvalidDataException::class)
@@ -106,6 +110,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         parameters = JDOMExternalizerUtil.readField(element, "params")
         charset = JDOMExternalizerUtil.readField(element, "charset") ?: "UTF-8"
         showConsole = JDOMExternalizerUtil.readField(element, "showConsole") == "true"
+        remappingSrcs = JDOMExternalizerUtil.readField(element, "remappingSrcs")
     }
 
     override val port = 8172
@@ -136,6 +141,45 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
             }
             return ts
         }
+
+    fun getSourcesForRemapping(): ArrayList<Pair<String, String>> {
+        val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.subSequence(1, remappingSrcs!!.length - 1).split("), ("))
+        var tempSrcs = ArrayList<Pair<String, String>>()
+        var tempPairArr: ArrayList<String>
+        var tempPair: Pair<String, String>
+        for (i in 0 until  tempArr.size)
+        {
+            if (i == 0) {
+                tempArr[i] = tempArr[i].subSequence(1, tempArr[i].length).toString()
+            }
+            else {
+                tempArr[i] = tempArr[i].subSequence(0, tempArr[i].length - 1).toString()
+            }
+            tempPairArr = ArrayList(tempArr[i].subSequence(1, tempArr[i].length - 1).split(", "))
+            tempPair = Pair(tempPairArr[0], tempPairArr[1])
+            tempSrcs.add(tempPair)
+        }
+        // val tempSrcs = remappingSrcs.to(ArrayList<Pair<String, String>>())
+        return tempSrcs
+    }
+    fun setSourcesForRemapping(tempSrcs: ArrayList<Pair<String, String>>) {
+        remappingSrcs = tempSrcs.toString()
+    }
+//    var remappingSrcs: String? = null
+//        get() {
+//            val rs = field
+//            if (rs == null || rs.isEmpty()) {
+//                field = defaultRemappingSrcs
+//                return defaultRemappingSrcs
+//            }
+//            return rs
+//        }
+//
+//    private val defaultRemappingSrcs: String?
+//        get() {
+//            return "null"
+//        }
+
 
     var workingDir: String? = null
         get() {
@@ -185,6 +229,10 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         val tarantoolSrc = tarantoolSrc
         if (tarantoolSrc == null || !File(workingDir).exists()) {
             throw RuntimeConfigurationError("Tarantool Source doesn't exist.")
+        }
+        val remappingSrcs = remappingSrcs
+        if (remappingSrcs == null || !File(workingDir).exists()) {
+            throw RuntimeConfigurationError("Remapping Sources doesn't exist.")
         }
     }
 

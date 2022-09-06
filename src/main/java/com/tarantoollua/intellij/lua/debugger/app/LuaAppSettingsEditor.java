@@ -41,6 +41,8 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.nio.charset.Charset;
 import java.util.Objects;
 import java.util.SortedMap;
@@ -113,6 +115,7 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
         mobdebugLink.setVisible(luaAppRunConfiguration.getDebuggerType() == DebuggerType.Mob);
         outputCharset.setSelectedItem(luaAppRunConfiguration.getCharset());
         showConsoleWindowCheckBox.setSelected(luaAppRunConfiguration.getShowConsole());
+        remappingPanel.setSrcs(luaAppRunConfiguration.getSourcesForRemapping());
     }
 
     @Override
@@ -126,6 +129,7 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
         luaAppRunConfiguration.setEnvs(myEnvironments.getEnvs());
         luaAppRunConfiguration.setCharset((String) Objects.requireNonNull(outputCharset.getSelectedItem()));
         luaAppRunConfiguration.setShowConsole(showConsoleWindowCheckBox.isSelected());
+        luaAppRunConfiguration.setSourcesForRemapping(remappingPanel.getSrcs());
     }
 
     @NotNull
