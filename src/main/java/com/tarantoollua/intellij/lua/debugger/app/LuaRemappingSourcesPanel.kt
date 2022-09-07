@@ -32,6 +32,11 @@ class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
     private val dataTableModel = DefaultTableModel(0, 2)
 
     private val pathTable = JBTable(dataTableModel)
+    @Override
+    fun isCellEditable(row: Int, column: Int): Boolean {
+        return column == 0
+    }
+
 
     init {
 //        pathList.selectionMode = ListSelectionModel.SINGLE_SELECTION
@@ -45,6 +50,7 @@ class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
 
         pathTable.tableHeader.columnModel.getColumn(0).headerValue = "@builtin"
         pathTable.tableHeader.columnModel.getColumn(1).headerValue = "Remapped"
+        pathTable.tableHeader.reorderingAllowed = false
 
         add(ToolbarDecorator.createDecorator(pathTable)
                 .setAddAction { addPath() }
@@ -64,10 +70,7 @@ class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
 //        dataModel.clear()
 //        for (s in value) dataModel.addElement(s)
 //    }
-@Override
-fun isCellEditable(row: Int, column: Int): Boolean {
-    return column == 0
-}
+
 
     var srcs: ArrayList<Pair<String, String>> get() {
         val tempSrcs = ArrayList<Pair<String, String>>()
@@ -107,12 +110,7 @@ fun isCellEditable(row: Int, column: Int): Boolean {
 
 
     private fun addPath() {
-    val desc = FileChooserDescriptor(false, true, false, false, false, false)
-    // val dir = FileChooser.chooseFile(desc, null, null)
-   // if (dir != null) {
-//            dataModel.addElement(dir.canonicalPath)
-        dataTableModel.addRow(arrayOf("/builtin/lua", "path/to/tarantool/src/lua"))
-   // }
+        dataTableModel.addRow(arrayOf("builtin", "path/to/tarantool/src"))
 }
 
 private fun editPath() {

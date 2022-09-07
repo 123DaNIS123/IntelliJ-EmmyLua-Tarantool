@@ -57,7 +57,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
     var parameters: String? = null
     var charset: String = "UTF-8"
     var showConsole = true
-    var remappingSrcs: String? = null
+    private var remappingSrcs: String? = null
 
     var debuggerType: DebuggerType = DebuggerType.Attach
         get() {
@@ -88,7 +88,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         JDOMExternalizerUtil.writeField(element, "program", program)
         JDOMExternalizerUtil.writeField(element, "file", file)
         JDOMExternalizerUtil.writeField(element, "workingDir", workingDir)
-        JDOMExternalizerUtil.writeField(element, "tarantoolSrc", tarantoolSrc)
+        // JDOMExternalizerUtil.writeField(element, "tarantoolSrc", tarantoolSrc)
         JDOMExternalizerUtil.writeField(element, "debuggerType", debuggerType.value().toString())
         JDOMExternalizerUtil.writeField(element, "params", parameters)
         JDOMExternalizerUtil.writeField(element, "charset", charset)
@@ -102,7 +102,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         JDOMExternalizerUtil.readField(element, "program")?.let { program = it }
         file = JDOMExternalizerUtil.readField(element, "file")
         workingDir = JDOMExternalizerUtil.readField(element, "workingDir")
-        tarantoolSrc = JDOMExternalizerUtil.readField(element, "tarantoolSrc")
+        // tarantoolSrc = JDOMExternalizerUtil.readField(element, "tarantoolSrc")
 
         JDOMExternalizerUtil.readField(element, "debuggerType")
                 ?.let { debuggerType = DebuggerType.valueOf(Integer.parseInt(it)) }
@@ -132,30 +132,37 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
             return list.toTypedArray()
         }
 
-    var tarantoolSrc: String? = null
-        get() {
-            val ts = field
-            if (ts == null || ts.isEmpty()) {
-                field = defaultTarantoolSrc
-                return defaultTarantoolSrc
-            }
-            return ts
-        }
+//    var tarantoolSrc: String? = null
+//        get() {
+//            val ts = field
+//            if (ts == null || ts.isEmpty()) {
+//                field = defaultTarantoolSrc
+//                return defaultTarantoolSrc
+//            }
+//            return ts
+//        }
 
     fun getSourcesForRemapping(): ArrayList<Pair<String, String>> {
-        val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.subSequence(1, remappingSrcs!!.length - 1).split("), ("))
+        // val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.subSequence(1, remappingSrcs!!.length - 1).split("), ("))
+        val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.split("), ("))
         var tempSrcs = ArrayList<Pair<String, String>>()
         var tempPairArr: ArrayList<String>
         var tempPair: Pair<String, String>
         for (i in 0 until  tempArr.size)
         {
-            if (i == 0) {
+            if (tempArr[i][0] == '[') {
                 tempArr[i] = tempArr[i].subSequence(1, tempArr[i].length).toString()
             }
-            else {
+            if (tempArr[i][0] == '(') {
+                tempArr[i] = tempArr[i].subSequence(1, tempArr[i].length).toString()
+            }
+            if (tempArr[i][tempArr[i].length - 1] == ']') {
                 tempArr[i] = tempArr[i].subSequence(0, tempArr[i].length - 1).toString()
             }
-            tempPairArr = ArrayList(tempArr[i].subSequence(1, tempArr[i].length - 1).split(", "))
+            if (tempArr[i][tempArr[i].length - 1] == ')') {
+                tempArr[i] = tempArr[i].subSequence(0, tempArr[i].length - 1).toString()
+            }
+            tempPairArr = ArrayList(tempArr[i].split(", "))
             tempPair = Pair(tempPairArr[0], tempPairArr[1])
             tempSrcs.add(tempPair)
         }
@@ -190,10 +197,10 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
             }
             return wd
         }
-    private val defaultTarantoolSrc: String?
-        get() {
-            return "path/to/tarantool/src"
-        }
+//    private val defaultTarantoolSrc: String?
+//        get() {
+//            return "path/to/tarantool/src"
+//        }
 
     private val defaultWorkingDir: String?
         get() {
@@ -226,10 +233,10 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
             throw RuntimeConfigurationError("Working dir doesn't exist.")
         }
 
-        val tarantoolSrc = tarantoolSrc
-        if (tarantoolSrc == null || !File(workingDir).exists()) {
-            throw RuntimeConfigurationError("Tarantool Source doesn't exist.")
-        }
+//        val tarantoolSrc = tarantoolSrc
+//        if (tarantoolSrc == null || !File(workingDir).exists()) {
+//            throw RuntimeConfigurationError("Tarantool Source doesn't exist.")
+//        }
         val remappingSrcs = remappingSrcs
         if (remappingSrcs == null || !File(workingDir).exists()) {
             throw RuntimeConfigurationError("Remapping Sources doesn't exist.")

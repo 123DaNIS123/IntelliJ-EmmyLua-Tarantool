@@ -43,8 +43,8 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
 
     private val configuration: LuaAppRunConfiguration = session.runProfile as LuaAppRunConfiguration
 
-    private val tarantoolSources = arrayOf("/lua/",
-            "/box/lua/")
+//   private val tarantoolSources = arrayOf("/lua/",
+//            "/box/lua/")
 
     private val runProfile: IRemoteConfiguration = session.runProfile as IRemoteConfiguration
     private val editorsProvider: LuaDebuggerEditorsProvider = LuaDebuggerEditorsProvider()
@@ -143,14 +143,34 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
         var virtualFile = LuaFileUtil.findFile(session.project, chunkNameTemp)
         if (virtualFile == null && chunkNameTemp.contains("builtin/"))
         {
-            chunkNameTemp = chunkNameTemp.replace("builtin/", "")
-            chunkNameTemp = chunkNameTemp.replace("box/", "")
+            val remappingSources = configuration.getSourcesForRemapping()
+            var firstOfPairTemp = ""
+            var SecondOfPairTemp = ""
+            for (s in remappingSources)
+            {
+                if (chunkNameTemp.contains(s.first) && (firstOfPairTemp.length < s.first.length)){
+                    firstOfPairTemp = s.first
+                    SecondOfPairTemp = s.second
+                }
+            }
+            chunkNameTemp = chunkNameTemp.replace(firstOfPairTemp, SecondOfPairTemp + "/lua")
             for (i in 0..1) {
-                virtualFile = LuaFileUtil.findFile(session.project, configuration.tarantoolSrc + tarantoolSources[i] + chunkNameTemp)
+                virtualFile = LuaFileUtil.findFile(session.project, chunkNameTemp)
                 if (virtualFile != null)
                     break
             }
         }
+//        if (virtualFile == null && chunkNameTemp.contains("builtin/"))
+//        {
+//            chunkNameTemp = chunkNameTemp.replace("builtin/", "")
+//            chunkNameTemp = chunkNameTemp.replace("box/", "")
+//            for (i in 0..1) {
+//                // change required !!!
+//                virtualFile = LuaFileUtil.findFile(session.project, configuration.getSourcesForRemapping()[0].first + tarantoolSources[i] + chunkNameTemp)
+//                if (virtualFile != null)
+//                    break
+//            }
+//        }
         if (virtualFile != null) {
             recognizeBaseDir(virtualFile, chunkNameTemp)
             position = XSourcePositionImpl.create(virtualFile, line - 1)
