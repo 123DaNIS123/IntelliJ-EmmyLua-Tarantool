@@ -17,6 +17,8 @@
 package com.tarantoollua.intellij.lua.project;
 
 import com.intellij.codeInsight.daemon.DaemonCodeAnalyzer;
+import com.intellij.openapi.fileChooser.FileChooserDescriptor;
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.SearchableConfigurable;
 import com.intellij.openapi.project.Project;
@@ -55,12 +57,14 @@ public class LuaSettingsPanel implements SearchableConfigurable, Configurable.No
     private JCheckBox captureOutputDebugString;
     private JCheckBox captureStd;
     private JComboBox<String> defaultCharset;
-    private JComboBox<LuaLanguageLevel> languageLevel;
+    private com.intellij.openapi.ui.TextFieldWithBrowseButton tarantoolExe;
     private JTextField requireFunctionNames;
     private JTextField tooLargerFileThreshold;
 
     public LuaSettingsPanel() {
         this.settings = LuaSettings.Companion.getInstance();
+        FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor();
+        tarantoolExe.addBrowseFolderListener("Tarantool executable", "Choose Tarantool executable file", null, descriptor);
         constructorNames.setText(settings.getConstructorNamesString());
         strictDoc.setSelected(settings.isStrictDoc());
         smartCloseEnd.setSelected(settings.isSmartCloseEnd());
@@ -81,11 +85,11 @@ public class LuaSettingsPanel implements SearchableConfigurable, Configurable.No
         ComboBoxModel<String> outputCharsetModel = new DefaultComboBoxModel<>(ArrayUtil.toStringArray(charsetSortedMap.keySet()));
         defaultCharset.setModel(outputCharsetModel);
         defaultCharset.setSelectedItem(settings.getAttachDebugDefaultCharsetName());
-
+        tarantoolExe.setText(settings.getTarantoolExe());
         //language level
-        ComboBoxModel<LuaLanguageLevel> lanLevelModel = new DefaultComboBoxModel<>(LuaLanguageLevel.values());
-        languageLevel.setModel(lanLevelModel);
-        lanLevelModel.setSelectedItem(settings.getLanguageLevel());
+//        ComboBoxModel<LuaLanguageLevel> lanLevelModel = new DefaultComboBoxModel<>(LuaLanguageLevel.values());
+//        languageLevel.setModel(lanLevelModel);
+//        lanLevelModel.setSelectedItem(settings.getLanguageLevel());
     }
 
     @NotNull
@@ -121,7 +125,8 @@ public class LuaSettingsPanel implements SearchableConfigurable, Configurable.No
                 settings.getAttachDebugCaptureOutput() != captureOutputDebugString.isSelected() ||
                 settings.getAttachDebugCaptureStd() != captureStd.isSelected() ||
                 settings.getAttachDebugDefaultCharsetName() != defaultCharset.getSelectedItem() ||
-                settings.getLanguageLevel() != languageLevel.getSelectedItem() ||
+                // settings.getLanguageLevel() != languageLevel.getSelectedItem() ||
+                !StringUtil.equals(settings.getTarantoolExe(), tarantoolExe.getText()) ||
                 !ArrayUtil.equals(settings.getAdditionalSourcesRoot(), additionalRoots.getRoots(), String::compareTo);
     }
 
@@ -143,17 +148,20 @@ public class LuaSettingsPanel implements SearchableConfigurable, Configurable.No
         settings.setAttachDebugCaptureOutput(captureOutputDebugString.isSelected());
         settings.setAttachDebugCaptureStd(captureStd.isSelected());
         settings.setAttachDebugDefaultCharsetName((String) Objects.requireNonNull(defaultCharset.getSelectedItem()));
-        LuaLanguageLevel selectedLevel = (LuaLanguageLevel) Objects.requireNonNull(languageLevel.getSelectedItem());
-        if (selectedLevel != settings.getLanguageLevel()) {
-            settings.setLanguageLevel(selectedLevel);
-            StdLibraryProvider.Companion.reload();
-
-            FileContentUtil.reparseOpenedFiles();
-        } else {
-            for (Project project : ProjectManager.getInstance().getOpenProjects()) {
-                DaemonCodeAnalyzer.getInstance(project).restart();
-            }
-        }
+        settings.setTarantoolExe(tarantoolExe.getText());
+        tarantoolExe.setText(settings.getTarantoolExe());
+//        LuaLanguageLevel selectedLevel = (LuaLanguageLevel) Objects.requireNonNull(languageLevel.getSelectedItem());
+//        LuaLanguageLevel selectedLevel = LuaLanguageLevel.LUA51;
+//        if (selectedLevel != settings.getLanguageLevel()) {
+//            settings.setLanguageLevel(selectedLevel);
+//            StdLibraryProvider.Companion.reload();
+//
+//            FileContentUtil.reparseOpenedFiles();
+//        } else {
+//            for (Project project : ProjectManager.getInstance().getOpenProjects()) {
+//                DaemonCodeAnalyzer.getInstance(project).restart();
+//            }
+//        }
     }
 
     private int getTooLargerFileThreshold() {

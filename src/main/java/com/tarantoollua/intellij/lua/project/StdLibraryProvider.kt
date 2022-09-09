@@ -35,7 +35,8 @@ import javax.swing.Icon
 
 class StdLibraryProvider: AdditionalLibraryRootsProvider() {
     override fun getAdditionalProjectLibraries(project: Project): Collection<StdLibrary> {
-        val level = LuaSettings.instance.languageLevel
+//        val level = LuaSettings.instance.languageLevel
+        val level = LuaLanguageLevel.LUA51
         val std = LuaFileUtil.getPluginVirtualFile("std/Tarantool") ?: return emptyList()
         val dir = VfsUtil.findFileByIoFile(File(std), true) ?: return emptyList()
 

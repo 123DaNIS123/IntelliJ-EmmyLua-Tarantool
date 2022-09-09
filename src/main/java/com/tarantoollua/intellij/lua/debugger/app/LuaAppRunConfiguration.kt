@@ -37,6 +37,7 @@ import com.tarantoollua.intellij.lua.debugger.DebuggerType
 import com.tarantoollua.intellij.lua.debugger.IRemoteConfiguration
 import com.tarantoollua.intellij.lua.debugger.LuaCommandLineState
 import com.tarantoollua.intellij.lua.debugger.LuaRunConfiguration
+import com.tarantoollua.intellij.lua.project.LuaSettings
 import com.tarantoollua.intellij.lua.psi.LuaFileUtil
 import org.jdom.Element
 import java.io.File
@@ -51,13 +52,19 @@ import kotlin.collections.ArrayList
 class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
     : LuaRunConfiguration(project, factory), IRemoteConfiguration {
 
-    var program = PathEnvironmentVariableUtil.findInPath("tarantool")?.absolutePath
-            ?: if (SystemInfoRt.isWindows) "tarantool.exe" else "tarantool"
+//    var program = PathEnvironmentVariableUtil.findInPath("")?.absolutePath
+//            ?: if (SystemInfoRt.isWindows) "tarantool.exe" else "tarantool"
+    var program: String = ""
+        get() {
+            if (field == "" || field == "/" || field =="null")
+                field = LuaSettings.Companion.instance.tarantoolExe.toString()
+            return field
+        }
     var file: String? = null
     var parameters: String? = null
     var charset: String = "UTF-8"
     var showConsole = true
-    private var remappingSrcs: String? = null
+    private var remappingSrcs: String = ""
 
     var debuggerType: DebuggerType = DebuggerType.Attach
         get() {
@@ -110,7 +117,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         parameters = JDOMExternalizerUtil.readField(element, "params")
         charset = JDOMExternalizerUtil.readField(element, "charset") ?: "UTF-8"
         showConsole = JDOMExternalizerUtil.readField(element, "showConsole") == "true"
-        remappingSrcs = JDOMExternalizerUtil.readField(element, "remappingSrcs")
+        JDOMExternalizerUtil.readField(element, "remappingSrcs")?.let {remappingSrcs = it}
     }
 
     override val port = 8172
@@ -143,7 +150,9 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
 //        }
 
     fun getSourcesForRemapping(): ArrayList<Pair<String, String>> {
-        // val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.subSequence(1, remappingSrcs!!.length - 1).split("), ("))
+        // val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.subSequence(1, remappingSrcs!!.length - 1).split("), (")
+        if (remappingSrcs == "[]")
+            return ArrayList<Pair<String, String>>()
         val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.split("), ("))
         var tempSrcs = ArrayList<Pair<String, String>>()
         var tempPairArr: ArrayList<String>
@@ -191,7 +200,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
     var workingDir: String? = null
         get() {
             val wd = field
-            if (wd == null || wd.isEmpty()) {
+            if (wd == null || wd.isEmpty() || wd == "/") {
                 field = defaultWorkingDir
                 return defaultWorkingDir
             }
@@ -204,6 +213,14 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
 
     private val defaultWorkingDir: String?
         get() {
+            if (file != null) {
+                val lastSlashIndex = file!!.lastIndexOf('/')
+                if (lastSlashIndex != -1)
+                    return file?.subSequence(0, lastSlashIndex).toString()
+            }
+            var projectPath = ModuleManager.getInstance(project).modules[0].project.basePath
+            if (projectPath != null)
+                return projectPath
             val modules = ModuleManager.getInstance(project).modules
             for (module in modules) {
                 val sourceRoots = ModuleRootManager.getInstance(module).sourceRoots
@@ -224,7 +241,8 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         }
 
         val program = program
-        if (program.isEmpty()) {
+//        if (program.isEmpty()) {
+        if (program == null || !File(program).exists()) {
             throw RuntimeConfigurationError("Program doesn't exist.")
         }
 

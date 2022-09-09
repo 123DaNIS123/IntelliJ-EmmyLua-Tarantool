@@ -76,6 +76,15 @@ class LuaSettings : PersistentStateComponent<LuaSettings> {
      * Lua language level
      */
     var languageLevel = LuaLanguageLevel.LUA51
+    var tarantoolExe: String? = null
+//        get() {
+//            val te = field
+//            if (te == null || te.isEmpty()) {
+//                field = ""
+//                return field
+//            }
+//            return te
+//        }
 
     override fun getState(): LuaSettings? {
         return this

@@ -141,7 +141,7 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
         var chunkNameTemp = chunkName
         var position: XSourcePositionImpl? = null
         var virtualFile = LuaFileUtil.findFile(session.project, chunkNameTemp)
-        if (virtualFile == null && chunkNameTemp.contains("builtin/"))
+        if (virtualFile == null && chunkNameTemp.contains("builtin/") && configuration.getSourcesForRemapping().size > 0)
         {
             val remappingSources = configuration.getSourcesForRemapping()
             var firstOfPairTemp = ""
@@ -160,6 +160,7 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
                     break
             }
         }
+
 //        if (virtualFile == null && chunkNameTemp.contains("builtin/"))
 //        {
 //            chunkNameTemp = chunkNameTemp.replace("builtin/", "")

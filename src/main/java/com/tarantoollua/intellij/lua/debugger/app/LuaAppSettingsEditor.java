@@ -36,6 +36,7 @@ import com.intellij.util.textCompletion.TextFieldWithCompletion;
 import com.tarantoollua.intellij.lua.debugger.DebuggerType;
 import com.tarantoollua.intellij.lua.lang.LuaFileType;
 import com.tarantoollua.intellij.lua.lang.LuaIcons;
+import com.tarantoollua.intellij.lua.project.LuaSettings;
 import com.tarantoollua.intellij.lua.psi.LuaFileUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -52,6 +53,7 @@ import java.util.SortedMap;
  * Created by tarantoolluazx on 2017/5/7.
  */
 public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration> {
+    private final LuaSettings settings;
     private TextFieldWithBrowseButton myProgram;
     private JPanel myPanel;
     private ComboBox<DebuggerType> myDebugger;
@@ -68,6 +70,7 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
 
     LuaAppSettingsEditor(Project project) {
         this.project = project;
+        this.settings = LuaSettings.Companion.getInstance();
         FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFileNoJarsDescriptor();
         myProgram.addBrowseFolderListener("Choose Program", "Choose program file", project, descriptor);
         //descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
@@ -107,8 +110,8 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
     protected void resetEditorFrom(@NotNull LuaAppRunConfiguration luaAppRunConfiguration) {
         myProgram.setText(luaAppRunConfiguration.getProgram());
         //myTarantoolSrc.setText(luaAppRunConfiguration.getTarantoolSrc());
-        myWorkingDir.setText(luaAppRunConfiguration.getWorkingDir());
         myFile.setText(luaAppRunConfiguration.getFile());
+        myWorkingDir.setText(luaAppRunConfiguration.getWorkingDir());
         myDebugger.setSelectedItem(luaAppRunConfiguration.getDebuggerType());
         parameters.setText(luaAppRunConfiguration.getParameters());
         myEnvironments.setEnvs(luaAppRunConfiguration.getEnvs());
@@ -122,8 +125,8 @@ public class LuaAppSettingsEditor extends SettingsEditor<LuaAppRunConfiguration>
     protected void applyEditorTo(@NotNull LuaAppRunConfiguration luaAppRunConfiguration) {
         luaAppRunConfiguration.setProgram(myProgram.getText());
         //luaAppRunConfiguration.setTarantoolSrc(myTarantoolSrc.getText());
-        luaAppRunConfiguration.setWorkingDir(myWorkingDir.getText());
         luaAppRunConfiguration.setFile(myFile.getText());
+        luaAppRunConfiguration.setWorkingDir(myWorkingDir.getText());
         luaAppRunConfiguration.setDebuggerType((DebuggerType) Objects.requireNonNull(myDebugger.getSelectedItem()));
         luaAppRunConfiguration.setParameters(parameters.getText());
         luaAppRunConfiguration.setEnvs(myEnvironments.getEnvs());
