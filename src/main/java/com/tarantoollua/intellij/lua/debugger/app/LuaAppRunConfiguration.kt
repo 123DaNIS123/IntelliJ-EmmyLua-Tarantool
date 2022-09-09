@@ -61,6 +61,15 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
             return field
         }
     var file: String? = null
+        set(value)
+        {
+            if (value != null) {
+                val lastSlashIndex = value.lastIndexOf('/')
+                if (lastSlashIndex != -1)
+                    workingDir = value.subSequence(0, lastSlashIndex).toString()
+            }
+            field = value
+        }
     var parameters: String? = null
     var charset: String = "UTF-8"
     var showConsole = true
@@ -218,9 +227,9 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
                 if (lastSlashIndex != -1)
                     return file?.subSequence(0, lastSlashIndex).toString()
             }
-            var projectPath = ModuleManager.getInstance(project).modules[0].project.basePath
-            if (projectPath != null)
-                return projectPath
+//            var projectPath = ModuleManager.getInstance(project).modules[0].project.basePath
+//            if (projectPath != null)
+//                return projectPath
             val modules = ModuleManager.getInstance(project).modules
             for (module in modules) {
                 val sourceRoots = ModuleRootManager.getInstance(module).sourceRoots
