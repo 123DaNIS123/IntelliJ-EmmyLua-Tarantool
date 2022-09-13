@@ -54,9 +54,9 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
 
 //    var program = PathEnvironmentVariableUtil.findInPath("")?.absolutePath
 //            ?: if (SystemInfoRt.isWindows) "tarantool.exe" else "tarantool"
-    var program: String = ""
+    var program: String? = null
         get() {
-            if (field == "" || field == "/" || field =="null")
+            if (field == "" || field == "/" || field == null || !File(field!!).exists())
                 field = LuaSettings.Companion.instance.tarantoolExe.toString()
             return field
         }
@@ -213,6 +213,11 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
                 field = defaultWorkingDir
                 return defaultWorkingDir
             }
+            if (!File(wd).isDirectory())
+            {
+                field = File(wd).parent
+                return field
+            }
             return wd
         }
 //    private val defaultTarantoolSrc: String?
@@ -227,7 +232,7 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
                 if (lastSlashIndex != -1)
                     return file?.subSequence(0, lastSlashIndex).toString()
             }
-//            var projectPath = ModuleManager.getInstance(project).modules[0].project.basePath
+//           var projectPath = ModuleManager.getInstance(project).modules[0].project.basePath
 //            if (projectPath != null)
 //                return projectPath
             val modules = ModuleManager.getInstance(project).modules
@@ -259,18 +264,22 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         if (workingDir == null || !File(workingDir).exists()) {
             throw RuntimeConfigurationError("Working dir doesn't exist.")
         }
+        if (!File(workingDir).isDirectory())
+        {
+            throw RuntimeConfigurationError("Working dir is not a directory.")
+        }
 
 //        val tarantoolSrc = tarantoolSrc
 //        if (tarantoolSrc == null || !File(workingDir).exists()) {
 //            throw RuntimeConfigurationError("Tarantool Source doesn't exist.")
 //        }
         val remappingSrcs = remappingSrcs
-        if (remappingSrcs == null || !File(workingDir).exists()) {
+        if (remappingSrcs == "" || !File(workingDir).exists()) {
             throw RuntimeConfigurationError("Remapping Sources doesn't exist.")
         }
     }
 
-    override fun createCommandLine() = GeneralCommandLine().withExePath(program)
+    override fun createCommandLine() = GeneralCommandLine().withExePath(program!!)
             .withEnvironment(envs)
             .withParameters(*parametersArray)
             .withWorkDirectory(workingDir)

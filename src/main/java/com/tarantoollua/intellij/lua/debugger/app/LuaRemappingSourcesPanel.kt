@@ -110,7 +110,7 @@ class LuaRemappingSourcesPanel : JPanel(BorderLayout()) {
 
 
     private fun addPath() {
-        dataTableModel.addRow(arrayOf("builtin", "path/to/tarantool/src"))
+        dataTableModel.addRow(arrayOf("builtin", "path/to/tarantool/src/lua"))
 }
 
 private fun editPath() {

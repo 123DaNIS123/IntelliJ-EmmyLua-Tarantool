@@ -145,15 +145,15 @@ open class LuaMobDebugProcess(session: XDebugSession) : LuaDebugProcess(session)
         {
             val remappingSources = configuration.getSourcesForRemapping()
             var firstOfPairTemp = ""
-            var SecondOfPairTemp = ""
+            var secondOfPairTemp = ""
             for (s in remappingSources)
             {
                 if (chunkNameTemp.contains(s.first) && (firstOfPairTemp.length < s.first.length)){
                     firstOfPairTemp = s.first
-                    SecondOfPairTemp = s.second
+                    secondOfPairTemp = s.second
                 }
             }
-            chunkNameTemp = chunkNameTemp.replace(firstOfPairTemp, SecondOfPairTemp + "/lua")
+            chunkNameTemp = chunkNameTemp.replace(firstOfPairTemp, secondOfPairTemp)
             for (i in 0..1) {
                 virtualFile = LuaFileUtil.findFile(session.project, chunkNameTemp)
                 if (virtualFile != null)
