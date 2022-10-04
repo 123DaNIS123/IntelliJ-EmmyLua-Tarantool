@@ -162,7 +162,9 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
         // val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.subSequence(1, remappingSrcs!!.length - 1).split("), (")
         if (remappingSrcs == "[]")
             return ArrayList<Pair<String, String>>()
-        val tempArr: ArrayList<String> = ArrayList(remappingSrcs!!.split("), ("))
+        var tempArr = arrayListOf(remappingSrcs)
+        if (remappingSrcs.contains("), ("))
+            tempArr = ArrayList(remappingSrcs.split("), ("))
         var tempSrcs = ArrayList<Pair<String, String>>()
         var tempPairArr: ArrayList<String>
         var tempPair: Pair<String, String>
@@ -180,7 +182,10 @@ class LuaAppRunConfiguration(project: Project, factory: ConfigurationFactory)
             if (tempArr[i][tempArr[i].length - 1] == ')') {
                 tempArr[i] = tempArr[i].subSequence(0, tempArr[i].length - 1).toString()
             }
-            tempPairArr = ArrayList(tempArr[i].split(", "))
+            if (tempArr[i].contains(", "))
+                tempPairArr = ArrayList(tempArr[i].split(", "))
+            else
+                tempPairArr = arrayListOf(tempArr[i])
             tempPair = Pair(tempPairArr[0], tempPairArr[1])
             tempSrcs.add(tempPair)
         }
